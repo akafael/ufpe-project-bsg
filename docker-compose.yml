@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+    ubuntu:
+      image: "soumyashantaghosh/ubuntu:latest"
+      container_name: ubuntu
+      restart: on-failure
