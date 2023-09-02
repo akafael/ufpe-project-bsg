@@ -13,6 +13,11 @@ CC_FLAGS = -Wall
 # Get Makefile directory (enables using it as reference for relative paths)
 MAKEFILE_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
+SRCS := main.c bsg.c
+OBJS := bsg.o
+BIN := main
+TEST_BIN := test_bsg
+
 ###############################################################################
 # Rules
 ###############################################################################
@@ -20,8 +25,8 @@ MAKEFILE_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 # Print help for Makefile commands
 .PHONY: help
 help:
-	@echo "Use: make -f Makefile [OPTION]"
-	@echo "\nOPTIONS"
+	@echo "Use: make -f Makefile [OPTION] [TARGETS]"
+	@echo "\nTARGETS"
 	@sed Makefile -n -e "N;s/^# \(.*\)\n.PHONY:\(.*\)/ \2:\1/p;D" | column -ts:
 	@echo ""
 
@@ -39,6 +44,13 @@ bsg.o: bsg.c bsg.h
 main: bsg.o
 	$(CC) $(CC_FLAGS) main.c -o main $^
 
+# Run -------------------------------------------------------------------------
+
+# Build and Run binary
+.PHONY: run
+run: main
+	./$<
+
 # Tests -----------------------------------------------------------------------
 
 # Build BSG test
@@ -52,6 +64,7 @@ test: test_bsg
 
 # Auxiliar Roles --------------------------------------------------------------
 
-# Clear Generated Files
+# Remove generated files
+.PHONY: clear
 clear:
-	@rm -v bsg test_bsg
+	-rm -vf ${OBJS} ${BIN} ${TEST_BIN}
