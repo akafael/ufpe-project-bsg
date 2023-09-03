@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 typedef enum {
-  BSG_INDLE = 0,
+  BSG_IDLE = 0,
   BSG_STARTER = 1,
   BSG_MOTOR = 2,
   BSG_GENERATOR = 3
