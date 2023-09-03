@@ -1,12 +1,9 @@
 #include "bsg.h"
-#include <assert.h>
-#include <stdio.h>
+#include "utest/utest.h"
 
-int main() {
+UTEST_MAIN();
 
-  printf("[TEST] Hello, BSG!\n");
-
-  assert(sum(2, 3) == 5);
-
-  return 0;
+UTEST(sum, exemple1) {
+  const uint16_t expectedResult = 5;
+  ASSERT_EQ(sum(2, 3), expectedResult);
 }

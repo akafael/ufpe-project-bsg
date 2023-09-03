@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Checkout submodules
+      uses: textbook/git-checkout-submodule-action@master
     - name: make
       run: cd code/ && make build
     - name: make_test

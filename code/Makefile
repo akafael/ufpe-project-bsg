@@ -33,6 +33,7 @@ help:
 
 # Build -----------------------------------------------------------------------
 
+# Build all source files
 .PHONY: build
 build: test_bsg main
 
