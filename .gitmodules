@@ -1,0 +1,3 @@
+[submodule "code/utest"]
+	path = code/utest
+	url = https://github.com/akafael/utest.h.git
