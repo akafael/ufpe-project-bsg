@@ -39,6 +39,4 @@ typedef struct {
 StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
                        Battery battery);
 
-uint16_t sum(uint16_t a, uint16_t b);
-
 #endif // BSG_H
