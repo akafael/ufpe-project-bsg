@@ -25,19 +25,18 @@ typedef struct {
   uint16_t rpm;
   float voltage;
   float current;
-} Engine;
+} BSG;
 
 typedef struct {
   uint16_t rpm;
-} BSG;
+} Engine;
 
 typedef struct {
   float voltage;
   float current;
 } Battery;
 
-StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
-                       Battery battery);
+StateBSG selectBSGMode(Vehicle vehicle, Engine engine, Battery battery);
 
 uint16_t sum(uint16_t a, uint16_t b);
 
