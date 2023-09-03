@@ -36,7 +36,8 @@ typedef struct {
   float current;
 } Battery;
 
-StateBSG selectBSGMode(Vehicle vehicle, Engine engine, Battery battery);
+StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
+                       Battery battery);
 
 uint16_t sum(uint16_t a, uint16_t b);
 
