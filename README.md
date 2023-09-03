@@ -1,5 +1,5 @@
 # BSG Project
-![example workflow](https://github.com/github/docs/actions/workflows/c-cpp.yml/badge.svg)
+![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
 
 Belt Starter Generator project.
 
