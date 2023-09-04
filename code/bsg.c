@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "BSG.h"
+#include "bsg.h"
 
 StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg, Battery battery) {
   if (vehicle.angleAccPedal>70) {
-      return BSG_STARTER;
+    return BSG_STARTER;
   };
   if (vehicle.velocity == 0) {
       return BSG_IDLE;
