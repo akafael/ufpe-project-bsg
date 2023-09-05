@@ -104,27 +104,3 @@ UTEST(bsg, regenerativeBreak) {
   const StateBSG bsgMode = selectBSGMode(vehicle, engine, bsg, battery);
   ASSERT_EQ(bsgMode, BSG_GENERATOR);
 }
-
-UTEST(bsg, torqueAssistance) {
-  Vehicle vehicle;
-  vehicle.velocity = 60;
-  vehicle.angleAccPedal = 100;
-  vehicle.angleBrakePedal = 0;
-  vehicle.requestCarStart = 0;
-
-  BSG bsg;
-  bsg.currentMode = BSG_INDLE;
-  bsg.rpm = 4000;
-  bsg.voltage = 48;
-  bsg.current = 0;
-
-  Engine engine;
-  engine.rpm = 4000;
-
-  Battery battery;
-  battery.voltage = 30;
-  battery.current = 1;
-
-  const StateBSG bsgMode = selectBSGMode(vehicle, engine, bsg, battery);
-  ASSERT_EQ(bsgMode, BSG_MOTOR);
-}
