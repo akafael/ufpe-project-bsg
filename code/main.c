@@ -4,8 +4,8 @@
 int main() {
     // Create instances of the necessary structs
     Vehicle vehicle;
-    Engine engine;
     BSG bsg;
+    Engine engine;
     Battery battery;
 
     // Initialize the vehicle parameters
@@ -15,13 +15,13 @@ int main() {
     vehicle.requestCarStart = 1;       // Request to start the car (1 for yes, 0 for no)
     
     // Initialize the engine parameters
-    engine.currentMode = BSG_IDLE;     // Initial mode is IDLE
-    engine.rpm = 0;                    // Engine RPM
-    engine.voltage = 12.0;             // Engine voltage in volts
-    engine.current = 0.0;              // Engine current in amperes
+    bsg.currentMode = BSG_IDLE;     // Initial mode is IDLE
+    bsg.rpm = 0;                    // Engine RPM
+    bsg.voltage = 12.0;             // Engine voltage in volts
+    bsg.current = 0.0;              // Engine current in amperes
 
     // Initialize the BSG parameters
-    bsg.rpm = 0;                       // BSG RPM
+    engine.rpm = 0;                       // BSG RPM
 
     // Initialize the battery parameters
     battery.voltage = 14.0;            // Battery voltage in volts
