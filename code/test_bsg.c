@@ -26,6 +26,7 @@ UTEST(bsg, idle) {
   const StateBSG bsgMode = selectBSGMode(vehicle, engine, bsg, battery);
   ASSERT_EQ(bsgMode, BSG_IDLE);
 }
+
 UTEST(bsg, starter) {
   Vehicle vehicle;
   vehicle.velocity = 0;
