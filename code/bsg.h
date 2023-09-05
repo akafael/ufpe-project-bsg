@@ -25,11 +25,11 @@ typedef struct {
   uint16_t rpm;
   float voltage;
   float current;
-} Engine;
+} BSG;
 
 typedef struct {
   uint16_t rpm;
-} BSG;
+} Engine;
 
 typedef struct {
   float voltage;

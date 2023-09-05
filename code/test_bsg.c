@@ -3,7 +3,26 @@
 
 UTEST_MAIN();
 
-UTEST(sum, exemple1) {
-  const uint16_t expectedResult = 5;
-  ASSERT_EQ(sum(2, 3), expectedResult);
+UTEST(bsg, idle) {
+  Vehicle vehicle;
+  vehicle.velocity = 0;
+  vehicle.angleAccPedal = 0;
+  vehicle.angleBrakePedal = 0;
+  vehicle.requestCarStart = 0;
+
+  BSG bsg;
+  bsg.currentMode = BSG_IDLE;
+  bsg.rpm = 0;
+  bsg.voltage = 0;
+  bsg.current = 0;
+
+  Engine engine;
+  engine.rpm = 0;
+
+  Battery battery;
+  battery.voltage = 0;
+  battery.current = 0;
+
+  const StateBSG bsgMode = selectBSGMode(vehicle, engine, bsg, battery);
+  ASSERT_EQ(bsgMode, BSG_IDLE);
 }
