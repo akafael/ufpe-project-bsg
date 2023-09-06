@@ -1,4 +1,5 @@
 #include "bsgcontrol.h"
+#include "batterycontrol.h"
 #include "utest/utest.h"
 
 UTEST_MAIN();
@@ -94,6 +95,7 @@ UTEST(bsg, startEngine) {
 }
 
 UTEST(bsg, regenerativeBreak) {
+
   Vehicle vehicle = {
     .velocity = 60,
     .angleAccPedal = 0,
@@ -120,3 +122,13 @@ UTEST(bsg, regenerativeBreak) {
   const StateBSG bsgMode = selectBSGMode(vehicle, engine, bsg, battery);
   ASSERT_EQ(bsgMode, BSG_GENERATOR);
 }
+
+UTEST(battery, batteryCharging){
+  Battery primaryBattery = {
+    .voltage = 25,
+    .current = 1
+  };
+  const StateBattery batteryMode = selectBatteryMode(battery);
+  ASSERT_EQ(batteryMode, BATTERY_CHARGING);
+}
+
