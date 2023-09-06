@@ -15,7 +15,7 @@ UTEST(bsg, idle) {
   };
   
   BSG bsg = {
-    .currentMode = BSG_INDLE,
+    .currentMode = BSG_IDLE,
     .rpm = 0,
     .voltage = 0,
     .current = 0
@@ -31,7 +31,7 @@ UTEST(bsg, idle) {
   };
 
   const StateBSG bsgMode = selectBSGMode(vehicle, engine, bsg, battery);
-  ASSERT_EQ(bsgMode, BSG_INDLE);
+  ASSERT_EQ(bsgMode, BSG_IDLE);
 }
 
 /**
@@ -46,7 +46,7 @@ UTEST(bsg, engineOff) {
   };
   
   BSG bsg = {
-    .currentMode = BSG_INDLE,
+    .currentMode = BSG_IDLE,
     .rpm = 0,
     .voltage = 0,
     .current = 0
@@ -62,7 +62,7 @@ UTEST(bsg, engineOff) {
   };
 
   const StateBSG bsgMode = selectBSGMode(vehicle, engine, bsg, battery);
-  ASSERT_EQ(bsgMode, BSG_INDLE);
+  ASSERT_EQ(bsgMode, BSG_IDLE);
 }
 
 UTEST(bsg, startEngine) {
@@ -74,7 +74,7 @@ UTEST(bsg, startEngine) {
   };
   
   BSG bsg = {
-    .currentMode = BSG_INDLE,
+    .currentMode = BSG_IDLE,
     .rpm = 0,
     .voltage = 0,
     .current = 0
@@ -102,7 +102,7 @@ UTEST(bsg, regenerativeBreak) {
   };
   
   BSG bsg = {
-    .currentMode = BSG_INDLE,
+    .currentMode = BSG_IDLE,
     .rpm = 4000,
     .voltage = 48,
     .current = 0

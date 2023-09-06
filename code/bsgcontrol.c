@@ -23,5 +23,5 @@ StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
      return BSG_GENERATOR;
    }
   
-   return BSG_INDLE;
+   return BSG_IDLE;
 }
