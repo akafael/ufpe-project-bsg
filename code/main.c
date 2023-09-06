@@ -1,4 +1,4 @@
-#include "bsg.h"
+#include "bsgcontrol.h"
 #include <stdio.h>
 
 int main() {

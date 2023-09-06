@@ -14,13 +14,6 @@ typedef enum {
 } StateBSG;
 
 typedef struct {
-  uint16_t velocity;
-  uint16_t angleAccPedal;
-  uint16_t angleBrakePedal;
-  uint8_t requestCarStart;
-} Vehicle;
-
-typedef struct {
   StateBSG currentMode;
   uint16_t rpm;
   float voltage;
@@ -30,13 +23,5 @@ typedef struct {
 typedef struct {
   uint16_t rpm;
 } Engine;
-
-typedef struct {
-  float voltage;
-  float current;
-} Battery;
-
-StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
-                       Battery battery);
 
 #endif // BSG_H

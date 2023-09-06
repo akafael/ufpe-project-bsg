@@ -11,25 +11,17 @@ CC = gcc
 CC_FLAGS = -Wall
 
 # Get Makefile directory (enables using it as reference for relative paths)
-MAKEFILE_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+MAKEFILE_DIR:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 
-SRCS := main.c bsg.c
-OBJS := bsg.o
 BIN := main
 TEST_BIN := test_bsg
+SRCS := $(wildcard *.c)
+HEADERS := $(wildcard *.h)
+OBJS := $(filter-out test% main%, $(patsubst %.c,%.o, $(SRCS)))
 
 ###############################################################################
 # Rules
 ###############################################################################
-
-# Print help for Makefile commands
-.PHONY: help
-help:
-	@echo "Use: make -f Makefile [OPTION] [TARGETS]"
-	@echo "\nTARGETS"
-	@sed Makefile -n -e "N;s/^# \(.*\)\n.PHONY:\(.*\)/ \2:\1/p;D" | column -ts:
-	@echo ""
-
 
 # Build -----------------------------------------------------------------------
 
@@ -37,13 +29,13 @@ help:
 .PHONY: build
 build: test_bsg main
 
-# Build BSG lib
-bsg.o: bsg.c bsg.h
-	$(CC) $(CC_FLAGS) -c bsg.c
+# Build BSG objects
+%.o: %.c %.h
+	$(CC) $(CC_FLAGS) -c $<
 
 # Build BSG bin
-main: bsg.o
-	$(CC) $(CC_FLAGS) main.c -o main $^
+$(BIN): main.c $(OBJS) $(HEADERS)
+	$(CC) $(CC_FLAGS) $< -o $@ $(OBJS)
 
 # Run -------------------------------------------------------------------------
 
@@ -54,9 +46,9 @@ run: main
 
 # Tests -----------------------------------------------------------------------
 
-# Build BSG test
-test_bsg: test_bsg.c bsg.h bsg.o
-	$(CC) $(CC_FLAGS) test_bsg.c -o test_bsg bsg.o
+# Build BSG tests
+test%: test%.c $(OBJS) $(HEADERS)
+	$(CC) $(CC_FLAGS) $< -o $@ $(OBJS)
 
 # Build and Run tests
 .PHONY: test

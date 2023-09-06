@@ -1,0 +1,6 @@
+# C build file
+*.o
+
+# Binary files
+main
+test_bsg
