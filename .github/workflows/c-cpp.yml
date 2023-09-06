@@ -16,6 +16,6 @@ jobs:
     - name: Checkout submodules
       run: git submodule update --init --recursive
     - name: make
-      run: cd code/ && make build
+      run: cd code/ && make clear build
     - name: make_test
       run: cd code/ && make test
