@@ -1,5 +1,4 @@
 #include "bsgcontrol.h"
-#include "batterycontrol.h"
 #include <stdio.h>
 
 int main() {
@@ -19,14 +18,14 @@ int main() {
     bsg.currentMode = BSG_IDLE;     // Initial mode is IDLE
     bsg.rpm = 0;                    // Engine RPM
     bsg.voltage = 12.0;             // Engine voltage in volts
-    bsg.current = 0.0;              // Engine current in amps
+    bsg.current = 0.0;              // Engine current in amperes
 
     // Initialize the BSG parameters
     engine.rpm = 0;                       // BSG RPM
 
     // Initialize the battery parameters
     battery.voltage = 14.0;            // Battery voltage in volts
-    battery.current = 0.0;             // Battery current in amps
+    battery.current = 0.0;             // Battery current in amperes
 
     // Determine the BSG mode based on vehicle and engine parameters
     StateBSG mode = selectBSGMode(vehicle, engine, bsg, battery);
@@ -49,18 +48,6 @@ int main() {
             printf("Unknown BSG Mode\n");
             break;
     }
-    //Determine Battery mode based upon voltage
-     StateBattery batteryMode = selectBatteryMode(battery);
-     switch (batteryMode){
-        case BATTERY_CHARGING:
-            printf("Battery Mode: CHARGING \n");
-            break;
-        case BATTERY_DEAD:
-            printf("Battery Mode: DEAD\n");
-            break;
-        case BATTERY_LOW:
-            printf("Battery Mode: LOW\n");
-            break;
-     }
+
     return 0;
 }
