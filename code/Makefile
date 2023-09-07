@@ -14,7 +14,7 @@ CC_FLAGS = -Wall
 MAKEFILE_DIR:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 
 BIN := main
-TEST_BIN := test_bsg test_battery
+TEST_BIN := test_bsg test_battery test_engine
 SRCS := $(wildcard *.c)
 HEADERS := $(wildcard *.h)
 OBJS := $(filter-out test% main%, $(patsubst %.c,%.o, $(SRCS)))
@@ -53,6 +53,7 @@ test%: test%.c $(OBJS) $(HEADERS)
 # Build and Run tests
 .PHONY: test
 test: $(TEST_BIN)
+	./test_engine
 	./test_bsg
 	./test_battery
 
