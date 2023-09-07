@@ -52,8 +52,8 @@ test%: test%.c $(OBJS) $(HEADERS)
 
 # Build and Run tests
 .PHONY: test
-test: test_bsg
-	./$<
+test: $(TEST_BIN)
+	./test_bsg
 
 # Auxiliar Roles --------------------------------------------------------------
 
