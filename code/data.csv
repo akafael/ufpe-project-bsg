@@ -1,0 +1,2 @@
+velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current
+100,100,100,1,100,100,1,100,100.000000,100.000000

@@ -23,10 +23,10 @@ void writeCSV(csvdata* csvdata, int numEntries, const char* filename){
         printf("Failed to open file");
     }
 
-    fprintf(file, "velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current"); //csv header
+    fprintf(file, "velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
 
     for(int i = 0; i < numEntries; i++){
-        fprintf(file, "%u,%u,%u,%d,%u,%u,%d,%u,%f,%f", csvdata->velocity[i], csvdata->angleAccPedal[i], csvdata->angleBrakePedal[i],
+        fprintf(file, "%u,%u,%u,%d,%u,%u,%d,%u,%f,%f\n", csvdata->velocity[i], csvdata->angleAccPedal[i], csvdata->angleBrakePedal[i],
         csvdata->requestCarStart[i], csvdata->batteryvoltage[i], csvdata->batterycurrent[i], csvdata->currentMode[i], csvdata->rpm[i], 
         csvdata->voltage[i], csvdata->current[i]);
     }
