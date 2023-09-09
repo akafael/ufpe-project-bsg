@@ -1,0 +1,17 @@
+# Usage:
+# Install pre-commit: pip install pre-commit
+# copy this file for the project's root folder and rename to .pre-commit-config.yaml
+# then run 'pre-commit install' inside the git repository
+# be happy
+#
+# you may also run 'pre-commit install -c ~/path/to/.pre-commit-config.yaml'
+# inside the git repository if you dont want to add it to the version control tree
+
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+    -   id: check-merge-conflict
