@@ -11,4 +11,12 @@ extern const uint8_t BatteryMinOperationVoltage;
 extern const uint8_t BatteryMaxVoltage;
 extern const uint8_t BatterySpecVoltage;
 
+extern const uint16_t VehicleMinAccPedal;
+extern const uint16_t VehicleHighAccPedal;
+
+extern const uint16_t VehicleMinBrakePedal;
+extern const uint16_t VehicleHighBrakePedal;
+
+extern const uint16_t VehicleMinVelocity;
+
 #endif 

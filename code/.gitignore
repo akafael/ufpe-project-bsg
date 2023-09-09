@@ -3,4 +3,4 @@
 
 # Binary files
 main
-test_*
+test_*[^c]
