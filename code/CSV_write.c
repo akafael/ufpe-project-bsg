@@ -34,25 +34,3 @@ void writeCSV(csvdata* csvdata, int numEntries, const char* filename){
     fclose(file);
 }
 
-int main(){
-
-    csvdata mycsvdata;
-
-    //write values
-
-    mycsvdata.velocity[0] = 100;
-    mycsvdata.angleAccPedal[0] = 100;
-    mycsvdata.angleBrakePedal[0] = 100;
-    mycsvdata.batterycurrent[0] = 100;
-    mycsvdata.batteryvoltage[0] = 100;
-    mycsvdata.currentMode[0] = true;
-    mycsvdata.requestCarStart[0] = true;
-    mycsvdata.rpm[0] = 100;
-    mycsvdata.current[0] = 100;
-    mycsvdata.voltage[0] = 100;
-  
-    writeCSV(&mycsvdata, 1, "data.csv");
-
-    return 0;
-
-}
