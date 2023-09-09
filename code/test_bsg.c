@@ -121,5 +121,3 @@ UTEST(bsg, regenerativeBreak) {
   const StateBSG bsgMode = selectBSGMode(vehicle, engine, bsg, battery);
   ASSERT_EQ(bsgMode, BSG_GENERATOR);
 }
-
-

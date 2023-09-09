@@ -26,5 +26,3 @@ In summary, an automotive BSG plays a dual role as a starter and generator, cont
 
 
 ![](docs/preview.pdf)
-
-
