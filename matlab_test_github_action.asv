@@ -1,0 +1,29 @@
+t = 0:1:1000;
+y = t.^2;
+
+% Start the Figure
+figure;
+
+% Crie um diretório para salvar as imagens
+mkdir('matlab_frames');
+
+% Loop para criar os frames e salvar as imagens
+for i = 1:length(t)
+    plot(t(1:i), y(1:i));
+    title('y = t^2');
+    xlabel('time');
+    ylabel('response');
+    drawnow; % Atualiza a figura
+    frame = getframe(gcf); % Captura o frame
+    im = frame2im(frame); % Converte para imagem
+    filename = ['frames/frame_' num2str(i) '.png']; % Salva no diretório 'frames'
+    imwrite(im, filename, 'png');
+end
+Neste código, adicionei a criação de um diretório chamado 'frames' usando a função mkdir. As imagens geradas serão salvas neste diretório com o prefixo 'frame_' e a extensão '.png'. Elas serão criadas à medida que o loop avança.
+
+Lembre-se de que você precisa ter permissões para criar diretórios no local onde está executando o script MATLAB. Se você não tiver permissões, pode ser necessário escolher um diretório onde você tenha permissões de escrita. Certifique-se também de que o caminho seja válido no seu sistema.
+
+
+
+
+
