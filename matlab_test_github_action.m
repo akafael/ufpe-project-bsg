@@ -18,8 +18,3 @@ for i = 1:length(t)
     filename = ['matlab_frames/frame_' num2str(i) '.png']; % Saves in the correct folder'
     imwrite(im, filename, 'png');
 end
-
-
-
-
-

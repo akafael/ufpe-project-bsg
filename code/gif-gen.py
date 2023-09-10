@@ -22,5 +22,3 @@ frames[0].save('docs/gif.gif', save_all=True, append_images=frames[1:], duration
 for image in images:
     if image.endswith(".png"):
         os.remove(os.path.join(files_directory, image))
-
-
