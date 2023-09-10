@@ -8,10 +8,9 @@ StateEngine getEngineState(Engine engine){
         return  ENGINE_OFF;
     }
     if (engine.rpm == 7800){
-        return ENGINE_MAXIMUM;
+        return ENGINE_RPM_MAXIMUM;
     }
     if(engine.rpm > 0){
         return  ENGINE_WORKING;
     }   
-    return ENGINE_OFF;
 }
