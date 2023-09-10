@@ -10,9 +10,11 @@ typedef struct {
 
 typedef enum{
   ENGINE_OFF = 0,
-  ENGINE_WAIT = 1000,
-  ENGINE_MAXIMUM = 8000,
+  ENGINE_RPM = 4000,
+  ENGINE_RPM_NEUTRAL = 1000,
+  ENGINE_RPM_MAXIMUM = 8000,
   ENGINE_WORKING = 1,
+  ENGINE_GEAR = 3,
 } StateEngine;
 
 StateEngine getEngineState(Engine engine);
