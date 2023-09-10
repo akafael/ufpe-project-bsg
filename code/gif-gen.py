@@ -17,6 +17,10 @@ for image in images:
     frame = Image.open(path_image)
     frames. append(frame)
 
-frames[0].save('gif.gif', save_all=True, append_images=frames[1:], duration=500, loop=0)
+frames[0].save('docs/gif.gif', save_all=True, append_images=frames[1:], duration=500, loop=0)
+
+for image in images:
+    if image.endswith(".png"):
+        os.remove(os.path.join(files_directory, image))
 
 
