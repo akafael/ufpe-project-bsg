@@ -1,4 +1,5 @@
 #ifndef CALIBRATION_H
+#define CALIBRATION_H
 #include <stdint.h>
 
 extern const uint8_t BSGMaxVoltage;
