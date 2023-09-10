@@ -3,6 +3,7 @@
  */
 
 #ifndef BSG_H
+#define BSG_H
 
 #include <stdint.h>
 

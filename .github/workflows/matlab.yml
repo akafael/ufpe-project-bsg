@@ -1,0 +1,20 @@
+name: matlab graphic generation
+on:
+  push:
+    branches: [ "main" ]
+  pull request:
+    branches: [ "main" ]
+
+jobs:
+  matlab_test:
+    runs-on: windows-latest
+
+    steps:
+      - name: matlab-setup
+        uses: matlab-actions/setup-matlab@v1
+        with:
+          matlab-version: R2023a
+
+      - name: matlab-test-script
+        run: matlab -batch "run('matlab_test_github_action.m')"
+      
