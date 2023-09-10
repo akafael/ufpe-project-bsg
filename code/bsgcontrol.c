@@ -10,6 +10,7 @@ StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
    const bool isBatteryCharged = battery.voltage > BatteryMinVoltage;
    const bool isBrakingPedalPressed = vehicle.angleBrakePedal > 5;
    const bool isThrottlePedalPressed = vehicle.angleAccPedal > 5;
+   const bool isTorqueAssistanceRequired = isThrottlePedalPressed && vehicle.velocity > VehicleMinVelocity;
 
    // BSG_STARTER - Car Starter
    if ( isBatteryCharged && isEngineStopped && vehicle.requestCarStart )
@@ -21,6 +22,11 @@ StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
    if( isBrakingPedalPressed && isEngineRunning )
    {
      return BSG_GENERATOR;
+   }
+   //BSG_MOTOR - Torque Assistance
+   if(isTorqueAssistanceRequired)
+   {
+      return BSG_MOTOR;
    }
   
    return BSG_IDLE;
