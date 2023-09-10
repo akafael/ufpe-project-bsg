@@ -6,7 +6,7 @@ StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
 
    const bool isVehicleStopped = vehicle.velocity == 0;
    const bool isEngineStopped = engine.rpm == 0;
-   const bool isEngineRunning = engine.rpm > EngineMinOperationRPM;
+   const bool isEngineRunning = engine.rpm > EngineRPMNeutral;
    const bool isBatteryCharged = battery.voltage > BatteryMinVoltage;
    const bool isBrakingPedalPressed = vehicle.angleBrakePedal > 5;
    const bool isThrottlePedalPressed = vehicle.angleAccPedal > 5;

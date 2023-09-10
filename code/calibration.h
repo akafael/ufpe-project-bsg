@@ -4,8 +4,8 @@
 
 extern const uint8_t BSGMaxVoltage;
 
-extern const uint16_t EngineMaxRPM;
-extern const uint16_t EngineMinOperationRPM;
+extern const uint16_t EngineRPMNeutral;       ///< Engine RPM at neutral gear
+extern const uint16_t EngineRPMMaximum;       ///< Redline Max allowed by Engine
 
 extern const uint8_t BatteryMinVoltage;
 extern const uint8_t BatteryMinOperationVoltage;
@@ -20,4 +20,4 @@ extern const uint16_t VehicleHighBrakePedal;
 
 extern const uint16_t VehicleMinVelocity;
 
-#endif 
+#endif
