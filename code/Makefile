@@ -56,6 +56,7 @@ test: $(TEST_BIN)
 	./test_vehicle
 	./test_bsg
 	./test_battery
+	./test_csvutils
 
 # Auxiliar Roles --------------------------------------------------------------
 

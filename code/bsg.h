@@ -17,8 +17,8 @@ typedef enum {
 typedef struct {
   StateBSG currentMode;
   uint16_t rpm;
-  float voltage;
-  float current;
+  uint16_t voltage;
+  uint16_t current;
 } BSG;
 
 typedef struct {
