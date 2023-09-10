@@ -23,6 +23,13 @@ In summary, an automotive BSG plays a dual role as a starter and generator, cont
  5. [DOCS](docs): System documentation.
  6. [REF](ref): Datashet, whitepaper and other documents for reference.
 
+To include new files in UTest tests,run in your main directory: git submodule update --init --recursive
 
+Tô install Pre commit instance in branchs, run :
+pip install pre-commit
+pre-commit install -c .pre-commit-config.yml
+
+end of files error:
+pre-commit run --all
 
 ![](docs/preview.pdf)
