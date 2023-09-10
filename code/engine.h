@@ -14,7 +14,7 @@ typedef enum{
   ENGINE_RPM_NEUTRAL = 1000,
   ENGINE_RPM_MAXIMUM = 8000,
   ENGINE_WORKING = 1,
-  ENGINE_GEAR = 3,
+  ENGINE_GEAR = 2,
 } StateEngine;
 
 StateEngine getEngineState(Engine engine);
