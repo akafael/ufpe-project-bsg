@@ -1,17 +1,5 @@
 # include <stdio.h>
-# include "battery.h"
-# include "vehicle.h"
-# include "bsg.h"
 #include "CSV_write.h"
-
-typedef struct {
-    Vehicle vehicle;
-    Engine engine;
-    Battery battery;
-    BSG bsg;
-}VehicleData;
-
-VehicleData cvsData[10000];
 
 void writeCSV(VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"w");   //opens 'filename' and assigns to 'file' the pointer to that file;
@@ -31,7 +19,7 @@ void writeCSV(VehicleData* csvdata, int numEntries, const char* filename){
     fclose(file);
 }
 
-void WriteCSVLine(VehicleData data, char* csvLine){
+void writeCSVLine(VehicleData data, char* csvLine){
     sprintf(csvLine, "%u,%u,%u,%d,%u,%u,%d,%u,%f,%f", 
         data.vehicle.velocity, 
         data.vehicle.angleAccPedal, 

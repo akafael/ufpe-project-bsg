@@ -1,4 +1,5 @@
 #ifndef VEHICLE_H
+#define VEHICLE_H
 
 #include <stdint.h>
 #include <stdbool.h>

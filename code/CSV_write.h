@@ -1,6 +1,9 @@
 #ifndef CSV_WRITE_H
 #define CSV_WRITE_H
-#include <stdint.h>
+
+#include "bsg.h"
+#include "battery.h"
+#include "vehicle.h"
 #include "bsg.h"
 
 typedef struct {
