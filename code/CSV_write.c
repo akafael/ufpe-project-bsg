@@ -33,4 +33,3 @@ void writeCSVLine(VehicleData data, char* csvLine){
         data.bsg.current
     );
 }
-
