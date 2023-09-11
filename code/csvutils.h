@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "vehicle.h"
+#include "engine.h"
 #include "battery.h"
 #include "bsg.h"
 

@@ -23,20 +23,20 @@ void writeCSV(VehicleData* csvdata, int numEntries, const char* filename){
 }
 
 void writeCSVLine(VehicleData data, char* csvLine){
-    sprintf(csvLine, "%hu,%hu,%hu,%d,%hu,%hhu,%d,%hu,%hu,%hu", 
+    sprintf(csvLine, "%hu,%hu,%hu,%hu,%hu,%hhu,%d,%hu,%hu,%hu,%u,%hu,%hu", 
         data.vehicle.velocity, 
         data.vehicle.angleAccPedal, 
         data.vehicle.angleBrakePedal,
-        data.vehicle.requestCarStart,
-        //data.engine.rpm,
-        //data.engine.velocity,
-        //data.engine.gear, 
+        data.vehicle.requestCarStart, 
         data.battery.voltage, 
         data.battery.current, 
         data.bsg.currentMode, 
         data.bsg.rpm, 
         data.bsg.voltage, 
-        data.bsg.current
+        data.bsg.current,
+        data.engine.rpm,
+        data.engine.velocity,
+        data.engine.gear
     );
 }
 
@@ -61,7 +61,7 @@ void readCSV(VehicleData* csvdata, int numEntries, const char* filename){
 }
 
 void readCSVLine(VehicleData* data, char* csvLine){
-    sscanf(csvLine, "%hu,%hu,%hu,%d,%hu,%hhu,%d,%hu,%hu,%hu", 
+    sscanf(csvLine, "%hu,%hu,%hu,%d,%hu,%hhu,%d,%hu,%hu,%hu,%hu,%hu,%hu", 
         &(data->vehicle.velocity), 
         &(data->vehicle.angleAccPedal), 
         &(data->vehicle.angleBrakePedal),
@@ -71,6 +71,9 @@ void readCSVLine(VehicleData* data, char* csvLine){
         &(data->bsg.currentMode), 
         &(data->bsg.rpm), 
         &(data->bsg.voltage), 
-        &(data->bsg.current)
+        &(data->bsg.current),
+        &(data->engine.rpm),
+        &(data->engine.velocity),
+        &(data->engine.gear) 
     );
 }

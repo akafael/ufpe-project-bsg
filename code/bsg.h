@@ -21,8 +21,4 @@ typedef struct {
   uint16_t current;
 } BSG;
 
-typedef struct {
-  uint16_t rpm;
-} Engine;
-
 #endif // BSG_H
