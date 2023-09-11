@@ -25,9 +25,17 @@ void printVehicleData(VehicleData vehicleData)
             printf("Unknown BSG Mode\n");
             break;
     }
+    
+    printf("Vehicle:\n\t-Acc:%d\n",vehicleData.vehicle.angleAccPedal);
+    printf("BSG:\n\t-RPM:%d\n",vehicleData.bsg.rpm);
+    printf("BSG:\n\t-Voltage(V):%d\n",vehicleData.bsg.voltage);
+    printf("BSG:\n\t-Current(I):%d\n",vehicleData.bsg.current);
+    printf("Combustion Engine:\n\t-RPM:%d\n",vehicleData.engine.rpm);
+    printf("Battery:\n\t-Voltage(V):%d\n",vehicleData.battery.voltage);
+    printf("Battery:\n\t-Current(I):%d\n",vehicleData.battery.current);
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     // Create instances of the necessary structs
     Vehicle vehicle;
     BSG bsg;
@@ -52,6 +60,24 @@ int main() {
     // Initialize the battery parameters
     battery.voltage = 14.0;            // Battery voltage in volts
     battery.current = 0.0;             // Battery current in amperes
+
+    // TODO read cmd argument
+
+    const char* inputFile = "data/inputSignal.csv";
+    const char* outputFile = "data/outputSignal.csv";
+
+    VehicleData csvdata[100];
+
+    const int numEntries = 10;
+
+    readCSV(csvdata,numEntries,inputFile);
+
+    for(int i = 0; i < numEntries; i++){
+        printf("(%d) ------ \n",i);
+        printVehicleData(csvdata[i]);
+    }
+
+    writeCSV(csvdata,numEntries,outputFile);
 
     return 0;
 }
