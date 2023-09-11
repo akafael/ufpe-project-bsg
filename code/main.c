@@ -1,5 +1,31 @@
 #include "bsgcontrol.h"
+#include "csvutils.h"
 #include <stdio.h>
+
+void printVehicleData(VehicleData vehicleData)
+{
+    // Determine the BSG mode based on vehicle and engine parameters
+    StateBSG mode = selectBSGMode(vehicleData.vehicle, vehicleData.engine, vehicleData.bsg, vehicleData.battery);
+
+    // Display the selected BSG mode
+    switch (mode) {
+        case BSG_IDLE:
+            printf("BSG Mode: IDLE\n");
+            break;
+        case BSG_STARTER:
+            printf("BSG Mode: STARTER\n");
+            break;
+        case BSG_MOTOR:
+            printf("BSG Mode: MOTOR\n");
+            break;
+        case BSG_GENERATOR:
+            printf("BSG Mode: GENERATOR\n");
+            break;
+        default:
+            printf("Unknown BSG Mode\n");
+            break;
+    }
+}
 
 int main() {
     // Create instances of the necessary structs
@@ -26,28 +52,6 @@ int main() {
     // Initialize the battery parameters
     battery.voltage = 14.0;            // Battery voltage in volts
     battery.current = 0.0;             // Battery current in amperes
-
-    // Determine the BSG mode based on vehicle and engine parameters
-    StateBSG mode = selectBSGMode(vehicle, engine, bsg, battery);
-
-    // Display the selected BSG mode
-    switch (mode) {
-        case BSG_IDLE:
-            printf("BSG Mode: IDLE\n");
-            break;
-        case BSG_STARTER:
-            printf("BSG Mode: STARTER\n");
-            break;
-        case BSG_MOTOR:
-            printf("BSG Mode: MOTOR\n");
-            break;
-        case BSG_GENERATOR:
-            printf("BSG Mode: GENERATOR\n");
-            break;
-        default:
-            printf("Unknown BSG Mode\n");
-            break;
-    }
 
     return 0;
 }
