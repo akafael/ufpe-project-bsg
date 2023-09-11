@@ -25,14 +25,14 @@ void printVehicleData(VehicleData vehicleData)
             printf("Unknown BSG Mode\n");
             break;
     }
-    //printf("Vehicle Velocity:\n\t-Km/h:%d\n",vehicleData.vehicle.velocity);
-    //printf("Vehicle Accpedal:\n\t-Acc:%d\n",vehicleData.vehicle.angleAccPedal);
-    //printf("BSG info:\n\t-RPM:%d\n",vehicleData.bsg.rpm);
-    //printf("BSG info:\n\t-Voltage(V):%d\n",vehicleData.bsg.voltage);
-    //printf("BSG info:\n\t-Current(I):%d\n",vehicleData.bsg.current);
-    //printf("Combustion Engine:\n\t-RPM:%d\n",vehicleData.engine.rpm);
-    //printf("Battery:\n\t-Voltage(V):%d\n",vehicleData.battery.voltage);
-    //printf("Battery:\n\t-Current(I):%d\n",vehicleData.battery.current);
+    printf("Vehicle Velocity:\n\t-Km/h:%d\n",vehicleData.vehicle.velocity);
+    printf("Vehicle Accpedal:\n\t-Acc:%d\n",vehicleData.vehicle.angleAccPedal);
+    printf("BSG info:\n\t-RPM:%d\n",vehicleData.bsg.rpm);
+    printf("BSG info:\n\t-Voltage(V):%d\n",vehicleData.bsg.voltage);
+    printf("BSG info:\n\t-Current(I):%d\n",vehicleData.bsg.current);
+    printf("Combustion Engine:\n\t-RPM:%d\n",vehicleData.engine.rpm);
+    printf("Battery:\n\t-Voltage(V):%d\n",vehicleData.battery.voltage);
+    printf("Battery:\n\t-Current(I):%d\n",vehicleData.battery.current);
 }
 
 int main(int argc, char *argv[]) {
