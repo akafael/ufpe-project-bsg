@@ -1,4 +1,5 @@
 name: matlab graphic generation
+
 on:
   push:
     branches: [ "main" ]
@@ -16,5 +17,6 @@ jobs:
           matlab-version: R2023a
 
       - name: matlab-test-script
-        run: matlab -batch "run('../../matlab_test_github_action')"
-      
+        run: |
+          cd ufpe-project-bsg
+          matlab -batch "run('matlab_test_github_action')"
