@@ -8,7 +8,7 @@ typedef struct {
   uint16_t velocity;
   uint16_t angleAccPedal;
   uint16_t angleBrakePedal;
-  bool requestCarStart;
+  uint8_t requestCarStart;
 } Vehicle;
 
 typedef enum {
