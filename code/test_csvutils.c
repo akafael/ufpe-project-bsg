@@ -44,7 +44,7 @@ UTEST(csv, write) {
     14. engine.gear
   */
   
-  char* expectedCsvLine = "1,2,3,4,5,6,0,8,9,10,11,12,13\n";
+  char* expectedCsvLine = "1,2,3,4,5,6,0,8,9,10,11,12,13";
 
   char csvLine[512];
   writeCSVLine(vehicleData, csvLine);
