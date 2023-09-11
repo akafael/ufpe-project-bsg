@@ -1,34 +1,11 @@
 #include "bsgcontrol.h"
+#include "csvutils.h"
 #include <stdio.h>
 
-int main() {
-    // Create instances of the necessary structs
-    Vehicle vehicle;
-    BSG bsg;
-    Engine engine;
-    Battery battery;
-
-    // Initialize the vehicle parameters
-    vehicle.velocity = 60;             // Vehicle speed in km/h
-    vehicle.angleAccPedal = 30;        // Accelerator pedal angle in degrees
-    vehicle.angleBrakePedal = 10;      // Brake pedal angle in degrees
-    vehicle.requestCarStart = 1;       // Request to start the car (1 for yes, 0 for no)
-    
-    // Initialize the engine parameters
-    bsg.currentMode = BSG_IDLE;     // Initial mode is IDLE
-    bsg.rpm = 0;                    // Engine RPM
-    bsg.voltage = 12.0;             // Engine voltage in volts
-    bsg.current = 0.0;              // Engine current in amperes
-
-    // Initialize the BSG parameters
-    engine.rpm = 0;                       // BSG RPM
-
-    // Initialize the battery parameters
-    battery.voltage = 14.0;            // Battery voltage in volts
-    battery.current = 0.0;             // Battery current in amperes
-
+void printVehicleData(VehicleData vehicleData)
+{
     // Determine the BSG mode based on vehicle and engine parameters
-    StateBSG mode = selectBSGMode(vehicle, engine, bsg, battery);
+    StateBSG mode = selectBSGMode(vehicleData.vehicle, vehicleData.engine, vehicleData.bsg, vehicleData.battery);
 
     // Display the selected BSG mode
     switch (mode) {
@@ -48,6 +25,42 @@ int main() {
             printf("Unknown BSG Mode\n");
             break;
     }
+    printf("Vehicle Velocity:\n\t-Km/h:%d\n",vehicleData.vehicle.velocity);
+    printf("Vehicle Accpedal:\n\t-Acc:%d\n",vehicleData.vehicle.angleAccPedal);
+    printf("BSG info:\n\t-RPM:%d\n",vehicleData.bsg.rpm);
+    printf("BSG info:\n\t-Voltage(V):%d\n",vehicleData.bsg.voltage);
+    printf("BSG info:\n\t-Current(I):%d\n",vehicleData.bsg.current);
+    printf("Combustion Engine:\n\t-RPM:%d\n",vehicleData.engine.rpm);
+    printf("Battery:\n\t-Voltage(V):%d\n",vehicleData.battery.voltage);
+    printf("Battery:\n\t-Current(I):%d\n",vehicleData.battery.current);
+}
+
+int main(int argc, char *argv[]) {
+
+    if(argc < 3)
+    {
+        printf("Error: Invalid number of arguments. Expecting 2.\n");
+        return(1);
+    }
+
+    char* inputFile = argv[1];
+    char* outputFile = argv[2];
+
+    VehicleData csvdata[100];
+
+    const int numEntries = 10;
+
+    printf(">> Reading input file: %s\n",inputFile);
+
+    readCSV(csvdata,numEntries,inputFile);
+
+    for(int i = 0; i < numEntries; i++){
+        printf("(%d) ------ \n",i);
+        printVehicleData(csvdata[i]);
+    }
+
+    printf(">> Writting output file: %s\n",outputFile);
+    writeCSV(csvdata,numEntries,outputFile);
 
     return 0;
 }

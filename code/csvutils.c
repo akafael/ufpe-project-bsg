@@ -52,8 +52,10 @@ void readCSV(VehicleData* csvdata, int numEntries, const char* filename){
 
     // TODO Read file until the last line and add each line as a new entry inside buffer.
 
-    for(int i = 0; i < numEntries; i++){
-        char csvLine[512]; // Arbitrary size
+    char csvLine[512];
+    fgets(csvLine, 512, file);
+
+    for( int i = 0; ( i < numEntries ) && fgets(csvLine, 512, file);  i++ ) {
         readCSVLine(&csvdata[i], csvLine);
     }
 
@@ -61,7 +63,7 @@ void readCSV(VehicleData* csvdata, int numEntries, const char* filename){
 }
 
 void readCSVLine(VehicleData* data, char* csvLine){
-    sscanf(csvLine, "%hu,%hu,%hu,%d,%hu,%hhu,%d,%hu,%hu,%hu,%hu,%hu,%hu", 
+    sscanf(csvLine, "%hu,%hu,%hu,%hu,%hu,%hhu,%d,%hu,%hu,%hu,%hu,%hu,%hu", 
         &(data->vehicle.velocity), 
         &(data->vehicle.angleAccPedal), 
         &(data->vehicle.angleBrakePedal),
