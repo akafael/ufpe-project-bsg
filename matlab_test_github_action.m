@@ -1,3 +1,5 @@
+% MATLAB code
+
 t = 0:1:50;
 y = t.^2;
 
