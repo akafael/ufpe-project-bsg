@@ -16,5 +16,5 @@ jobs:
           matlab-version: R2023a
 
       - name: matlab-test-script
-        run: matlab -batch "run('../../matlab_test_github_action.m')"
+        run: matlab -batch "run('../matlab_test_github_action.m')"
       
