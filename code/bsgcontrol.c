@@ -11,13 +11,13 @@ StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
    }
 
    // BSG_GENERATOR - Regenerative Breaking
-   if (getDriveIntention(vehicle) == DRIVE_INTENTION_REDUCE_SPEED && getEngineState(engine) == ENGINE_WORKING && getBatteryState(battery)== BATTERY_LOW) {
+   if (getDriverIntention(vehicle) == DRIVE_INTENTION_REDUCE_SPEED && getEngineState(engine) == ENGINE_WORKING && getBatteryState(battery)== BATTERY_LOW) {
       
       return BSG_GENERATOR;
    }
 
    //BSG_MOTOR - Torque Assistance
-   if (getDriveIntention(vehicle) == DRIVE_INTENTION_INCREASE_SPEED && getEngineState(engine)== ENGINE_RPM_MAXIMUM && getBatteryState(battery)== BATTERY_OPERATIONAL) {
+   if (getDriverIntention(vehicle) == DRIVE_INTENTION_INCREASE_SPEED && getEngineState(engine)== ENGINE_RPM_MAXIMUM && getBatteryState(battery)== BATTERY_OPERATIONAL) {
       
       return BSG_MOTOR; 
    }
