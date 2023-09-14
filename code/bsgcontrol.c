@@ -17,7 +17,7 @@ StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
    }
 
    //BSG_MOTOR - Torque Assistance
-   if (getDriverIntention(vehicle) == DRIVE_INTENTION_INCREASE_SPEED && getEngineState(engine)== ENGINE_RPM_MAXIMUM && getBatteryState(battery)== BATTERY_OPERATIONAL) {
+   if (getDriverIntention(vehicle) == DRIVE_INTENTION_INCREASE_SPEED && getEngineState(engine) == ENGINE_WORKING && getBatteryState(battery)== BATTERY_OPERATIONAL) {
       
       return BSG_MOTOR; 
    }
