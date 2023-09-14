@@ -3,7 +3,9 @@
 #include<string.h>
 #include<stdbool.h>
 
-//Write
+/**
+ * Generate CSV with VehicleData 
+ */
 void writeCSV(VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"w");   //opens 'filename' and assigns to 'file' the pointer to that file;
 
@@ -22,8 +24,23 @@ void writeCSV(VehicleData* csvdata, int numEntries, const char* filename){
     fclose(file);
 }
 
+/**
+ * Convert VehicleData to string with fields splited by comma
+ */
 void writeCSVLine(VehicleData data, char* csvLine){
-    sprintf(csvLine, "%hu,%hu,%hu,%hu,%hu,%hhu,%d,%hu,%hu,%hu,%u,%hu,%hu", 
+    sprintf(csvLine, "%hu,"  // vehicle.velocity
+                     "%hu,"  // vehicle.angleAccPedal
+                     "%hu,"  // vehicle.angleBrakePedal
+                     "%hu,"  // vehicle.requestCarStart
+                     "%hu,"  // battery.voltage
+                     "%hhu," // battery.current
+                     "%d,"   // bsg.currentMode
+                     "%hu,"  // bsg.rpm
+                     "%hu,"  // bsg.voltage
+                     "%hu,"  // bsg.current
+                     "%u,"   // engine.rpm
+                     "%hu,"  // engine.velocity
+                     "%hu",  // engine.gear 
         data.vehicle.velocity, 
         data.vehicle.angleAccPedal, 
         data.vehicle.angleBrakePedal,
@@ -48,12 +65,10 @@ void readCSV(VehicleData* csvdata, int numEntries, const char* filename){
         printf("Failed to open file");
     }
 
-    csvdata;
+    const int bufferSize = 512;
+    char csvLine[bufferSize];
 
-    // TODO Read file until the last line and add each line as a new entry inside buffer.
-
-    char csvLine[512];
-    fgets(csvLine, 512, file);
+    fgets(csvLine, bufferSize, file); // Drop First Line with header
 
     for( int i = 0; ( i < numEntries ) && fgets(csvLine, 512, file);  i++ ) {
         readCSVLine(&csvdata[i], csvLine);
@@ -63,7 +78,19 @@ void readCSV(VehicleData* csvdata, int numEntries, const char* filename){
 }
 
 void readCSVLine(VehicleData* data, char* csvLine){
-    sscanf(csvLine, "%hu,%hu,%hu,%hu,%hu,%hhu,%d,%hu,%hu,%hu,%hu,%hu,%hu", 
+    sscanf(csvLine, "%hu,"  // vehicle.velocity
+                     "%hu,"  // vehicle.angleAccPedal
+                     "%hu,"  // vehicle.angleBrakePedal
+                     "%hu,"  // vehicle.requestCarStart
+                     "%hu,"  // battery.voltage
+                     "%hhu," // battery.current
+                     "%d,"   // bsg.currentMode
+                     "%hu,"  // bsg.rpm
+                     "%hu,"  // bsg.voltage
+                     "%hu,"  // bsg.current
+                     "%u,"   // engine.rpm
+                     "%hu,"  // engine.velocity
+                     "%hu",  // engine.gear 
         &(data->vehicle.velocity), 
         &(data->vehicle.angleAccPedal), 
         &(data->vehicle.angleBrakePedal),

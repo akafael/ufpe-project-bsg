@@ -1,9 +1,10 @@
 #include "csvutils.h"
+#include <stdio.h>
 #include "utest/utest.h"
 
 UTEST_MAIN();
 
-UTEST(csv, write) {
+UTEST(csvutils, writeCSVline) {
   VehicleData vehicleData = {
     .vehicle = {
         .velocity = 1,
@@ -52,7 +53,7 @@ UTEST(csv, write) {
   ASSERT_STREQ(expectedCsvLine,csvLine);
 }
 
-UTEST(csv, read) {
+UTEST(csv, readCSVline) {
   VehicleData expectedVehicleData = {
     .vehicle = {
         .velocity = 1,
