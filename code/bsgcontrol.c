@@ -11,7 +11,7 @@ StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
    }
 
    // BSG_GENERATOR - Regenerative Breaking
-   if (getDriverIntention(vehicle) == DRIVE_INTENTION_REDUCE_SPEED && getEngineState(engine) == ENGINE_WORKING && getBatteryState(battery)== BATTERY_LOW) {
+   if (getDriverIntention(vehicle) == DRIVE_INTENTION_REDUCE_SPEED && getEngineState(engine) != ENGINE_OFF && getBatteryState(battery)== BATTERY_LOW) {
       
       return BSG_GENERATOR;
    }
