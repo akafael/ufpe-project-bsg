@@ -25,3 +25,8 @@ jobs:
       run: cd code/ && make clear build
     - name: Run tests
       run: cd code/ && make test
+
+    - name: Install Doxygen
+      run: sudo apt-get install doxygen graphviz
+    - name: Generate Documentation
+      run: cd code/ && make docs
