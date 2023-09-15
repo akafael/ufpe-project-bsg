@@ -4,17 +4,23 @@
 #include <stdint.h>
 
 typedef struct {
-  uint8_t voltage;
-  uint8_t current;
+  uint8_t voltage;           ///< Battery Voltage [V]
+  uint8_t current;           ///< Battery Current [A]
 } Battery;
 
 typedef enum{
-  BATTERY_DEAD = 0,
-  BATTERY_LOW = 1,
-  BATTERY_OPERATIONAL = 2,
-  BATTERY_CHARGING = 3
+  BATTERY_DEAD = 0,          ///< Battery not working
+  BATTERY_LOW = 1,           ///< Battery state low
+  BATTERY_OPERATIONAL = 2,   ///< Battery under normal operation voltage
+  BATTERY_CHARGING = 3       ///< Battery charging 
 } StateBattery;
 
+/**
+ * @brief Convert the vehicle's voltage and current information into StateBattery 
+ * 
+ * @param battery Battery voltage and current information
+ * @return StateBattery 
+ */
 StateBattery getBatteryState(Battery battery);
 
 #endif // BATTERY_H

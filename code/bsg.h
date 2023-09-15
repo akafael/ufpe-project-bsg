@@ -14,11 +14,15 @@ typedef enum {
   BSG_GENERATOR = 3
 } StateBSG;
 
+/**
+ * @brief BSG - Belt Starter Generator sensor data
+ * 
+ */
 typedef struct {
-  StateBSG currentMode;
-  uint16_t rpm;
-  uint16_t voltage;
-  uint16_t current;
+  StateBSG currentMode;   ///< BSG Operation Mode
+  uint16_t rpm;           ///< BSG rotation (RPM)
+  uint16_t voltage;       ///< BSG voltage (V)
+  uint16_t current;       ///< BSG current (A)
 } BSG;
 
 #endif // BSG_H

@@ -72,7 +72,7 @@ test: $(TEST_BIN)
 docs: ../docs/html/index.html
 
 # Build HTML Code documentation
-../docs/html/index.html: Doxyfile $(SRCS)
+../docs/html/index.html: Doxyfile $(SRCS) $(HEADERS)
 	doxygen Doxyfile
 
 # Remove generated files from documentation
