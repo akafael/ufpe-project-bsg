@@ -66,6 +66,21 @@ test: $(TEST_BIN)
 	./test_battery
 	./test_csvutils
 
+# Documentation ---------------------------------------------------------------
+# Build Documentation using Doxygen
+.PHONY: docs
+docs: ../docs/html/index.html
+
+# Build HTML Code documentation
+../docs/html/index.html: Doxyfile $(SRCS)
+	doxygen Doxyfile
+
+# Remove generated files from documentation
+.PHONY: clear-docs
+clear-docs:
+	-rm -rfv ../docs/html
+	-rm -rfv ../docs/latex
+
 # Auxiliar Roles --------------------------------------------------------------
 
 # Remove generated files
