@@ -20,6 +20,6 @@ void writeCSVLine(VehicleData data, char* csvLine);
 
 void readCSV(VehicleData* csvdata, int numEntries, const char* filename);
 
-void readCSVLine(VehicleData* data, char* csvLine);
+void readCSVLine(VehicleData* data, const char* csvLine);
 
 #endif
