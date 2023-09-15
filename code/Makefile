@@ -46,8 +46,16 @@ run: $(BIN)
 
 # Tests -----------------------------------------------------------------------
 
+# Install test lib
+.PHONY: testlib
+testlib: utest/utest.h
+
+# Ensure utest.h is available
+utest/utest.h:
+	git submodule update --init --recursive
+
 # Build BSG tests
-test%: test%.c $(OBJS) $(HEADERS)
+test%: test%.c $(OBJS) $(HEADERS) utest/utest.h
 	$(CC) $(CC_FLAGS) $< -o $@ $(OBJS)
 
 # Build and Run tests

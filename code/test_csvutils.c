@@ -1,9 +1,10 @@
 #include "csvutils.h"
+#include <stdio.h>
 #include "utest/utest.h"
 
 UTEST_MAIN();
 
-UTEST(csv, write) {
+UTEST(csvutils, writeCSVline) {
   VehicleData vehicleData = {
     .vehicle = {
         .velocity = 1,
@@ -52,8 +53,8 @@ UTEST(csv, write) {
   ASSERT_STREQ(expectedCsvLine,csvLine);
 }
 
-UTEST(csv, read) {
-  VehicleData expectedVehicleData = {
+UTEST(csv, readCSVline) {
+  const VehicleData expectedVehicleData = {
     .vehicle = {
         .velocity = 1,
         .angleAccPedal = 2,
@@ -93,7 +94,7 @@ UTEST(csv, read) {
     14. engine.gear
   */
   
-  char* csvLine = "1,2,3,4,5,6,0,8,9,10,11,12,13";
+  const char* csvLine = "1,2,3,4,5,6,0,8,9,10,11,12,13";
 
   VehicleData vehicleData;
   readCSVLine(&vehicleData, csvLine);
@@ -111,4 +112,70 @@ UTEST(csv, read) {
   EXPECT_EQ(expectedVehicleData.engine.rpm,vehicleData.engine.rpm);
   EXPECT_EQ(expectedVehicleData.engine.velocity,vehicleData.engine.velocity);
   EXPECT_EQ(expectedVehicleData.engine.gear,vehicleData.engine.gear);
+}
+
+/**
+ * Ensure that data is preserved after converting
+ *  VehicleData -> csv string -> VehicleData
+ */
+UTEST(csv, preserveVehicleData) {
+  const VehicleData vehicleData = {
+    .vehicle = {
+        .velocity = 1,
+        .angleAccPedal = 2,
+        .angleBrakePedal = 3,
+        .requestCarStart = 4
+        },
+    .battery = {
+        .voltage = 5,
+        .current = 6
+        },
+    .bsg = {
+        .currentMode = BSG_IDLE,
+        .rpm = 8,
+        .voltage = 9,
+        .current = 10
+       },
+    .engine = {
+        .rpm = 11,
+        .velocity = 12,
+        .gear = 13
+        },
+  };
+
+  char csvLineWriter[100];
+  writeCSVLine(vehicleData,csvLineWriter);
+
+  VehicleData vehicleDataReader;
+  readCSVLine(&vehicleDataReader, csvLineWriter);
+
+  EXPECT_EQ(vehicleDataReader.vehicle.velocity,vehicleData.vehicle.velocity);
+  EXPECT_EQ(vehicleDataReader.vehicle.angleAccPedal,vehicleData.vehicle.angleAccPedal);
+  EXPECT_EQ(vehicleDataReader.vehicle.angleBrakePedal,vehicleData.vehicle.angleBrakePedal);
+  EXPECT_EQ(vehicleDataReader.vehicle.requestCarStart,vehicleData.vehicle.requestCarStart);
+  EXPECT_EQ(vehicleDataReader.battery.voltage,vehicleData.battery.voltage); // TODO Fix bug
+  EXPECT_EQ(vehicleDataReader.battery.current,vehicleData.battery.current);
+  EXPECT_EQ(vehicleDataReader.bsg.currentMode,vehicleData.bsg.currentMode);
+  EXPECT_EQ(vehicleDataReader.bsg.rpm,vehicleData.bsg.rpm);
+  EXPECT_EQ(vehicleDataReader.bsg.voltage,vehicleData.bsg.voltage);
+  EXPECT_EQ(vehicleDataReader.bsg.current,vehicleData.bsg.current);
+  EXPECT_EQ(vehicleDataReader.engine.rpm,vehicleData.engine.rpm);
+  EXPECT_EQ(vehicleDataReader.engine.velocity,vehicleData.engine.velocity);
+  EXPECT_EQ(vehicleDataReader.engine.gear,vehicleData.engine.gear);
+}
+
+/**
+ * Ensure that data is preserved after converting
+ *  csv string -> VehicleData -> csv string
+ */
+UTEST(csv, preserveCSVline) {
+  const char* csvLine = "1,2,3,4,5,6,0,8,9,10,11,12,13";
+
+  VehicleData vehicleData;
+  readCSVLine(&vehicleData, csvLine);
+
+  char csvLineWriter[100];
+  writeCSVLine(vehicleData,csvLineWriter);
+
+  EXPECT_STREQ(csvLine,csvLineWriter);
 }
