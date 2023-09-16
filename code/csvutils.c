@@ -77,20 +77,20 @@ void readCSV(VehicleData* csvdata, int numEntries, const char* filename){
     fclose(file);
 }
 
-void readCSVLine(VehicleData* data, char* csvLine){
+void readCSVLine(VehicleData* data, const char* csvLine){
     sscanf(csvLine, "%hu,"  // vehicle.velocity
                      "%hu,"  // vehicle.angleAccPedal
                      "%hu,"  // vehicle.angleBrakePedal
-                     "%hu,"  // vehicle.requestCarStart
-                     "%hu,"  // battery.voltage
+                     "%hhu,"  // vehicle.requestCarStart
+                     "%hhu,"  // battery.voltage
                      "%hhu," // battery.current
-                     "%d,"   // bsg.currentMode
+                     "%u,"   // bsg.currentMode
                      "%hu,"  // bsg.rpm
                      "%hu,"  // bsg.voltage
                      "%hu,"  // bsg.current
-                     "%u,"   // engine.rpm
-                     "%hu,"  // engine.velocity
-                     "%hu",  // engine.gear 
+                     "%hu,"   // engine.rpm
+                     "%hhu,"  // engine.velocity
+                     "%hhu",  // engine.gear 
         &(data->vehicle.velocity), 
         &(data->vehicle.angleAccPedal), 
         &(data->vehicle.angleBrakePedal),

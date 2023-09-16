@@ -4,29 +4,21 @@
 StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
                        Battery battery) {
 
-   const bool isVehicleStopped = vehicle.velocity == 0;
-   const bool isEngineStopped = engine.rpm == 0;
-   const bool isEngineRunning = engine.rpm > EngineRPMNeutral;
-   const bool isBatteryCharged = battery.voltage > BatteryMinVoltage;
-   const bool isBrakingPedalPressed = vehicle.angleBrakePedal > 5;
-   const bool isThrottlePedalPressed = vehicle.angleAccPedal > 5;
-   const bool isTorqueAssistanceRequired = isThrottlePedalPressed && vehicle.velocity > VehicleMinVelocity;
-
    // BSG_STARTER - Car Starter
-   if ( isBatteryCharged && isEngineStopped && vehicle.requestCarStart )
-   {
+   if (getBatteryState(battery) == BATTERY_OPERATIONAL && getEngineState(engine) == ENGINE_OFF && vehicle.requestCarStart) {
+    
       return BSG_STARTER;
    }
 
    // BSG_GENERATOR - Regenerative Breaking
-   if( isBrakingPedalPressed && isEngineRunning )
-   {
-     return BSG_GENERATOR;
+   if (getDriverIntention(vehicle) == DRIVE_INTENTION_REDUCE_SPEED && getEngineState(engine) != ENGINE_OFF ) {
+      
+      return BSG_GENERATOR;
    }
+
    //BSG_MOTOR - Torque Assistance
-   if(isTorqueAssistanceRequired)
-   {
-      return BSG_MOTOR;
+   if (getDriverIntention(vehicle) == DRIVE_INTENTION_INCREASE_SPEED && getEngineState(engine) == ENGINE_WORKING && getBatteryState(battery) != BATTERY_DEAD) {
+      return BSG_MOTOR; 
    }
   
    return BSG_IDLE;
