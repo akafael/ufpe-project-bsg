@@ -1,7 +1,7 @@
 #include "calibration.h"
 #include "vehicle.h"
 
-DriverIntention getDriverIntention(Vehicle vehicle){
+DriverIntention getDriverIntention(const Vehicle vehicle){
 
     if ( vehicle.angleAccPedal < VehicleMinAccPedal && vehicle.angleBrakePedal < VehicleMinBrakePedal && vehicle.velocity < VehicleMinVelocity) {
         return DRIVE_INTENTION_NOTHING; 

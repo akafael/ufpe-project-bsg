@@ -103,7 +103,7 @@ UTEST(csv, readCSVline) {
   EXPECT_EQ(expectedVehicleData.vehicle.angleAccPedal,vehicleData.vehicle.angleAccPedal);
   EXPECT_EQ(expectedVehicleData.vehicle.angleBrakePedal,vehicleData.vehicle.angleBrakePedal);
   EXPECT_EQ(expectedVehicleData.vehicle.requestCarStart,vehicleData.vehicle.requestCarStart);
-  //EXPECT_EQ(expectedVehicleData.battery.voltage,vehicleData.battery.voltage); // TODO Fix bug
+  EXPECT_EQ(expectedVehicleData.battery.voltage,vehicleData.battery.voltage);
   EXPECT_EQ(expectedVehicleData.battery.current,vehicleData.battery.current);
   EXPECT_EQ(expectedVehicleData.bsg.currentMode,vehicleData.bsg.currentMode);
   EXPECT_EQ(expectedVehicleData.bsg.rpm,vehicleData.bsg.rpm);

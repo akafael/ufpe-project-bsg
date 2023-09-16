@@ -3,8 +3,8 @@
 
 const uint8_t BSGMaxVoltage = 55;
 
-const uint16_t EngineRPMNeutral = 1000;       ///< Engine RPM at neutral gear
-const uint16_t EngineRPMMaximum = 8000;       ///< Redline Max allowed by Engine
+const uint16_t EngineRPMNeutral = 1000;
+const uint16_t EngineRPMMaximum = 8000;
 
 
 const uint8_t BatteryMinVoltage = 5;
