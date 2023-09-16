@@ -1,7 +1,7 @@
 #include "vehicle.h"
 #include "utest/utest.h"
 
-UTEST_MAIN();
+UTEST_MAIN()
 
 UTEST(vehicle, driverNothing){
   Vehicle vehicle = {

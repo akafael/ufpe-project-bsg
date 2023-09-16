@@ -1,7 +1,7 @@
 #include "bsgcontrol.h"
 #include "utest/utest.h"
 
-UTEST_MAIN();
+UTEST_MAIN()
 
 /**
  * BSG IDLE whenever the engine is off and the vehicle stopped

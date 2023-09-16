@@ -1,7 +1,7 @@
 #include "battery.h"
 #include "utest/utest.h"
 
-UTEST_MAIN();
+UTEST_MAIN()
 
 UTEST(battery, batteryCharging){
   Battery battery = {
