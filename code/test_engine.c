@@ -5,9 +5,9 @@ UTEST_MAIN()
 
 UTEST(engine, engineOff){
   Engine engine= {
-    .rpm = 25,
-    .velocity = 150,
-    .gear = 4,
+    .rpm = 0,
+    .velocity = 0,
+    .gear = 1,
   };
 
   const StateEngine test_engine = getEngineState(engine);
