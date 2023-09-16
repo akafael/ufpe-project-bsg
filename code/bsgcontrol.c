@@ -1,8 +1,8 @@
 #include "bsgcontrol.h"
 #include "calibration.h"
 
-StateBSG selectBSGMode(Vehicle vehicle, Engine engine, BSG bsg,
-                       Battery battery) {
+StateBSG selectBSGMode(const Vehicle vehicle, const Engine engine, const BSG bsg,
+                       const Battery battery) {
 
    // BSG_STARTER - Car Starter
    if (getBatteryState(battery) == BATTERY_OPERATIONAL && getEngineState(engine) == ENGINE_OFF && vehicle.requestCarStart) {
