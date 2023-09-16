@@ -7,13 +7,10 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  precommit:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
-
     - name: Install pre-commit
       run: pip install pre-commit
     - name: Configure pre-commit
@@ -21,7 +18,21 @@ jobs:
     - name: Run pre-commit checker in all files
       run: pre-commit run --all
 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
     - name: Build C code and tests
       run: cd code/ && make clear build
     - name: Run tests
       run: cd code/ && make test
+
+  docs:
+      runs-on: ubuntu-latest
+  
+      steps:
+      - uses: actions/checkout@v3
+      - name: Install Doxygen
+        run: sudo apt-get install doxygen graphviz
+      - name: Generate documentation
+        run: cd code/ && make test docs
