@@ -7,11 +7,15 @@
 
 #include <stdint.h>
 
+/**
+ * @brief BSG Operation modes
+ * 
+ */
 typedef enum {
-  BSG_IDLE = 0,
-  BSG_STARTER = 1,
-  BSG_MOTOR = 2,
-  BSG_GENERATOR = 3
+  BSG_IDLE = 0,      ///< BSG state for machine off 
+  BSG_STARTER = 1,   ///< BSG state for machine operating as Engine Starter 
+  BSG_MOTOR = 2,     ///< BSG state for machine operating as Motor
+  BSG_GENERATOR = 3  ///< BSG state for machine operating as Generator
 } StateBSG;
 
 /**
