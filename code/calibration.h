@@ -12,11 +12,11 @@ extern const uint8_t BatteryMinOperationVoltage;   ///< [V] Battery minimal volt
 extern const uint8_t BatteryMaxVoltage;            ///< [V] Battery max allowed voltage under normal operation conditions
 extern const uint8_t BatterySpecVoltage;           ///< [V] Battery specification voltage under normal operation conditions
 
-extern const uint16_t VehicleMinAccPedal;
-extern const uint16_t VehicleHighAccPedal;
+extern const uint16_t VehicleMinAccPedal;          ///< [%] Vehicle gas pedal dead zone.
+extern const uint16_t VehicleHighAccPedal;         ///< [%] Vehicle gas pedal value to consider it totally pressed.
 
-extern const uint16_t VehicleMinBrakePedal;
-extern const uint16_t VehicleHighBrakePedal;
+extern const uint16_t VehicleMinBrakePedal;        ///< [%] Vehicle brake pedal (dead zone)
+extern const uint16_t VehicleHighBrakePedal;       ///< [%] Vehicle brake pedal value to consider it totally pressed.
 
 extern const uint16_t VehicleMinVelocity;
 

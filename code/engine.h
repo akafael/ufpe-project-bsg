@@ -4,9 +4,9 @@
 #include <stdint.h>
 
 typedef struct {
-  uint16_t rpm;
-  uint8_t velocity;
-  uint8_t gear;
+  uint16_t rpm;                ///< [rpm] Engine rotation
+  uint8_t velocity;            ///< [km/h] Vehicle speed 
+  uint8_t gear;                ///< Current gear number 
   } Engine;
 
 typedef enum{

@@ -3,10 +3,7 @@
 #include<string.h>
 #include<stdbool.h>
 
-/**
- * Generate CSV with VehicleData 
- */
-void writeCSV(VehicleData* csvdata, int numEntries, const char* filename){
+void writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"w");   //opens 'filename' and assigns to 'file' the pointer to that file;
 
     if(file == NULL){
@@ -24,10 +21,7 @@ void writeCSV(VehicleData* csvdata, int numEntries, const char* filename){
     fclose(file);
 }
 
-/**
- * Convert VehicleData to string with fields splited by comma
- */
-void writeCSVLine(VehicleData data, char* csvLine){
+void writeCSVLine(const VehicleData data, char* csvLine){
     sprintf(csvLine, "%hu,"  // vehicle.velocity
                      "%hu,"  // vehicle.angleAccPedal
                      "%hu,"  // vehicle.angleBrakePedal
@@ -57,7 +51,6 @@ void writeCSVLine(VehicleData data, char* csvLine){
     );
 }
 
-// Read
 void readCSV(VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"r");   //opens 'filename' and assigns to 'file' the pointer to that file;
 
