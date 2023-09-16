@@ -49,16 +49,16 @@ UTEST(calibration, EngineRPMMaximum) {
     ASSERT_TRUE( EngineRPMMaximum >= 0 && EngineRPMMaximum <= 8000 );
 }
 
-//UTEST(engine, engineOff){
- // Engine engine= {
- //  .rpm = 25,
- //  .velocity = 150,
- //   .gear = 4
- // };
+UTEST(engine, engineOff){
+ Engine engine= {
+  .rpm = 25,
+  .velocity = 150,
+   .gear = 4
+ };
 
-// const StateEngine test_engine = getEngineState(engine);
-// ASSERT_EQ(test_engine, ENGINE_OFF);
-//}
+const StateEngine test_engine = getEngineState(engine);
+ASSERT_EQ(test_engine, ENGINE_OFF);
+}
 
 UTEST(battery, batteryCharging){
   Battery battery = {
