@@ -1,5 +1,6 @@
 # C build file
 *.o
+*.so
 
 # Binary files
 main
