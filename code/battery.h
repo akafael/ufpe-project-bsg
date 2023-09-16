@@ -7,7 +7,7 @@
  * @brief vehicle battery sensor data information
  * 
  */
-typedef struct {
+typedef struct BatteryStruct {
   uint8_t voltage;           ///< Battery Voltage [V]
   uint8_t current;           ///< Battery Current [A]
 } Battery;
@@ -16,7 +16,7 @@ typedef struct {
  * @brief Battery state considering voltage data
  * 
  */
-typedef enum{
+typedef enum StateBatteryEnum {
   BATTERY_DEAD = 0,          ///< Battery not working
   BATTERY_LOW = 1,           ///< Battery state low
   BATTERY_OPERATIONAL = 2,   ///< Battery under normal operation voltage

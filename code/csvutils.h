@@ -11,7 +11,7 @@
  * @brief Struct with Vehicle, Engine, Battery and BSG data
  * 
  */
-typedef struct{
+typedef struct VehicleDataStruct {
     Vehicle vehicle;          ///< Vehicle odometer and driver input
     Engine engine;            ///< Engine sensors data
     Battery battery;          ///< Battery sensors data

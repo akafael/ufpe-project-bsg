@@ -8,7 +8,7 @@
  * @brief Vehicle odometer and driver input data from pedals
  * 
  */
-typedef struct {
+typedef struct VehicleStruct {
   uint16_t velocity;                   ///< [km/h] Vehicle velocity
   uint16_t angleAccPedal;              ///< [%] Vehicle throttle pedal pressed percentage 
   uint16_t angleBrakePedal;            ///< [%] Vehicle brake pedal pressed percentage
@@ -19,7 +19,7 @@ typedef struct {
  * @brief DriverIntention state representation considering Vehicle data
  * 
  */
-typedef enum {
+typedef enum DriverIntentionEnum {
   DRIVE_INTENTION_NOTHING = 0,         ///< DriveIntention state for no input from driver
   DRIVE_INTENTION_REDUCE_SPEED = 1,    ///< DriveIntention state for reducing vehicle speed intention
   DRIVE_INTENTION_KEEP_SPEED = 2,      ///< DriveIntention state for keep vehicle speed intention

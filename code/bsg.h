@@ -11,7 +11,7 @@
  * @brief BSG Operation modes
  * 
  */
-typedef enum {
+typedef enum StateBSGEnum {
   BSG_IDLE = 0,      ///< BSG state for machine off 
   BSG_STARTER = 1,   ///< BSG state for machine operating as Engine Starter 
   BSG_MOTOR = 2,     ///< BSG state for machine operating as Motor
@@ -22,7 +22,7 @@ typedef enum {
  * @brief BSG - Belt Starter Generator sensor data
  * 
  */
-typedef struct {
+typedef struct BSGStruct {
   StateBSG currentMode;   ///< BSG Operation Mode
   uint16_t rpm;           ///< BSG rotation (RPM)
   uint16_t voltage;       ///< BSG voltage (V)
