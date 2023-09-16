@@ -8,7 +8,7 @@
 
 # Compiler Options
 CC = gcc
-CC_FLAGS = -Wall
+CC_FLAGS = -Wall -ggdb -Werror -Wpedantic
 
 # Get Makefile directory (enables using it as reference for relative paths)
 MAKEFILE_DIR:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
