@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "utest/utest.h"
 
-UTEST_MAIN();
+UTEST_MAIN()
 
 UTEST(csvutils, writeCSVline) {
   VehicleData vehicleData = {

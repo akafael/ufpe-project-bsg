@@ -1,7 +1,7 @@
 #include "engine.h"
 #include "utest/utest.h"
 
-UTEST_MAIN();
+UTEST_MAIN()
 
 UTEST(engine, engineOff){
   Engine engine= {
