@@ -8,7 +8,7 @@
 
 # Compiler Options
 CC = gcc
-CC_FLAGS = -Wall -ggdb -Werror -Wpedantic
+CC_FLAGS = -Wall -fPIC -ggdb -Werror -Wpedantic
 
 # Get Makefile directory (enables using it as reference for relative paths)
 MAKEFILE_DIR:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
@@ -18,6 +18,8 @@ TEST_BIN := $(patsubst %.c,%, $(wildcard test_*.c))
 SRCS := $(wildcard *.c)
 HEADERS := $(wildcard *.h)
 OBJS := $(filter-out test% main%, $(patsubst %.c,%.o, $(SRCS)))
+LIB := libbsg.so
+LIB_DIR := $(MAKEFILE_DIR)
 
 ###############################################################################
 # Rules
@@ -34,8 +36,18 @@ build: $(TEST_BIN) main
 	$(CC) $(CC_FLAGS) -c $<
 
 # Build BSG bin
-$(BIN): main.c $(OBJS) $(HEADERS)
+$(BIN): main.c $(LIB)
 	$(CC) $(CC_FLAGS) $< -o $@ $(OBJS)
+	$(CC) -L$(LIB_DIR) -Wl,-rpath=$(LIB_DIR) $(CC_FLAGS) -o $@  $< -lbsg
+
+# Lib -------------------------------------------------------------------------
+
+# Create shared library
+.PHONY: lib
+lib: $(LIB)
+
+$(LIB): $(OBJS) $(HEADERS)
+	$(CC) -shared -o $@ $^
 
 # Run -------------------------------------------------------------------------
 
