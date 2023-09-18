@@ -1,5 +1,5 @@
 ##
-# Basic Makefile for C
+# Project Makefile to automate all project steps
 ##
 
 ###############################################################################
@@ -19,10 +19,18 @@ MAKEFILE_DIR:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 
 # Build files and directories
 BIN := main
-TEST_BIN := $(patsubst %.c,%, $(wildcard test_*.c))
+TEST_SRC := $(wildcard test_*.c)
+TEST_BIN := $(patsubst %.c,%, $(TEST_SRC))
 SRCS := $(wildcard *.c)
 HEADERS := $(wildcard *.h)
-OBJS := $(filter-out test% main%, $(patsubst %.c,%.o, $(SRCS)))
+OBJS := $(patsubst %.c,%.o, $(filter-out $(TEST_SRC) main.c, $(SRCS)))
+
+# Docs
+DOCS_DIR := $(MAKEFILE_DIR)/../docs/
+DOCS_HTML_DIR := $(DOCS_DIR)/html
+DOCS_HTML_PAGE := $(DOCS_HTML_DIR)/index.html
+
+# Lib
 LIB := libbsg.so
 LIB_DIR := $(MAKEFILE_DIR)
 
@@ -38,6 +46,9 @@ LCOV_REPORT_HTML := $(LCOV_REPORT_DIR)/index.html
 GCOVR_REPORT_DIR := $(MAKEFILE_DIR)/gcovr_report
 GCOVR_REPORT_HTML := $(GCOVR_REPORT_DIR)/coverage.html
 
+# CSV data
+CSV_DATA_DIR := ${MAKEFILE_DIR}/data
+
 ###############################################################################
 # Rules
 ###############################################################################
@@ -50,7 +61,7 @@ build: $(TEST_BIN) main
 
 # Build BSG objects
 %.o: %.c %.h
-	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_BUILD) -c $<
+	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_BUILD) -c $< -o $@
 
 # Build BSG bin
 $(BIN): main.c $(LIB)
@@ -64,14 +75,14 @@ $(BIN): main.c $(LIB)
 lib: $(LIB)
 
 $(LIB): $(OBJS) $(HEADERS)
-	$(CC) -shared -o $@ $^
+	$(CC) -shared -o $@ $(OBJS)
 
 # Run -------------------------------------------------------------------------
 
 # Build and Run binary
 .PHONY: run
-run: $(BIN)
-	./$<
+run: $(BIN) 
+	./$< $(CSV_DATA_DIR)/inputSignal.csv $(CSV_DATA_DIR)/outputSignal.csv
 
 # Tests -----------------------------------------------------------------------
 
@@ -145,21 +156,20 @@ clear-coverage:
 # Documentation ---------------------------------------------------------------
 # Build Documentation using Doxygen
 .PHONY: docs
-docs: ../docs/html/index.html
+docs: $(DOCS_HTML_PAGE)
 
 # Build HTML Code documentation
-../docs/html/index.html: Doxyfile $(SRCS) $(HEADERS)
+$(DOCS_HTML_PAGE): Doxyfile $(SRCS) $(HEADERS)
 	doxygen Doxyfile
 
 # Remove generated files from documentation
 .PHONY: clear-docs
 clear-docs:
-	-rm -rfv ../docs/html
-	-rm -rfv ../docs/latex
+	-rm -rfv $(DOCS_HTML_DIR)
 
 # Auxiliar Roles --------------------------------------------------------------
 
 # Remove generated files
 .PHONY: clear
-clear:
+clear: clear-docs clear-coverage
 	-rm -vf ${OBJS} ${BIN} ${TEST_BIN}

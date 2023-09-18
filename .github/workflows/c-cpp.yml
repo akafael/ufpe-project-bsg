@@ -28,6 +28,8 @@ jobs:
       run: cd code/ && make clear build
     - name: Run tests and coverage report
       run: cd code/ && make test gcovr-report lcov-report
+    - name: Run simulator for smoke integration test
+      run: cd code/ && make run
 
   docs:
       runs-on: ubuntu-latest
