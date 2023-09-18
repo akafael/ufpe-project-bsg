@@ -6,7 +6,7 @@
 #include "csvutils.h"
 #include "utest/utest.h"
 
-UTEST_MAIN();
+UTEST_MAIN()
 
 UTEST(calibration, BatteryMaxVoltage) {
     ASSERT_TRUE(BatteryMaxVoltage > 0 && BatteryMaxVoltage <= 50);
