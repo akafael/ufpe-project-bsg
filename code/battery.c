@@ -9,7 +9,7 @@ StateBattery getBatteryState(Battery battery){
     if(battery.voltage < BatteryMinVoltage){
         return BATTERY_DEAD;
     }
-    if(battery.voltage == BatterySpecVoltage){
+    if(battery.voltage >= BatteryMinOperationVoltage && battery.voltage <= BatteryMaxVoltage){
         return BATTERY_OPERATIONAL;
     }
     if(battery.voltage < BatteryMinOperationVoltage){
