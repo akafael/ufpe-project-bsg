@@ -7,12 +7,13 @@ StateEngine getEngineState(Engine engine){
     if(engine.rpm == 0){
         return  ENGINE_OFF;
     }
-    if (engine.rpm == EngineRPMMaximum){
+    else if (engine.rpm == EngineRPMMaximum){
         return ENGINE_RPM_MAXIMUM;
     }
-    if(engine.rpm > 0){
+    else if(engine.rpm > 0){
         return  ENGINE_WORKING;
     }
-
-    return ENGINE_OFF;
+    else{
+        return ENGINE_OFF;
+    }
 }
