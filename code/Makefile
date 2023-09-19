@@ -27,6 +27,7 @@ LIB := libbsg.so
 LIB_DIR := $(MAKEFILE_DIR)
 
 # Coverage Files
+SRCS_DIR := $(MAKEFILE_DIR)
 COV_SRCS := $(filter-out test% main%, $(SRCS))
 GCOV_FILES := $(patsubst %.c,%.c.gcov, $(SRCS))
 GCDA_FILES := $(patsubst %.c,%.gcda, $(SRCS))
@@ -98,36 +99,40 @@ test: $(TEST_BIN)
 
 # deps: gcc, lcov, gcovr
 
-# Generate Coverage Report
+# Generate GCOV Report
 .PHONY: coverage
 coverage: $(GCOV_FILES)
 
-$(GCOV_FILES): test gcov_coverage
+$(GCOV_FILES): gcov_coverage
 
 # Run code coverage
 .PHONY: gcov_coverage
-gcov_coverage:
+gcov_coverage: test
 	gcov $(SRCS)
 
+# Create report directories
 $(LCOV_REPORT_DIR) $(GCOVR_REPORT_DIR):
 	mkdir -p $@
 
-# Generate LCOV report
+# Generate LCOV reports
 .PHONY: lcov-report
-lcov-report: lcov_report/index.html
+lcov-report: $(LCOV_REPORT_HTML)
 
-lcov_report/coverage.info: $(LCOV_REPORT_DIR) coverage
-	lcov --capture --directory . --output-file lcov_report/coverage.info
+# Generate LCOV info report
+$(LCOV_REPORT_INFO): $(LCOV_REPORT_DIR) coverage
+	lcov --capture --directory $(SRCS_DIR) --output-file $@
 
-lcov_report/index.html: lcov_report/coverage.info
-	genhtml lcov_report/coverage.info --output-directory lcov_report
+# Generate LCOV html report
+$(LCOV_REPORT_HTML): $(LCOV_REPORT_INFO) $(LCOV_REPORT_DIR)
+	genhtml $< --output-directory $(LCOV_REPORT_DIR)
 
 # Generate GCOVR report
 .PHONY: gcovr-report
 gcovr-report: $(GCOVR_REPORT_HTML) coverage
 
+# Generate GCOVR html report
 $(GCOVR_REPORT_HTML): $(GCOVR_REPORT_DIR)
-	gcovr --root . --html --html-details --output $(GCOVR_REPORT_HTML)
+	gcovr --root $(SRCS_DIR) --html --html-details --output $(GCOVR_REPORT_HTML)
 
 .PHONY: clear-coverage
 clear-coverage:
