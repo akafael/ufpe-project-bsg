@@ -26,10 +26,8 @@ jobs:
       run: sudo apt-get install gcc lcov gcovr
     - name: Build C code and tests
       run: cd code/ && make clear build
-    - name: Run tests
-      run: cd code/ && make test
-    - name: Run Coverage report
-      run: cd code/ && make gcovr-report lcov-report
+    - name: Run tests and coverage report
+      run: cd code/ && make test gcovr-report lcov-report
 
   docs:
       runs-on: ubuntu-latest
