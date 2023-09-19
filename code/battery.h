@@ -9,7 +9,7 @@
  */
 typedef struct BatteryStruct {
   uint8_t voltage;           ///< Battery Voltage [V]
-  uint8_t current;           ///< Battery Current [A]
+  int8_t current;           ///< Battery Current [A]
 } Battery;
 
 /**

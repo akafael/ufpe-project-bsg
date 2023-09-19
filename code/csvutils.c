@@ -27,7 +27,7 @@ void writeCSVLine(const VehicleData data, char* csvLine){
                      "%hu,"  // vehicle.angleBrakePedal
                      "%hu,"  // vehicle.requestCarStart
                      "%hu,"  // battery.voltage
-                     "%hhu," // battery.current
+                     "%hhd," // battery.current
                      "%d,"   // bsg.currentMode
                      "%hu,"  // bsg.rpm
                      "%hu,"  // bsg.voltage
@@ -76,7 +76,7 @@ void readCSVLine(VehicleData* data, const char* csvLine){
                      "%hu,"  // vehicle.angleBrakePedal
                      "%hhu,"  // vehicle.requestCarStart
                      "%hhu,"  // battery.voltage
-                     "%hhu," // battery.current
+                     "%hhd," // battery.current
                      "%u,"   // bsg.currentMode
                      "%hu,"  // bsg.rpm
                      "%hu,"  // bsg.voltage
