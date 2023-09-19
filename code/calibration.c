@@ -12,6 +12,8 @@ const uint8_t BatteryMinOperationVoltage = 7;
 const uint8_t BatteryMaxVoltage = 60;
 const uint8_t BatterySpecVoltage = 12;
 
+const int8_t BatteryMinOperationalCurrent = 1;
+
 const uint16_t VehicleMinAccPedal = 5;
 const uint16_t VehicleHighAccPedal = 60;
 

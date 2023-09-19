@@ -15,7 +15,7 @@ UTEST(battery, batteryCharging){
 UTEST(battery, dead){
   Battery battery = {
     .voltage = 2,
-    .current = 1
+    .current = -5
   };
 
   const StateBattery batteryMode = getBatteryState(battery);
