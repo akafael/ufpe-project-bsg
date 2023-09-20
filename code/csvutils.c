@@ -5,12 +5,15 @@
 #include <string.h>
 #include <stdbool.h>
 
-void writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
+int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"w");   //opens 'filename' and assigns to 'file' the pointer to that file;
-
+    int errnoValue;
+   
     if(file == NULL){
         perror(strerror(errno));
-        exit(EXIT_FAILURE);
+        
+        errnoValue = 2;
+        return errnoValue;
     }
     else{
         for(int i = 0; i < numEntries; i++){
@@ -21,7 +24,9 @@ void writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
          fprintf(file, "velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
     }
     fclose(file);
-    exit(EXIT_SUCCESS);
+    
+    errnoValue = 0;
+    return errnoValue;
 }
 
 void writeCSVLine(const VehicleData data, char* csvLine){
@@ -54,12 +59,15 @@ void writeCSVLine(const VehicleData data, char* csvLine){
     );
 }
 
-void readCSV(VehicleData* csvdata, int numEntries, const char* filename){
+int readCSV(VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"r");   //opens 'filename' and assigns to 'file' the pointer to that file;
+    int errnoValue;
 
     if(file == NULL){
         perror(strerror(errno));
-        exit(EXIT_FAILURE);
+        
+        errnoValue = 2;
+        return errnoValue;
     }
     else{
         const int bufferSize = 512;
@@ -72,7 +80,9 @@ void readCSV(VehicleData* csvdata, int numEntries, const char* filename){
         }
     } 
     fclose(file);
-    exit(EXIT_SUCCESS);
+
+    errnoValue = 0;
+    return errnoValue;
 }
 
 void readCSVLine(VehicleData* data, const char* csvLine){
