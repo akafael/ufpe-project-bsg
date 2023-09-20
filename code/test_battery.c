@@ -25,7 +25,7 @@ UTEST(battery, low){
 
 UTEST(battery, operacional){
   Battery battery = {
-    .voltage = 10,
+    .voltage = 12,
     .current = 1
   };
 
@@ -35,7 +35,7 @@ UTEST(battery, operacional){
 
 UTEST(battery, batteryCharging){
   Battery battery = {
-    .voltage =62,
+    .voltage = 63,
     .current = 3
   };
 
