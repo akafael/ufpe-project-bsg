@@ -1,4 +1,5 @@
 #include "battery.h"
+#include "calibration.h"
 #include "utest/utest.h"
 
 UTEST_MAIN()
@@ -15,7 +16,7 @@ UTEST(battery, dead){
 
 UTEST(battery, low){
   Battery battery = {
-    .voltage = 6,
+    .voltage = BatteryMinVoltage,
     .current = 1
   };
 
@@ -25,7 +26,7 @@ UTEST(battery, low){
 
 UTEST(battery, operacional){
   Battery battery = {
-    .voltage = 12,
+    .voltage = BatterySpecVoltage,
     .current = 1
   };
 
@@ -35,7 +36,7 @@ UTEST(battery, operacional){
 
 UTEST(battery, batteryCharging){
   Battery battery = {
-    .voltage = 63,
+    .voltage = BatteryMaxVoltage,
     .current = 3
   };
 
