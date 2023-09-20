@@ -1,24 +1,27 @@
 #include "csvutils.h"
-#include<stdio.h>
-#include<string.h>
-#include<stdbool.h>
+#include <stdio.h>
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 
 void writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"w");   //opens 'filename' and assigns to 'file' the pointer to that file;
 
     if(file == NULL){
-        printf("Failed to open file");
+        perror(strerror(errno));
+        exit(EXIT_FAILURE);
     }
-
-    fprintf(file, "velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
-
-    for(int i = 0; i < numEntries; i++){
+    else{
+        for(int i = 0; i < numEntries; i++){
         char csvLine[512]; // Arbitrary size
         writeCSVLine(csvdata[i], csvLine);
         fprintf(file, "%s\n", csvLine);
+        }
+         fprintf(file, "velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
     }
-
     fclose(file);
+    exit(EXIT_SUCCESS);
 }
 
 void writeCSVLine(const VehicleData data, char* csvLine){
@@ -55,19 +58,21 @@ void readCSV(VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"r");   //opens 'filename' and assigns to 'file' the pointer to that file;
 
     if(file == NULL){
-        printf("Failed to open file");
+        perror(strerror(errno));
+        exit(EXIT_FAILURE);
     }
+    else{
+        const int bufferSize = 512;
+        char csvLine[bufferSize];
 
-    const int bufferSize = 512;
-    char csvLine[bufferSize];
+        fgets(csvLine, bufferSize, file); // Drop First Line with header
 
-    fgets(csvLine, bufferSize, file); // Drop First Line with header
-
-    for( int i = 0; ( i < numEntries ) && fgets(csvLine, 512, file);  i++ ) {
-        readCSVLine(&csvdata[i], csvLine);
-    }
-
+        for( int i = 0; ( i < numEntries ) && fgets(csvLine, 512, file);  i++ ) {
+            readCSVLine(&csvdata[i], csvLine);
+        }
+    } 
     fclose(file);
+    exit(EXIT_SUCCESS);
 }
 
 void readCSVLine(VehicleData* data, const char* csvLine){
