@@ -3,15 +3,6 @@
 
 UTEST_MAIN()
 
-UTEST(battery, batteryCharging){
-  Battery battery = {
-    .voltage = 25,
-    .current = 1
-  };
-
-  const StateBattery batteryMode = getBatteryState(battery);
-  ASSERT_EQ(batteryMode, BATTERY_CHARGING);
-}
 UTEST(battery, dead){
   Battery battery = {
     .voltage = 2,
@@ -24,7 +15,7 @@ UTEST(battery, dead){
 
 UTEST(battery, low){
   Battery battery = {
-    .voltage = 5,
+    .voltage = 6,
     .current = 1
   };
 
@@ -34,11 +25,20 @@ UTEST(battery, low){
 
 UTEST(battery, operacional){
   Battery battery = {
-    .voltage = 8,
+    .voltage = 10,
     .current = 1
   };
 
   const StateBattery batteryMode = getBatteryState(battery);
   ASSERT_EQ(batteryMode, BATTERY_OPERATIONAL);
 }
-  
+
+UTEST(battery, batteryCharging){
+  Battery battery = {
+    .voltage =62,
+    .current = 3
+  };
+
+  const StateBattery batteryMode = getBatteryState(battery);
+  ASSERT_EQ(batteryMode, BATTERY_CHARGING);
+}

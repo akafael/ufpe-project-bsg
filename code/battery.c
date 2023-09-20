@@ -3,17 +3,24 @@
 
 StateBattery getBatteryState(Battery battery){
     
-    if (battery.voltage > BatterySpecVoltage){
-        return BATTERY_CHARGING;
+    StateBattery stateBattery;
+    if (battery.current >= BatteryMinOperationalCurrent ) {
+        if (battery.voltage >= BatteryMaxVoltage){
+            stateBattery = BATTERY_CHARGING;
+        }
+        
+        else{
+            if (battery.voltage >= BatteryMinVoltage && battery.voltage < BatterySpecVoltage){
+                stateBattery = BATTERY_LOW;
+            } 
+        }
+
+        if(battery.voltage >= BatteryMinVoltage && battery.voltage <= BatteryMaxVoltage){
+            stateBattery = BATTERY_OPERATIONAL;
+        }
     }
-    if(battery.voltage < BatteryMinVoltage && battery.current < BatteryMinOperationalCurrent){
-        return BATTERY_DEAD;
+    else{
+        stateBattery = BATTERY_DEAD;
     }
-    if(battery.voltage >= BatteryMinOperationVoltage && battery.voltage <= BatteryMaxVoltage){
-        return BATTERY_OPERATIONAL;
-    }
-    if(battery.voltage < BatteryMinOperationVoltage){
-        return BATTERY_LOW;
-    }
-    return BATTERY_OPERATIONAL;
+    return stateBattery;
 }
