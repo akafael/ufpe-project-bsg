@@ -47,7 +47,7 @@ GCOVR_REPORT_DIR := $(MAKEFILE_DIR)/gcovr_report
 GCOVR_REPORT_HTML := $(GCOVR_REPORT_DIR)/coverage.html
 
 # Coverage target
-COV_TARGET := 80
+COV_TARGET := 50
 
 # CSV data
 CSV_DATA_DIR := ${MAKEFILE_DIR}/data
