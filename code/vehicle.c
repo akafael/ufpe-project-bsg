@@ -7,7 +7,7 @@ DriverIntention driverIntention = DRIVE_INTENTION_NOTHING;
 
       if( vehicle.angleBrakePedal > VehicleMinBrakePedal )
     {
-        driverIntention = DRIVE_INTENTION_KEEP_SPEED;
+        driverIntention = DRIVE_INTENTION_REDUCE_SPEED;
     }
     else
     {
