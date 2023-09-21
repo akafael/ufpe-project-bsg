@@ -26,9 +26,9 @@ HEADERS := $(wildcard *.h)
 OBJS := $(patsubst %.c,%.o, $(filter-out $(TEST_SRC) main.c, $(SRCS)))
 
 # Docs
-DOCS_DIR := $(MAKEFILE_DIR)/../docs/
-DOCS_HTML_DIR := $(DOCS_DIR)/html
-DOCS_HTML_PAGE := $(DOCS_HTML_DIR)/index.html
+DOCS_DIR := $(realpath $(MAKEFILE_DIR)/../docs)
+DOCS_HTML_DIR := $(abspath $(DOCS_DIR)/doxygen)
+DOCS_HTML_PAGE := $(abspath $(DOCS_HTML_DIR)/index.html)
 
 # Lib
 LIB := libbsg.so
@@ -40,11 +40,11 @@ COV_SRCS := $(filter-out test% main%, $(SRCS))
 GCOV_FILES := $(patsubst %.c,%.c.gcov, $(SRCS))
 GCDA_FILES := $(patsubst %.c,%.gcda, $(SRCS))
 GCNO_FILES := $(patsubst %.c,%.gcno, $(SRCS))
-LCOV_REPORT_DIR := $(MAKEFILE_DIR)/lcov_report
-LCOV_REPORT_INFO := $(LCOV_REPORT_DIR)/coverage.info
-LCOV_REPORT_HTML := $(LCOV_REPORT_DIR)/index.html
-GCOVR_REPORT_DIR := $(MAKEFILE_DIR)/gcovr_report
-GCOVR_REPORT_HTML := $(GCOVR_REPORT_DIR)/coverage.html
+LCOV_REPORT_DIR := $(abspath $(DOCS_DIR)/lcov)
+LCOV_REPORT_INFO := $(abspath $(LCOV_REPORT_DIR)/coverage.info)
+LCOV_REPORT_HTML := $(abspath $(LCOV_REPORT_DIR)/index.html)
+GCOVR_REPORT_DIR := $(abspath $(DOCS_DIR)/gcovr)
+GCOVR_REPORT_HTML := $(abspath $(GCOVR_REPORT_DIR)/index.html)
 
 # Coverage target
 COV_TARGET := 50
@@ -157,7 +157,7 @@ $(GCOVR_REPORT_HTML): $(GCOVR_REPORT_DIR)
 		  --fail-under-line $(COV_TARGET) \
 		  --fail-under-branch $(COV_TARGET) \
 	      --root $(SRCS_DIR) \
-		  --html-details --html $@
+		  --html-details --html -o $(GCOVR_REPORT_HTML)
 
 .PHONY: clear-coverage
 clear-coverage:

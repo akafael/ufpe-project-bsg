@@ -1178,7 +1178,7 @@ GENERATE_HTML          = YES
 # The default directory is: html.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_OUTPUT            = html
+HTML_OUTPUT            = doxygen
 
 # The HTML_FILE_EXTENSION tag can be used to specify the file extension for each
 # generated HTML page (for example: .htm, .php, .asp).
@@ -1351,7 +1351,7 @@ DOCSET_FEEDNAME        = "Doxygen generated docs"
 # The default value is: org.doxygen.Project.
 # This tag requires that the tag GENERATE_DOCSET is set to YES.
 
-DOCSET_BUNDLE_ID       = org.doxygen.Project
+DOCSET_BUNDLE_ID       = br.ufpe.cin.software.automotive.bsg
 
 # The DOCSET_PUBLISHER_ID tag specifies a string that should uniquely identify
 # the documentation publisher. This should be a reverse domain-name style
@@ -1359,7 +1359,7 @@ DOCSET_BUNDLE_ID       = org.doxygen.Project
 # The default value is: org.doxygen.Publisher.
 # This tag requires that the tag GENERATE_DOCSET is set to YES.
 
-DOCSET_PUBLISHER_ID    = org.doxygen.Publisher
+DOCSET_PUBLISHER_ID    = br.ufpe.cin.software.automotive.bsg
 
 # The DOCSET_PUBLISHER_NAME tag identifies the documentation publisher.
 # The default value is: Publisher.
@@ -1509,7 +1509,7 @@ GENERATE_ECLIPSEHELP   = NO
 # The default value is: org.doxygen.Project.
 # This tag requires that the tag GENERATE_ECLIPSEHELP is set to YES.
 
-ECLIPSE_DOC_ID         = org.doxygen.Project
+ECLIPSE_DOC_ID         = br.ufpe.cin.software.automotive.bsg
 
 # If you want full control over the layout of the generated HTML pages it might
 # be necessary to disable the index and replace it with your own. The
