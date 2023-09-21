@@ -126,7 +126,7 @@ $(GCOV_FILES): gcov_coverage
 
 # Run code coverage
 .PHONY: gcov_coverage
-gcov_coverage: test
+gcov_coverage:
 	gcov $(SRCS)
 
 # Create report directories

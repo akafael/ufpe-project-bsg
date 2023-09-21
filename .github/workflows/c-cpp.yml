@@ -33,12 +33,15 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install Coverage tools
       run: sudo apt-get install gcc lcov gcovr
-    - name: Run tests and coverage report
-      run: cd code/ && make test gcovr-report lcov-report
+    - name: Run tests
+      run: cd code/ && make test
+    - name: Generate GCOV coverage report
+      run: cd code/ && make gcovr-report
+    - name: Generate LCOV coverage report
+      run: cd code/ && make lcov-report
 
   docs:
       runs-on: ubuntu-latest
-  
       steps:
       - uses: actions/checkout@v3
       - name: Install Doxygen
