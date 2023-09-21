@@ -1,24 +1,29 @@
 #include "csvutils.h"
-#include<stdio.h>
-#include<string.h>
-#include<stdbool.h>
+#include <stdio.h>
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 
-void writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
+int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"w");   //opens 'filename' and assigns to 'file' the pointer to that file;
-
+    int errnoValue = 0;
+   
     if(file == NULL){
-        printf("Failed to open file");
+        perror(strerror(errno));
+        errnoValue = 2;
     }
-
-    fprintf(file, "velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
-
-    for(int i = 0; i < numEntries; i++){
+    else{
+        for(int i = 0; i < numEntries; i++){
         char csvLine[512]; // Arbitrary size
         writeCSVLine(csvdata[i], csvLine);
         fprintf(file, "%s\n", csvLine);
+        }
+         fprintf(file, "velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
+         errnoValue = 0;
     }
-
     fclose(file);
+    return errnoValue;
 }
 
 void writeCSVLine(const VehicleData data, char* csvLine){
@@ -51,23 +56,27 @@ void writeCSVLine(const VehicleData data, char* csvLine){
     );
 }
 
-void readCSV(VehicleData* csvdata, int numEntries, const char* filename){
+int readCSV(VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"r");   //opens 'filename' and assigns to 'file' the pointer to that file;
+    int errnoValue = 0;
 
     if(file == NULL){
-        printf("Failed to open file");
+        perror(strerror(errno));
+        errnoValue = 2;
     }
+    else{
+        const int bufferSize = 512;
+        char csvLine[bufferSize];
 
-    const int bufferSize = 512;
-    char csvLine[bufferSize];
+        fgets(csvLine, bufferSize, file); // Drop First Line with header
 
-    fgets(csvLine, bufferSize, file); // Drop First Line with header
-
-    for( int i = 0; ( i < numEntries ) && fgets(csvLine, 512, file);  i++ ) {
-        readCSVLine(&csvdata[i], csvLine);
-    }
-
+        for( int i = 0; ( i < numEntries ) && fgets(csvLine, 512, file);  i++ ) {
+            readCSVLine(&csvdata[i], csvLine);
+        }
+        errnoValue = 0;
+    } 
     fclose(file);
+    return errnoValue;
 }
 
 void readCSVLine(VehicleData* data, const char* csvLine){

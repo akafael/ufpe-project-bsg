@@ -25,7 +25,7 @@ typedef struct VehicleDataStruct {
  * @param[in] numEntries csvdata array size
  * @param[in] filename path to input file
  */
-void writeCSV(const VehicleData* csvdata, int numEntries, const char* filename);
+int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename);
 
 /**
  * @brief Convert VehicleData to string with fields splited by comma
@@ -42,7 +42,7 @@ void writeCSVLine(VehicleData data, char* csvLine);
  * @param[in] numEntries 
  * @param[in] filename 
  */
-void readCSV(VehicleData* csvdata, int numEntries, const char* filename);
+int readCSV(VehicleData* csvdata, int numEntries, const char* filename);
 
 /**
  * @brief Convert a string with field splite by comma into a VehicleData
