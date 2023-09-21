@@ -44,7 +44,5 @@ UTEST(calibration, EngineRPMNeutral) {
 
 UTEST(calibration, EngineRPMMaximum) {
     ASSERT_TRUE(EngineRPMMaximum >= 0 && EngineRPMMaximum <= 8000);
+
 }
-
-
-
