@@ -2,19 +2,24 @@
 #include "vehicle.h"
 
 DriverIntention getDriverIntention(const Vehicle vehicle){
-
-    if ( vehicle.angleAccPedal < VehicleMinAccPedal && vehicle.angleBrakePedal < VehicleMinBrakePedal && vehicle.velocity < VehicleMinVelocity) {
-        return DRIVE_INTENTION_NOTHING; 
-    }
-    if(vehicle.angleAccPedal < VehicleMinAccPedal && vehicle.angleBrakePedal < VehicleMinBrakePedal){
-        return DRIVE_INTENTION_KEEP_SPEED;
-    }
-    if(vehicle.angleAccPedal > VehicleMinAccPedal && vehicle.angleBrakePedal < VehicleMinBrakePedal){
-        return DRIVE_INTENTION_INCREASE_SPEED;
-    }
-    if(vehicle.angleAccPedal < VehicleMinAccPedal && vehicle.angleBrakePedal > VehicleMinBrakePedal){
-        return DRIVE_INTENTION_REDUCE_SPEED;
-    }
  
-    return DRIVE_INTENTION_NOTHING;
+DriverIntention driverIntention = DRIVE_INTENTION_NOTHING;
+
+      if( vehicle.angleBrakePedal > VehicleMinBrakePedal )
+    {
+        driverIntention = DRIVE_INTENTION_REDUCE_SPEED;
+    }
+    else
+    {
+        if( vehicle.angleAccPedal > VehicleMinAccPedal )
+        {
+            driverIntention = DRIVE_INTENTION_INCREASE_SPEED;
+        }
+        else
+        {
+            driverIntention = DRIVE_INTENTION_NOTHING; 
+        }
+    }
+
+    return driverIntention;
 }
