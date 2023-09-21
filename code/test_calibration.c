@@ -1,12 +1,13 @@
-#include "battery.h"
-#include "engine.h"
-#include "bsgcontrol.h"
-#include "vehicle.h"
 #include "calibration.h"
-#include "csvutils.h"
 #include "utest/utest.h"
 
 UTEST_MAIN()
+
+// The reference below describes information that establishes a maximum limit of 50 volts for the battery for this project.
+// Reference:
+//  "Progress and recent trends in 48V hybridisation and e-boosting technology on passenger vehicles – a review"
+//   Authors: Bo Hu, Chunlin Chen and Zhiyong Yang
+//   Link: https://doi.org/10.1177/0954407017729950
 
 UTEST(calibration, BatteryMaxVoltage) {
     ASSERT_TRUE(BatteryMaxVoltage > 0);
@@ -41,6 +42,10 @@ UTEST(calibration, VehicleMinBrakePedal) {
 UTEST(calibration, EngineRPMNeutral) {
     ASSERT_TRUE(EngineRPMNeutral >= 0 && EngineRPMNeutral < EngineRPMMaximum);
 }
+
+// The reference below describes information that establishes an RPM limit that is within the Redline range, in this project it is 8000 RPM.
+// Reference:
+//   https://en.wikipedia.org/wiki/Redline#:~:text=Gasoline%20automobile%20engines%20typically%20will,car%20rated%20at%209000%20rpm.
 
 UTEST(calibration, EngineRPMMaximum) {
     ASSERT_TRUE(EngineRPMMaximum >= 0 && EngineRPMMaximum <= 8000);
