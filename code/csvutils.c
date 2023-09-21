@@ -7,13 +7,11 @@
 
 int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"w");   //opens 'filename' and assigns to 'file' the pointer to that file;
-    int errnoValue;
+    int errnoValue = 0;
    
     if(file == NULL){
         perror(strerror(errno));
-        
         errnoValue = 2;
-        return errnoValue;
     }
     else{
         for(int i = 0; i < numEntries; i++){
@@ -22,10 +20,9 @@ int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
         fprintf(file, "%s\n", csvLine);
         }
          fprintf(file, "velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
+         errnoValue = 0;
     }
     fclose(file);
-    
-    errnoValue = 0;
     return errnoValue;
 }
 
@@ -61,13 +58,11 @@ void writeCSVLine(const VehicleData data, char* csvLine){
 
 int readCSV(VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"r");   //opens 'filename' and assigns to 'file' the pointer to that file;
-    int errnoValue;
+    int errnoValue = 0;
 
     if(file == NULL){
         perror(strerror(errno));
-        
         errnoValue = 2;
-        return errnoValue;
     }
     else{
         const int bufferSize = 512;
@@ -78,10 +73,9 @@ int readCSV(VehicleData* csvdata, int numEntries, const char* filename){
         for( int i = 0; ( i < numEntries ) && fgets(csvLine, 512, file);  i++ ) {
             readCSVLine(&csvdata[i], csvLine);
         }
+        errnoValue = 0;
     } 
     fclose(file);
-
-    errnoValue = 0;
     return errnoValue;
 }
 
