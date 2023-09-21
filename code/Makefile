@@ -90,6 +90,7 @@ test%: test%.c $(OBJS) $(HEADERS) utest/utest.h
 # Build and Run tests
 .PHONY: test
 test: $(TEST_BIN)
+	./test_calibration
 	./test_vehicle
 	./test_bsg
 	./test_battery

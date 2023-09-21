@@ -1,5 +1,6 @@
 #include "bsgcontrol.h"
 #include "utest/utest.h"
+#include "calibration.h"
 
 UTEST_MAIN()
 
@@ -57,7 +58,7 @@ UTEST(bsg, engineOff) {
   };
   
   Battery battery = {
-    .voltage = 12,
+    .voltage = BatterySpecVoltage,
     .current = 1
   };
 
@@ -85,10 +86,14 @@ UTEST(bsg, startEngine) {
   };
   
   Battery battery = {
-    .voltage = 12,
+    .voltage = BatterySpecVoltage,
     .current = 1
   };
  
+  ASSERT_EQ(getBatteryState(battery),BATTERY_OPERATIONAL);
+  ASSERT_EQ(getEngineState(engine),ENGINE_OFF);
+  ASSERT_TRUE(vehicle.requestCarStart);
+
   const StateBSG bsgMode = selectBSGMode(vehicle, engine, bsg, battery);
   ASSERT_EQ(bsgMode, BSG_STARTER);
 }
@@ -117,6 +122,9 @@ UTEST(bsg, regenerativeBreak) {
     .voltage = 30,
     .current = 1
   };
+
+  ASSERT_EQ(getDriverIntention(vehicle), DRIVE_INTENTION_REDUCE_SPEED);
+  ASSERT_NE(getEngineState(engine),ENGINE_OFF);
 
   const StateBSG bsgMode = selectBSGMode(vehicle, engine, bsg, battery);
   ASSERT_EQ(bsgMode, BSG_GENERATOR);
