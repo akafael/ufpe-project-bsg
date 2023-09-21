@@ -2,18 +2,21 @@
 #include "calibration.h"
 
 
-StateEngine getEngineState(Engine engine){
 
-    if(engine.rpm == 0){
-        return  ENGINE_OFF;
-    }
-    else if (engine.rpm == EngineRPMMaximum){
-        return ENGINE_RPM_MAXIMUM;
-    }
-    else if(engine.rpm > 0){
-        return  ENGINE_WORKING;
+StateEngine getEngineState(Engine engine){
+    StateEngine stateEngine = ENGINE_OFF;
+
+    if( engine.rpm == 0 ){
+        stateEngine = ENGINE_OFF;
     }
     else{
-        return ENGINE_OFF;
+        if( engine.rpm >= EngineRPMMaximum ){
+        stateEngine = ENGINE_RPM_MAXIMUM;
+        }
+        else 
+        {
+        stateEngine = ENGINE_WORKING;
+        }
     }
+    return stateEngine;
 }
