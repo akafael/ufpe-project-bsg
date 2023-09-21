@@ -46,6 +46,9 @@ LCOV_REPORT_HTML := $(LCOV_REPORT_DIR)/index.html
 GCOVR_REPORT_DIR := $(MAKEFILE_DIR)/gcovr_report
 GCOVR_REPORT_HTML := $(GCOVR_REPORT_DIR)/coverage.html
 
+# Coverage target
+COV_TARGET := 80
+
 # CSV data
 CSV_DATA_DIR := ${MAKEFILE_DIR}/data
 
@@ -111,9 +114,13 @@ test: $(TEST_BIN)
 
 # deps: gcc, lcov, gcovr
 
-# Generate GCOV Report
+# Generate Coverage reports
 .PHONY: coverage
-coverage: $(GCOV_FILES)
+coverage: lcov-report gcovr-report
+
+# Generate GCOV Report
+.PHONY: gcov_output
+gcov_output: $(GCOV_FILES)
 
 $(GCOV_FILES): gcov_coverage
 
@@ -131,20 +138,26 @@ $(LCOV_REPORT_DIR) $(GCOVR_REPORT_DIR):
 lcov-report: $(LCOV_REPORT_HTML)
 
 # Generate LCOV info report
-$(LCOV_REPORT_INFO): $(LCOV_REPORT_DIR) coverage
-	lcov --capture --directory $(SRCS_DIR) --output-file $@
+$(LCOV_REPORT_INFO): $(LCOV_REPORT_DIR) gcov_coverage
+	lcov --capture --rc lcov_branch_coverage=1 \
+	     --directory $(SRCS_DIR) \
+		 --output-file $@
 
 # Generate LCOV html report
 $(LCOV_REPORT_HTML): $(LCOV_REPORT_INFO) $(LCOV_REPORT_DIR)
-	genhtml $< --output-directory $(LCOV_REPORT_DIR)
+	genhtml $< --branch-coverage --output-directory $(LCOV_REPORT_DIR)
 
 # Generate GCOVR report
 .PHONY: gcovr-report
-gcovr-report: $(GCOVR_REPORT_HTML) coverage
+gcovr-report: $(GCOVR_REPORT_HTML) gcov_coverage
 
 # Generate GCOVR html report
 $(GCOVR_REPORT_HTML): $(GCOVR_REPORT_DIR)
-	gcovr --root $(SRCS_DIR) --html --html-details --output $(GCOVR_REPORT_HTML)
+	gcovr -v --html --html-details \
+		  --fail-under-line $(COV_TARGET) \
+		  --fail-under-branch $(COV_TARGET) \
+	      --root $(SRCS_DIR) \
+		  --output $@
 
 .PHONY: clear-coverage
 clear-coverage:
