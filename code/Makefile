@@ -153,11 +153,11 @@ gcovr-report: $(GCOVR_REPORT_HTML) gcov_coverage
 
 # Generate GCOVR html report
 $(GCOVR_REPORT_HTML): $(GCOVR_REPORT_DIR)
-	gcovr -v --html --html-details \
+	gcovr -v --sort-percentage --print-summary --branches \
 		  --fail-under-line $(COV_TARGET) \
 		  --fail-under-branch $(COV_TARGET) \
 	      --root $(SRCS_DIR) \
-		  --output $@
+		  --html-details --html $@
 
 .PHONY: clear-coverage
 clear-coverage:
