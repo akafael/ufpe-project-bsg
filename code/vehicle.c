@@ -2,8 +2,8 @@
 #include "vehicle.h"
 
 DriverIntention getDriverIntention(const Vehicle vehicle){
-
-DriverIntention driverIntention = DRIVER_INTENTION_NOTHING;
+ 
+DriverIntention driverIntention = DRIVE_INTENTION_NOTHING;
 
       if( vehicle.angleBrakePedal > VehicleMinBrakePedal )
     {
