@@ -1,0 +1,7 @@
+<map id="UTEST" name="UTEST">
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,69,83"/>
+<area shape="rect" id="node2" href="$da/dc6/battery_8c.html#aaa39dde55fec1159f38945d7d66c3a49" title="Convert the vehicle&#39;s voltage and current information into StateBattery." alt="" coords="297,5,423,32"/>
+<area shape="rect" id="node3" href="$dd/d56/engine_8c.html#a99935c7a32cfcc7e52b65a467ea43df4" title=" " alt="" coords="299,107,421,133"/>
+<area shape="rect" id="node4" href="$d8/d48/bsgcontrol_8c.html#ad786c4be730393f549a01a8cfeb247c4" title="Define the expected BSG operation mode considering the current measurement from vehicle sensor data." alt="" coords="117,56,241,83"/>
+<area shape="rect" id="node5" href="$d4/da7/vehicle_8c.html#aaed54f86f29cf6a754326e532e906d66" title="Translate the current input from vehicle odometry into a DriverIntention state." alt="" coords="289,56,431,83"/>
+</map>

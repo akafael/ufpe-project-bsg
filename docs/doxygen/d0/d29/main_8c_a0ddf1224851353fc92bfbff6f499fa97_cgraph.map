@@ -1,0 +1,12 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,60,133"/>
+<area shape="rect" id="node2" href="$d0/d29/main_8c.html#aa11251bdd93ffdea755dea90642abf34" title=" " alt="" coords="108,56,239,83"/>
+<area shape="rect" id="node7" href="$d5/da2/csvutils_8c.html#a37c816fd6c6a224b4c56941f718151ed" title="Read a CSV file with all signals and generate a array with VehicleData." alt="" coords="135,107,212,133"/>
+<area shape="rect" id="node9" href="$d5/da2/csvutils_8c.html#a06570253554fa78d2a5d0eb27f4cc606" title="Create a CSV file with all vehicle data signals stored at VehicleData." alt="" coords="133,157,214,184"/>
+<area shape="rect" id="node3" href="$d8/d48/bsgcontrol_8c.html#ad786c4be730393f549a01a8cfeb247c4" title="Define the expected BSG operation mode considering the current measurement from vehicle sensor data." alt="" coords="287,56,411,83"/>
+<area shape="rect" id="node4" href="$da/dc6/battery_8c.html#aaa39dde55fec1159f38945d7d66c3a49" title="Convert the vehicle&#39;s voltage and current information into StateBattery." alt="" coords="467,5,592,32"/>
+<area shape="rect" id="node5" href="$d4/da7/vehicle_8c.html#aaed54f86f29cf6a754326e532e906d66" title="Translate the current input from vehicle odometry into a DriverIntention state." alt="" coords="459,56,600,83"/>
+<area shape="rect" id="node6" href="$dd/d56/engine_8c.html#a99935c7a32cfcc7e52b65a467ea43df4" title=" " alt="" coords="469,107,590,133"/>
+<area shape="rect" id="node8" href="$d5/da2/csvutils_8c.html#afa78508128eac470996d60cdbbe1b5f1" title="Convert a string with field splite by comma into a VehicleData." alt="" coords="297,107,401,133"/>
+<area shape="rect" id="node10" href="$d5/da2/csvutils_8c.html#ae030571e78cb300147f3e47302cd1066" title="Convert VehicleData to string with fields splited by comma." alt="" coords="295,157,403,184"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="selectBSGMode" name="selectBSGMode">
+<area shape="rect" id="node1" title="Define the expected BSG operation mode considering the current measurement from vehicle sensor data." alt="" coords="5,56,129,83"/>
+<area shape="rect" id="node2" href="$da/dc6/battery_8c.html#aaa39dde55fec1159f38945d7d66c3a49" title="Convert the vehicle&#39;s voltage and current information into StateBattery." alt="" coords="185,5,311,32"/>
+<area shape="rect" id="node3" href="$d4/da7/vehicle_8c.html#aaed54f86f29cf6a754326e532e906d66" title="Translate the current input from vehicle odometry into a DriverIntention state." alt="" coords="177,56,319,83"/>
+<area shape="rect" id="node4" href="$dd/d56/engine_8c.html#a99935c7a32cfcc7e52b65a467ea43df4" title=" " alt="" coords="187,107,309,133"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="selectBSGMode" name="selectBSGMode">
+<area shape="rect" id="node1" title="Define the expected BSG operation mode considering the current measurement from vehicle sensor data." alt="" coords="287,31,411,57"/>
+<area shape="rect" id="node2" href="$d0/d29/main_8c.html#aa11251bdd93ffdea755dea90642abf34" title=" " alt="" coords="108,5,239,32"/>
+<area shape="rect" id="node4" href="$d6/d2d/test__bsg_8c.html#ad99f248c1717f018f9e0e911305451c4" title=" " alt="" coords="141,56,205,83"/>
+<area shape="rect" id="node3" href="$d0/d29/main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
+</map>
