@@ -1,0 +1,7 @@
+<map id="VehicleDataStruct" name="VehicleDataStruct">
+<area shape="rect" id="node1" title="Struct with Vehicle, Engine, Battery and BSG data." alt="" coords="192,189,331,267"/>
+<area shape="rect" id="node2" href="$d6/d21/structEngineStruct.html" title=" " alt="" coords="5,13,109,119"/>
+<area shape="rect" id="node3" href="$d2/d27/structBSGStruct.html" title="BSG &#45; Belt Starter Generator sensor data." alt="" coords="134,5,253,127"/>
+<area shape="rect" id="node4" href="$d1/d83/structBatteryStruct.html" title="vehicle battery sensor data information" alt="" coords="277,20,385,112"/>
+<area shape="rect" id="node5" href="$dc/d3c/structVehicleStruct.html" title="Vehicle odometer and driver input data from pedals." alt="" coords="409,5,556,127"/>
+</map>

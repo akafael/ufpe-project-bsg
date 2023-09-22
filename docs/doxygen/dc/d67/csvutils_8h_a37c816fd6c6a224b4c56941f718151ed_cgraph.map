@@ -1,0 +1,4 @@
+<map id="readCSV" name="readCSV">
+<area shape="rect" id="node1" title="Read a CSV file with all signals and generate a array with VehicleData." alt="" coords="5,5,83,32"/>
+<area shape="rect" id="node2" href="$d5/da2/csvutils_8c.html#afa78508128eac470996d60cdbbe1b5f1" title="Convert a string with field splite by comma into a VehicleData." alt="" coords="131,5,235,32"/>
+</map>
