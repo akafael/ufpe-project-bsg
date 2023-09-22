@@ -51,7 +51,7 @@ GCOVR_REPORT_DIR := $(abspath $(DOCS_DIR)/gcovr)
 GCOVR_REPORT_HTML := $(abspath $(GCOVR_REPORT_DIR)/index.html)
 
 # Coverage target
-COV_TARGET := 50
+COV_TARGET := 80
 
 # CSV data
 CSV_DATA_DIR := ${MAKEFILE_DIR}/data
