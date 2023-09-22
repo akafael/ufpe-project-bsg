@@ -153,7 +153,7 @@ UTEST(csv, preserveVehicleData) {
   EXPECT_EQ(vehicleDataReader.vehicle.angleAccPedal,vehicleData.vehicle.angleAccPedal);
   EXPECT_EQ(vehicleDataReader.vehicle.angleBrakePedal,vehicleData.vehicle.angleBrakePedal);
   EXPECT_EQ(vehicleDataReader.vehicle.requestCarStart,vehicleData.vehicle.requestCarStart);
-  EXPECT_EQ(vehicleDataReader.battery.voltage,vehicleData.battery.voltage); // TODO Fix bug
+  EXPECT_EQ(vehicleDataReader.battery.voltage,vehicleData.battery.voltage);
   EXPECT_EQ(vehicleDataReader.battery.current,vehicleData.battery.current);
   EXPECT_EQ(vehicleDataReader.bsg.currentMode,vehicleData.bsg.currentMode);
   EXPECT_EQ(vehicleDataReader.bsg.rpm,vehicleData.bsg.rpm);
@@ -224,9 +224,8 @@ UTEST(csv,preserveDataCSV)
 
   const int writerRet = writeCSV(csvDataWriter, csvSize, tmpFile);
 
+  // Ensure it return the right return code
   ASSERT_EQ_MSG(writerRet, 0,"Fail to write file");
-
-  VehicleData csvDataReader[csvSize];
 
   // Ensure is is not storing null data
   for (int i = 0; i < csvSize; i++)
@@ -235,7 +234,7 @@ UTEST(csv,preserveDataCSV)
     EXPECT_NE(csvDataWriter[i].vehicle.angleAccPedal,0 );
     EXPECT_NE(csvDataWriter[i].vehicle.angleBrakePedal,0 );
     EXPECT_NE(csvDataWriter[i].vehicle.requestCarStart,0 );
-    EXPECT_NE(csvDataWriter[i].battery.voltage,0 ); // TODO Fix bug
+    EXPECT_NE(csvDataWriter[i].battery.voltage,0 );
     EXPECT_NE(csvDataWriter[i].battery.current,0 );
     EXPECT_NE(csvDataWriter[i].bsg.currentMode,0 );
     EXPECT_NE(csvDataWriter[i].bsg.rpm,0 );
@@ -245,19 +244,22 @@ UTEST(csv,preserveDataCSV)
     EXPECT_NE(csvDataWriter[i].engine.velocity,0 );
     EXPECT_NE(csvDataWriter[i].engine.gear,0 );
   }
-    
 
+  // Read data from CSV generated
+  VehicleData csvDataReader[csvSize];
   const int readerRet = readCSV(csvDataReader, csvSize, tmpFile);
 
+  // Ensure it return the right return code
   ASSERT_EQ_MSG(readerRet, 0,"Fail to read file");
 
+  // Check if all data fields are the same as expected
   for (int i = 0; i < csvSize; i++)
   {
     EXPECT_EQ(csvDataReader[i].vehicle.velocity,vehicleData.vehicle.velocity);
     EXPECT_EQ(csvDataReader[i].vehicle.angleAccPedal,vehicleData.vehicle.angleAccPedal);
     EXPECT_EQ(csvDataReader[i].vehicle.angleBrakePedal,vehicleData.vehicle.angleBrakePedal);
     EXPECT_EQ(csvDataReader[i].vehicle.requestCarStart,vehicleData.vehicle.requestCarStart);
-    EXPECT_EQ(csvDataReader[i].battery.voltage,vehicleData.battery.voltage); // TODO Fix bug
+    EXPECT_EQ(csvDataReader[i].battery.voltage,vehicleData.battery.voltage);
     EXPECT_EQ(csvDataReader[i].battery.current,vehicleData.battery.current);
     EXPECT_EQ(csvDataReader[i].bsg.currentMode,vehicleData.bsg.currentMode);
     EXPECT_EQ(csvDataReader[i].bsg.rpm,vehicleData.bsg.rpm);
