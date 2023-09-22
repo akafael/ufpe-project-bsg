@@ -12,24 +12,78 @@ Generating Electricity: Once the engine is running, the BSG functions as a gener
 
 In summary, an automotive BSG plays a dual role as a starter and generator, contributing to both the starting and electrical power needs of a vehicle, ultimately enhancing its overall efficiency and performance.
 
+## Requirements
 
+ * Models: Matlab, Simulink
+ * Source code: gcc
+ * Coverage reports: lcov, gcovr
+ * Documentation: Doxygen
+ * SAST: pre-commit
+ * Build: GNU make
+ * Dependence management: git
 
-
-# Folder Structure
+## Folder Structure
  1. [REQ](req): requirements documents.
  2. [MODELS](models): Models.
- 3. [SRC](src): Source code.
- 4. [TESTS](tests): Tests.
- 5. [DOCS](docs): System documentation.
- 6. [REF](ref): Datashet, whitepaper and other documents for reference.
+ 3. [CODE](code): Source code and unit tests
+ 4. [DOCS](docs): System documentation.
+ 5. [REF](ref): Datashet, whitepaper and other documents for reference.
 
-To include new files in UTest tests,run in your main directory: git submodule update --init --recursive
+## Setup
+
+This project uses [code/Makefile] for all build and automation steps.
+
+### Build code
+
+Build code using gcc and generate shared library.
+```bash
+cd code && \
+make build
+```
+
+### Run tests
+
+Build code and run tests:
+```bash
+cd code && \
+make test
+```
+
+### Coverage
+
+Generate coverage reports using gcov and lcov.
+
+```bash
+cd code && \
+make clear && \
+make test coverage
+```
+
+### Code documentation
+
+Generate documentation using Doxygen.
+```bash
+cd code && \
+make docs
+```
+
+### Troubleshout
+
+To include new files in [utest.h](https://github.com/sheredom/utest.h) tests,run in your main directory:
+
+```bash
+git submodule update --init --recursive
+```
 
 To install Pre commit instance in branchs, run :
+
+```bash
 pip install pre-commit
 pre-commit install -c .pre-commit-config.yaml
+```
 
 end of files error:
-pre-commit run --all
 
-![](docs/preview.pdf)
+```bash
+pre-commit run --all
+```
