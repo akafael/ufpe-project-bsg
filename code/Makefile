@@ -17,14 +17,15 @@ CC_FLAGS = -fPIC $(CODE_QUALITY_FLAGS) $(DEBUG_FLAGS)
 # Get Makefile directory (enables using it as reference for relative paths)
 MAKEFILE_DIR:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 SRCS_DIR := $(MAKEFILE_DIR)
+BIN_DIR := $(SRCS_DIR)
 
 # Build files and directories
-BIN := main
-TEST_SRC := $(wildcard test_*.c)
-TEST_BIN := $(patsubst %.c,%, $(TEST_SRC))
-SRCS := $(wildcard *.c)
-HEADERS := $(wildcard *.h)
-OBJS := $(patsubst %.c,%.o, $(filter-out $(TEST_SRC) main.c, $(SRCS)))
+BIN := $(BIN_DIR)/main
+TEST_SRC := $(wildcard $(SRCS_DIR)/test_*.c)
+TEST_BIN := $(patsubst $(SRCS_DIR)/%.c,$(BIN_DIR)/%, $(TEST_SRC))
+SRCS := $(wildcard $(SRCS_DIR)/*.c)
+HEADERS := $(wildcard $(SRCS_DIR)/*.h)
+OBJS := $(patsubst %.c,%.o, $(filter-out $(TEST_SRC) $(SRCS_DIR)/main.c, $(SRCS)))
 
 # Test lib dir
 TEST_LIB_DIR := $(abspath $(SRCS_DIR)/utest)
@@ -72,8 +73,8 @@ build: $(TEST_BIN) main
 
 # Build BSG bin
 $(BIN): main.c $(LIB)
-	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) $< -o $@ $(OBJS)
-#	$(CC) -L$(LIB_DIR) -Wl,-rpath=$(LIB_DIR) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) -o $@  $< -lbsg
+#	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) $< -o $@ $(OBJS)
+	$(CC) -L$(LIB_DIR) -Wl,-rpath=$(LIB_DIR) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) -o $@  $< -lbsg
 
 # Lib -------------------------------------------------------------------------
 
@@ -82,7 +83,7 @@ $(BIN): main.c $(LIB)
 lib: $(LIB)
 
 $(LIB): $(OBJS) $(HEADERS)
-	$(CC) -shared -o $@ $(OBJS)
+	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) -shared -o $@ $(OBJS)
 
 # Run -------------------------------------------------------------------------
 
@@ -108,12 +109,12 @@ test%: test%.c $(OBJS) $(HEADERS) testlib
 # Build and Run tests
 .PHONY: test
 test: $(TEST_BIN)
-	./test_calibration
-	./test_engine
-	./test_vehicle
-	./test_battery
-	./test_csvutils
-	./test_bsg
+	$(BIN_DIR)/test_calibration
+	$(BIN_DIR)/test_engine
+	$(BIN_DIR)/test_vehicle
+	$(BIN_DIR)/test_bsg
+	$(BIN_DIR)/test_battery
+	$(BIN_DIR)/test_csvutils
 
 # Test Coverage ---------------------------------------------------------------
 
@@ -132,6 +133,7 @@ $(GCOV_FILES): gcov_coverage
 # Run code coverage
 .PHONY: gcov_coverage
 gcov_coverage:
+	cd $(SRCS_DIR) && \
 	gcov $(SRCS)
 
 # Create report directories
@@ -180,6 +182,7 @@ docs: $(DOCS_HTML_PAGE)
 
 # Build HTML Code documentation
 $(DOCS_HTML_PAGE): Doxyfile $(SRCS) $(HEADERS)
+	cd $(SRCS_DIR) && \
 	doxygen Doxyfile
 
 # Remove generated files from documentation
