@@ -16,11 +16,11 @@ CC_FLAGS = -fPIC $(CODE_QUALITY_FLAGS) $(DEBUG_FLAGS)
 
 # Get Makefile directory (enables using it as reference for relative paths)
 MAKEFILE_DIR:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
-SRCS_DIR := $(MAKEFILE_DIR)/code
+SRCS_DIR := $(realpath $(MAKEFILE_DIR)/code)
 BIN_DIR := $(SRCS_DIR)
 
 # Build files and directories
-BIN := $(BIN_DIR)/main
+BIN := $(abspath $(BIN_DIR)/main)
 TEST_SRC := $(wildcard $(SRCS_DIR)/test_*.c)
 TEST_BIN := $(patsubst $(SRCS_DIR)/%.c,$(BIN_DIR)/%, $(TEST_SRC))
 SRCS := $(wildcard $(SRCS_DIR)/*.c)
@@ -65,14 +65,14 @@ CSV_DATA_DIR := ${SRCS_DIR}/data
 
 # Build all source files
 .PHONY: build
-build: $(TEST_BIN) main
+build: $(TEST_BIN) $(BIN)
 
 # Build BSG objects
 %.o: %.c %.h
 	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_BUILD) -c $< -o $@
 
 # Build BSG bin
-$(BIN): main.c $(LIB)
+$(BIN): $(SRCS_DIR)/main.c $(LIB)
 #	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) $< -o $@ $(OBJS)
 	$(CC) -L$(LIB_DIR) -Wl,-rpath=$(LIB_DIR) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) -o $@  $< -lbsg
 
@@ -89,8 +89,8 @@ $(LIB): $(OBJS) $(HEADERS)
 
 # Build and Run binary
 .PHONY: run
-run: $(BIN) 
-	./$< $(CSV_DATA_DIR)/inputSignal.csv $(CSV_DATA_DIR)/outputSignal.csv
+run: $(BIN) clear-coverage
+	$< $(CSV_DATA_DIR)/inputSignal.csv $(CSV_DATA_DIR)/outputSignal.csv
 
 # Tests -----------------------------------------------------------------------
 
