@@ -181,9 +181,9 @@ clear-coverage:
 docs: $(DOCS_HTML_PAGE)
 
 # Build HTML Code documentation
-$(DOCS_HTML_PAGE): Doxyfile $(SRCS) $(HEADERS)
-	cd $(SRCS_DIR) && \
-	doxygen Doxyfile
+$(DOCS_HTML_PAGE): $(SRCS_DIR)/Doxyfile $(SRCS) $(HEADERS)
+	cd $(dir @<) && \
+	doxygen $<
 
 # Remove generated files from documentation
 .PHONY: clear-docs
