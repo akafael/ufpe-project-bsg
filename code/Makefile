@@ -102,7 +102,7 @@ $(TEST_LIB_HEADER):
 	git submodule update --init --recursive
 
 # Build BSG tests
-test%: test%.c $(OBJS) $(HEADERS) utest/utest.h
+test%: test%.c $(OBJS) $(HEADERS) testlib
 	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_LD)  $< -o $@ $(OBJS)
 
 # Build and Run tests
@@ -190,5 +190,5 @@ clear-docs:
 
 # Remove generated files
 .PHONY: clear
-clear: clear-docs clear-coverage
+clear: clear-coverage
 	-rm -vf ${OBJS} ${BIN} ${TEST_BIN}
