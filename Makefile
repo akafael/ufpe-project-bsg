@@ -37,8 +37,8 @@ DOCS_HTML_DIR := $(abspath $(DOCS_DIR)/doxygen)
 DOCS_HTML_PAGE := $(abspath $(DOCS_HTML_DIR)/index.html)
 
 # Lib
-LIB := libbsg.so
 LIB_DIR := $(SRCS_DIR)
+LIB := $(LIB_DIR)/libbsg.so
 
 # Coverage Files
 COV_SRCS := $(filter-out test% main%, $(SRCS))
@@ -170,10 +170,10 @@ $(GCOVR_REPORT_HTML): $(GCOVR_REPORT_DIR)
 
 .PHONY: clear-coverage
 clear-coverage:
-	-rm -rf $(GCDA_FILES)
-	-rm -rf $(GCNO_FILES)
-	-rm -rf $(GCOV_FILES)
-	-rm -rf $(LCOV_REPORT_DIR) $(GCOVR_REPORT_DIR)
+	@rm -rf $(GCDA_FILES) $(SRCS_DIR)/*.gcda
+	@rm -rf $(GCNO_FILES) $(SRCS_DIR)/*.gcno
+	@rm -rf $(GCOV_FILES) $(SRCS_DIR)/*.gcov
+	@rm -rf $(LCOV_REPORT_DIR) $(GCOVR_REPORT_DIR)
 
 # Documentation ---------------------------------------------------------------
 # Build Documentation using Doxygen
@@ -188,11 +188,13 @@ $(DOCS_HTML_PAGE): Doxyfile $(SRCS) $(HEADERS)
 # Remove generated files from documentation
 .PHONY: clear-docs
 clear-docs:
-	-rm -rfv $(DOCS_HTML_DIR)
+	@rm -rfv $(DOCS_HTML_DIR)
 
 # Auxiliar Roles --------------------------------------------------------------
 
 # Remove generated files
 .PHONY: clear
-clear: clear-coverage
-	-rm -vf ${OBJS} ${BIN} ${TEST_BIN}
+clear:
+	@rm -vf $(SRCS_DIR)/*.o
+	@rm -vf $(LIB)
+	@rm -vf ${BIN} ${TEST_BIN}
