@@ -16,6 +16,7 @@ CC_FLAGS = -fPIC $(CODE_QUALITY_FLAGS) $(DEBUG_FLAGS)
 
 # Get Makefile directory (enables using it as reference for relative paths)
 MAKEFILE_DIR:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+SRCS_DIR := $(MAKEFILE_DIR)
 
 # Build files and directories
 BIN := main
@@ -24,6 +25,10 @@ TEST_BIN := $(patsubst %.c,%, $(TEST_SRC))
 SRCS := $(wildcard *.c)
 HEADERS := $(wildcard *.h)
 OBJS := $(patsubst %.c,%.o, $(filter-out $(TEST_SRC) main.c, $(SRCS)))
+
+# Test lib dir
+TEST_LIB_DIR := $(abspath $(SRCS_DIR)/utest)
+TEST_LIB_HEADER := $(abspath $(TEST_LIB_DIR)/utest.h)
 
 # Docs
 DOCS_DIR := $(realpath $(MAKEFILE_DIR)/../docs)
@@ -35,7 +40,6 @@ LIB := libbsg.so
 LIB_DIR := $(MAKEFILE_DIR)
 
 # Coverage Files
-SRCS_DIR := $(MAKEFILE_DIR)
 COV_SRCS := $(filter-out test% main%, $(SRCS))
 GCOV_FILES := $(patsubst %.c,%.c.gcov, $(SRCS))
 GCDA_FILES := $(patsubst %.c,%.gcda, $(SRCS))
@@ -91,10 +95,10 @@ run: $(BIN)
 
 # Install test lib
 .PHONY: testlib
-testlib: utest/utest.h
+testlib: $(TEST_LIB_HEADER)
 
 # Ensure utest.h is available
-utest/utest.h:
+$(TEST_LIB_HEADER):
 	git submodule update --init --recursive
 
 # Build BSG tests
@@ -153,10 +157,12 @@ gcovr-report: $(GCOVR_REPORT_HTML) gcov_coverage
 
 # Generate GCOVR html report
 $(GCOVR_REPORT_HTML): $(GCOVR_REPORT_DIR)
+	cd $(SRCS_DIR) && \
 	gcovr -v --sort-percentage --print-summary --branches \
 		  --fail-under-line $(COV_TARGET) \
 		  --fail-under-branch $(COV_TARGET) \
-	      --root $(SRCS_DIR) \
+		  --exclude ".*test_.*" \
+		  --exclude $(TEST_LIB_DIR) \
 		  --html-details --html -o $(GCOVR_REPORT_HTML)
 
 .PHONY: clear-coverage
