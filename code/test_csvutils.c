@@ -267,4 +267,6 @@ UTEST(csv,preserveDataCSV)
     EXPECT_EQ(csvDataReader[i].engine.velocity,vehicleData.engine.velocity);
     EXPECT_EQ(csvDataReader[i].engine.gear,i+1);
   }
+
+  ASSERT_EQ_MSG(remove(tmpFile),0,"Unable to remove temporary file");
 }
