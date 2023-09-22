@@ -14,13 +14,13 @@ int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
         errnoValue = 2;
     }
     else{
+        fprintf(file, "velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
         for(int i = 0; i < numEntries; i++){
-        char csvLine[512]; // Arbitrary size
-        writeCSVLine(csvdata[i], csvLine);
-        fprintf(file, "%s\n", csvLine);
+            char csvLine[512]; // Arbitrary size
+            writeCSVLine(csvdata[i], csvLine);
+            fprintf(file, "%s\n", csvLine);
         }
-         fprintf(file, "velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
-         errnoValue = 0;
+        errnoValue = 0;
     }
     fclose(file);
     return errnoValue;

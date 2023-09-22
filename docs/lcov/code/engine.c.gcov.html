@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2023-09-21 21:11:20</td>
+            <td class="headerValue">2023-09-22 00:32:28</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -74,22 +74,22 @@
 <a name="3"><span class="lineNum">       3 </span>                :            : </a>
 <a name="4"><span class="lineNum">       4 </span>                :            : </a>
 <a name="5"><span class="lineNum">       5 </span>                :            : </a>
-<a name="6"><span class="lineNum">       6 </span>                :<span class="lineCov">         12 : StateEngine getEngineState(Engine engine){</span></a>
-<a name="7"><span class="lineNum">       7 </span>                :<span class="lineCov">         12 :     StateEngine stateEngine = ENGINE_OFF;</span></a>
+<a name="6"><span class="lineNum">       6 </span>                :<span class="lineCov">          6 : StateEngine getEngineState(Engine engine){</span></a>
+<a name="7"><span class="lineNum">       7 </span>                :<span class="lineCov">          6 :     StateEngine stateEngine = ENGINE_OFF;</span></a>
 <a name="8"><span class="lineNum">       8 </span>                :            : </a>
-<a name="9"><span class="lineNum">       9 </span>        [<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span>]:<span class="lineCov">         12 :     if( engine.rpm == 0 ){</span></a>
-<a name="10"><span class="lineNum">      10 </span>                :<span class="lineCov">          6 :         stateEngine = ENGINE_OFF;</span></a>
+<a name="9"><span class="lineNum">       9 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">          6 :     if( engine.rpm == 0 ){</span></a>
+<a name="10"><span class="lineNum">      10 </span>                :<span class="lineCov">          3 :         stateEngine = ENGINE_OFF;</span></a>
 <a name="11"><span class="lineNum">      11 </span>                :            :     }</a>
 <a name="12"><span class="lineNum">      12 </span>                :            :     else{</a>
-<a name="13"><span class="lineNum">      13 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span>]:<span class="lineCov">          6 :         if( engine.rpm &gt;= EngineRPMMaximum ){</span></a>
+<a name="13"><span class="lineNum">      13 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">          3 :         if( engine.rpm &gt;= EngineRPMMaximum ){</span></a>
 <a name="14"><span class="lineNum">      14 </span>                :<span class="lineNoCov">          0 :         stateEngine = ENGINE_RPM_MAXIMUM;</span></a>
 <a name="15"><span class="lineNum">      15 </span>                :            :         }</a>
 <a name="16"><span class="lineNum">      16 </span>                :            :         else </a>
 <a name="17"><span class="lineNum">      17 </span>                :            :         {</a>
-<a name="18"><span class="lineNum">      18 </span>                :<span class="lineCov">          6 :         stateEngine = ENGINE_WORKING;</span></a>
+<a name="18"><span class="lineNum">      18 </span>                :<span class="lineCov">          3 :         stateEngine = ENGINE_WORKING;</span></a>
 <a name="19"><span class="lineNum">      19 </span>                :            :         }</a>
 <a name="20"><span class="lineNum">      20 </span>                :            :     }</a>
-<a name="21"><span class="lineNum">      21 </span>                :<span class="lineCov">         12 :     return stateEngine;</span></a>
+<a name="21"><span class="lineNum">      21 </span>                :<span class="lineCov">          6 :     return stateEngine;</span></a>
 <a name="22"><span class="lineNum">      22 </span>                :            :     </a>
 <a name="23"><span class="lineNum">      23 </span>                :            : }</a>
 </pre>
