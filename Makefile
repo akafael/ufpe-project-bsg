@@ -16,7 +16,7 @@ CC_FLAGS = -fPIC $(CODE_QUALITY_FLAGS) $(DEBUG_FLAGS)
 
 # Get Makefile directory (enables using it as reference for relative paths)
 MAKEFILE_DIR:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
-SRCS_DIR := $(MAKEFILE_DIR)
+SRCS_DIR := $(MAKEFILE_DIR)/code
 BIN_DIR := $(SRCS_DIR)
 
 # Build files and directories
@@ -32,13 +32,13 @@ TEST_LIB_DIR := $(abspath $(SRCS_DIR)/utest)
 TEST_LIB_HEADER := $(abspath $(TEST_LIB_DIR)/utest.h)
 
 # Docs
-DOCS_DIR := $(realpath $(MAKEFILE_DIR)/../docs)
+DOCS_DIR := $(realpath $(MAKEFILE_DIR)/docs)
 DOCS_HTML_DIR := $(abspath $(DOCS_DIR)/doxygen)
 DOCS_HTML_PAGE := $(abspath $(DOCS_HTML_DIR)/index.html)
 
 # Lib
 LIB := libbsg.so
-LIB_DIR := $(MAKEFILE_DIR)
+LIB_DIR := $(SRCS_DIR)
 
 # Coverage Files
 COV_SRCS := $(filter-out test% main%, $(SRCS))
@@ -55,7 +55,7 @@ GCOVR_REPORT_HTML := $(abspath $(GCOVR_REPORT_DIR)/index.html)
 COV_TARGET := 80
 
 # CSV data
-CSV_DATA_DIR := ${MAKEFILE_DIR}/data
+CSV_DATA_DIR := ${SRCS_DIR}/data
 
 ###############################################################################
 # Rules
