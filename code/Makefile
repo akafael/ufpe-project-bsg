@@ -109,10 +109,11 @@ test%: test%.c $(OBJS) $(HEADERS) testlib
 .PHONY: test
 test: $(TEST_BIN)
 	./test_calibration
+	./test_engine
 	./test_vehicle
-	./test_bsg
 	./test_battery
 	./test_csvutils
+	./test_bsg
 
 # Test Coverage ---------------------------------------------------------------
 
