@@ -31,13 +31,12 @@ In summary, an automotive BSG plays a dual role as a starter and generator, cont
 
 ## Setup
 
-This project uses [code/Makefile] for all build and automation steps.
+This project uses [Makefile](Makefile) for all build and automation steps.
 
 ### Build code
 
 Build code using gcc and generate shared library.
 ```bash
-cd code && \
 make build
 ```
 
@@ -45,7 +44,6 @@ make build
 
 Build code and run tests:
 ```bash
-cd code && \
 make test
 ```
 
@@ -54,7 +52,6 @@ make test
 Generate coverage reports using gcov and lcov.
 
 ```bash
-cd code && \
 make clear && \
 make test coverage
 ```
@@ -63,7 +60,6 @@ make test coverage
 
 Generate documentation using Doxygen.
 ```bash
-cd code && \
 make docs
 ```
 
