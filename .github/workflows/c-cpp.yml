@@ -23,9 +23,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build C code and tests
-      run: cd code/ && make clear build
+      run: make clear build
     - name: Run simulator for smoke integration test
-      run: cd code/ && make run
+      run: make run
 
   test:
     runs-on: ubuntu-latest
@@ -34,11 +34,11 @@ jobs:
     - name: Install Coverage tools
       run: sudo apt-get install gcc lcov gcovr
     - name: Run tests
-      run: cd code/ && make test
+      run: make test
     - name: Generate GCOV coverage report
-      run: cd code/ && make gcovr-report
+      run: make gcovr-report
     - name: Generate LCOV coverage report
-      run: cd code/ && make lcov-report
+      run: make lcov-report
 
   docs:
       runs-on: ubuntu-latest
@@ -47,4 +47,4 @@ jobs:
       - name: Install Doxygen
         run: sudo apt-get install doxygen graphviz
       - name: Generate documentation
-        run: cd code/ && make test docs
+        run: make test docs

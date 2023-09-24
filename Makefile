@@ -16,28 +16,29 @@ CC_FLAGS = -fPIC $(CODE_QUALITY_FLAGS) $(DEBUG_FLAGS)
 
 # Get Makefile directory (enables using it as reference for relative paths)
 MAKEFILE_DIR:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
-SRCS_DIR := $(MAKEFILE_DIR)
+SRCS_DIR := $(realpath $(MAKEFILE_DIR)/code)
+BIN_DIR := $(SRCS_DIR)
 
 # Build files and directories
-BIN := main
-TEST_SRC := $(wildcard test_*.c)
-TEST_BIN := $(patsubst %.c,%, $(TEST_SRC))
-SRCS := $(wildcard *.c)
-HEADERS := $(wildcard *.h)
-OBJS := $(patsubst %.c,%.o, $(filter-out $(TEST_SRC) main.c, $(SRCS)))
+BIN := $(abspath $(BIN_DIR)/main)
+TEST_SRC := $(wildcard $(SRCS_DIR)/test_*.c)
+TEST_BIN := $(patsubst $(SRCS_DIR)/%.c,$(BIN_DIR)/%, $(TEST_SRC))
+SRCS := $(wildcard $(SRCS_DIR)/*.c)
+HEADERS := $(wildcard $(SRCS_DIR)/*.h)
+OBJS := $(patsubst %.c,%.o, $(filter-out $(TEST_SRC) $(SRCS_DIR)/main.c, $(SRCS)))
 
 # Test lib dir
 TEST_LIB_DIR := $(abspath $(SRCS_DIR)/utest)
 TEST_LIB_HEADER := $(abspath $(TEST_LIB_DIR)/utest.h)
 
 # Docs
-DOCS_DIR := $(realpath $(MAKEFILE_DIR)/../docs)
+DOCS_DIR := $(realpath $(MAKEFILE_DIR)/docs)
 DOCS_HTML_DIR := $(abspath $(DOCS_DIR)/doxygen)
 DOCS_HTML_PAGE := $(abspath $(DOCS_HTML_DIR)/index.html)
 
 # Lib
-LIB := libbsg.so
-LIB_DIR := $(MAKEFILE_DIR)
+LIB_DIR := $(SRCS_DIR)
+LIB := $(LIB_DIR)/libbsg.so
 
 # Coverage Files
 COV_SRCS := $(filter-out test% main%, $(SRCS))
@@ -54,7 +55,7 @@ GCOVR_REPORT_HTML := $(abspath $(GCOVR_REPORT_DIR)/index.html)
 COV_TARGET := 80
 
 # CSV data
-CSV_DATA_DIR := ${MAKEFILE_DIR}/data
+CSV_DATA_DIR := ${SRCS_DIR}/data
 
 ###############################################################################
 # Rules
@@ -64,16 +65,16 @@ CSV_DATA_DIR := ${MAKEFILE_DIR}/data
 
 # Build all source files
 .PHONY: build
-build: $(TEST_BIN) main
+build: $(TEST_BIN) $(BIN)
 
 # Build BSG objects
 %.o: %.c %.h
 	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_BUILD) -c $< -o $@
 
 # Build BSG bin
-$(BIN): main.c $(LIB)
-	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) $< -o $@ $(OBJS)
-#	$(CC) -L$(LIB_DIR) -Wl,-rpath=$(LIB_DIR) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) -o $@  $< -lbsg
+$(BIN): $(SRCS_DIR)/main.c $(LIB)
+#	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) $< -o $@ $(OBJS)
+	$(CC) -L$(LIB_DIR) -Wl,-rpath=$(LIB_DIR) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) -o $@  $< -lbsg
 
 # Lib -------------------------------------------------------------------------
 
@@ -82,14 +83,14 @@ $(BIN): main.c $(LIB)
 lib: $(LIB)
 
 $(LIB): $(OBJS) $(HEADERS)
-	$(CC) -shared -o $@ $(OBJS)
+	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS_LD) -shared -o $@ $(OBJS)
 
 # Run -------------------------------------------------------------------------
 
 # Build and Run binary
 .PHONY: run
-run: $(BIN) 
-	./$< $(CSV_DATA_DIR)/inputSignal.csv $(CSV_DATA_DIR)/outputSignal.csv
+run: $(BIN) clear-coverage
+	$< $(CSV_DATA_DIR)/inputSignal.csv $(CSV_DATA_DIR)/outputSignal.csv
 
 # Tests -----------------------------------------------------------------------
 
@@ -108,12 +109,12 @@ test%: test%.c $(OBJS) $(HEADERS) testlib
 # Build and Run tests
 .PHONY: test
 test: $(TEST_BIN)
-	./test_calibration
-	./test_engine
-	./test_vehicle
-	./test_battery
-	./test_csvutils
-	./test_bsg
+	$(BIN_DIR)/test_calibration
+	$(BIN_DIR)/test_engine
+	$(BIN_DIR)/test_vehicle
+	$(BIN_DIR)/test_bsg
+	$(BIN_DIR)/test_battery
+	$(BIN_DIR)/test_csvutils
 
 # Test Coverage ---------------------------------------------------------------
 
@@ -132,6 +133,7 @@ $(GCOV_FILES): gcov_coverage
 # Run code coverage
 .PHONY: gcov_coverage
 gcov_coverage:
+	cd $(SRCS_DIR) && \
 	gcov $(SRCS)
 
 # Create report directories
@@ -168,10 +170,10 @@ $(GCOVR_REPORT_HTML): $(GCOVR_REPORT_DIR)
 
 .PHONY: clear-coverage
 clear-coverage:
-	-rm -rf $(GCDA_FILES)
-	-rm -rf $(GCNO_FILES)
-	-rm -rf $(GCOV_FILES)
-	-rm -rf $(LCOV_REPORT_DIR) $(GCOVR_REPORT_DIR)
+	@rm -rf $(GCDA_FILES) $(SRCS_DIR)/*.gcda
+	@rm -rf $(GCNO_FILES) $(SRCS_DIR)/*.gcno
+	@rm -rf $(GCOV_FILES) $(SRCS_DIR)/*.gcov
+	@rm -rf $(LCOV_REPORT_DIR) $(GCOVR_REPORT_DIR)
 
 # Documentation ---------------------------------------------------------------
 # Build Documentation using Doxygen
@@ -179,17 +181,20 @@ clear-coverage:
 docs: $(DOCS_HTML_PAGE)
 
 # Build HTML Code documentation
-$(DOCS_HTML_PAGE): Doxyfile $(SRCS) $(HEADERS)
-	doxygen Doxyfile
+$(DOCS_HTML_PAGE): $(SRCS_DIR)/Doxyfile $(SRCS) $(HEADERS)
+	cd $(dir @<) && \
+	doxygen $<
 
 # Remove generated files from documentation
 .PHONY: clear-docs
 clear-docs:
-	-rm -rfv $(DOCS_HTML_DIR)
+	@rm -rfv $(DOCS_HTML_DIR)
 
 # Auxiliar Roles --------------------------------------------------------------
 
 # Remove generated files
 .PHONY: clear
-clear: clear-coverage
-	-rm -vf ${OBJS} ${BIN} ${TEST_BIN}
+clear:
+	@rm -vf $(SRCS_DIR)/*.o
+	@rm -vf $(LIB)
+	@rm -vf ${BIN} ${TEST_BIN}
