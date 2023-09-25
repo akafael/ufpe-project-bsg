@@ -283,7 +283,7 @@ UTEST(csv,preserveDataCSV)
 }
 
 UTEST(csvutils, writeCSVInvalidFile) {
-  const char* filename = "/invalid_name";
+  const char* filename = "invalid_name";
   int numEntries = 2;
 const VehicleData vehicleData = {
     .vehicle = {
