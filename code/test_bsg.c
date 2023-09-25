@@ -136,7 +136,7 @@ UTEST(bsg, motor) {
     .velocity = 90,
     .angleAccPedal = 10,
     .angleBrakePedal = 0,
-    .requestCarStart = 1
+    .requestCarStart = 0
   };
 
   BSG bsg = {
