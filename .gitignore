@@ -1,0 +1,16 @@
+# C build file
+*.o
+*.so
+
+# Binary files
+main
+test_*[^c]
+
+# Coverage Files
+*.gcda
+*.gcno
+*.gcov
+
+# Coverage Reports
+gcovr_report
+lcov_report
