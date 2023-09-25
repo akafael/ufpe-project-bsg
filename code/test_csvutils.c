@@ -281,3 +281,14 @@ UTEST(csv,preserveDataCSV)
 
   ASSERT_EQ_MSG(remove(tmpFile),0,"Unable to remove temporary file");
 }
+
+UTEST(csvutils, writeCSVInvalidFile) {
+  const char* filename = "/invalid_name";
+  const int numEntries = 2;
+  const VehicleData csvData[numEntries];
+ 
+  const int errnoValue =  writeCSV(csvData, numEntries, filename);
+  const int expectedErrorValue = 2;
+
+  ASSERT_EQ(expectedErrorValue,errnoValue);
+}
