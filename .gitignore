@@ -10,7 +10,3 @@ test_*[^c]
 *.gcda
 *.gcno
 *.gcov
-
-# Coverage Reports
-gcovr_report
-lcov_report
