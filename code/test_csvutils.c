@@ -285,9 +285,33 @@ UTEST(csv,preserveDataCSV)
 UTEST(csvutils, writeCSVInvalidFile) {
   const char* filename = "/invalid_name";
   int numEntries = 2;
-  const VehicleData csvData[numEntries];
- 
-  const int errnoValue =  writeCSV(csvData, numEntries, filename);
+const VehicleData vehicleData = {
+    .vehicle = {
+        .velocity = 1,
+        .angleAccPedal = 2,
+        .angleBrakePedal = 3,
+        .requestCarStart = 4
+        },
+    .battery = {
+        .voltage = 5,
+        .current = 6
+        },
+    .bsg = {
+        .currentMode = BSG_IDLE,
+        .rpm = 8,
+        .voltage = 9,
+        .current = 10
+       },
+    .engine = {
+        .rpm = 11,
+        .velocity = 12,
+        .gear = 13
+        },
+  };
+
+  const VehicleData csvData[2] = {vehicleData,vehicleData};
+
+  const int errnoValue = writeCSV(csvData, numEntries, filename);
   const int expectedErrorValue = 2;
 
   ASSERT_EQ(expectedErrorValue,errnoValue);
