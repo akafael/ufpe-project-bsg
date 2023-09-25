@@ -25,7 +25,7 @@ StateBSG selectBSGMode(const Vehicle vehicle, const Engine engine, const BSG bsg
          else if(getDriverIntention(vehicle) == DRIVE_INTENTION_INCREASE_SPEED){
             stateBSG = BSG_MOTOR;
          }
-         if(getDriverIntention(vehicle) == DRIVE_INTENTION_NOTHING) {
+         else{
             //BSG_IDLE - Energy Saving
             stateBSG = BSG_IDLE;
          }
