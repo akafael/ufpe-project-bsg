@@ -31,11 +31,17 @@ dataStructure.time = time;
 
 %the number indicated in .signals() represents the input block index to
 %wich the collumn of the .csv file is linked 
+
+% velocity value
 dataStructure.signals(1).values = data(:, 1); 
-dataStructure.signals(2).values = data(:, 2); 
-dataStructure.signals(3).values = data(:, 3); 
-dataStructure.signals(4).values = data(:, 4);
-dataStructure.signals(5).values = data(:, 5);
+% rpm value
+dataStructure.signals(2).values = data(:, 8); 
+% angleAccPedal value
+dataStructure.signals(3).values = data(:, 2); 
+%angleBrakePedal value
+dataStructure.signals(4).values = data(:, 3);
+%requestCarStart data
+dataStructure.signals(5).values = data(:, 4);
 
 %specifies the dimension that must be refferenced in each input block in the
 %model
