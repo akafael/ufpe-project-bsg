@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2023-09-21 21:11:20</td>
+            <td class="headerValue">2023-09-22 13:42:04</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -72,29 +72,29 @@
 <a name="1"><span class="lineNum">       1 </span>                :            : #include &quot;bsgcontrol.h&quot;</a>
 <a name="2"><span class="lineNum">       2 </span>                :            : #include &quot;calibration.h&quot;</a>
 <a name="3"><span class="lineNum">       3 </span>                :            : </a>
-<a name="4"><span class="lineNum">       4 </span>                :<span class="lineCov">         10 : StateBSG selectBSGMode(const Vehicle vehicle, const Engine engine, const BSG bsg,</span></a>
+<a name="4"><span class="lineNum">       4 </span>                :<span class="lineCov">          5 : StateBSG selectBSGMode(const Vehicle vehicle, const Engine engine, const BSG bsg,</span></a>
 <a name="5"><span class="lineNum">       5 </span>                :            :                        const Battery battery) {</a>
 <a name="6"><span class="lineNum">       6 </span>                :            : </a>
 <a name="7"><span class="lineNum">       7 </span>                :            :    // BSG_STARTER - Car Starter</a>
-<a name="8"><span class="lineNum">       8 </span>  [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span><span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span> :<span class="lineCov">         10 :    if (getBatteryState(battery) == BATTERY_OPERATIONAL &amp;&amp; getEngineState(engine) == ENGINE_OFF &amp;&amp; vehicle.requestCarStart) {</span></a>
-<span class="lineNum">         </span>         <span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchCov" title="Branch 5 was taken 2 times"> + </span>]
+<a name="8"><span class="lineNum">       8 </span>  [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span> :<span class="lineCov">          5 :    if (getBatteryState(battery) == BATTERY_OPERATIONAL &amp;&amp; getEngineState(engine) == ENGINE_OFF &amp;&amp; vehicle.requestCarStart) {</span></a>
+<span class="lineNum">         </span>         <span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchCov" title="Branch 5 was taken 1 time"> + </span>]
 <a name="9"><span class="lineNum">       9 </span>                :            :     </a>
-<a name="10"><span class="lineNum">      10 </span>                :<span class="lineCov">          2 :       return BSG_STARTER;</span></a>
+<a name="10"><span class="lineNum">      10 </span>                :<span class="lineCov">          1 :       return BSG_STARTER;</span></a>
 <a name="11"><span class="lineNum">      11 </span>                :            :    }</a>
 <a name="12"><span class="lineNum">      12 </span>                :            : </a>
 <a name="13"><span class="lineNum">      13 </span>                :            :    // BSG_GENERATOR - Regenerative Breaking</a>
-<a name="14"><span class="lineNum">      14 </span>  [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          8 :    if (getDriverIntention(vehicle) == DRIVE_INTENTION_REDUCE_SPEED &amp;&amp; getEngineState(engine) != ENGINE_OFF ) {</span></a>
+<a name="14"><span class="lineNum">      14 </span>  [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :    if (getDriverIntention(vehicle) == DRIVE_INTENTION_REDUCE_SPEED &amp;&amp; getEngineState(engine) != ENGINE_OFF ) {</span></a>
 <a name="15"><span class="lineNum">      15 </span>                :            :       </a>
-<a name="16"><span class="lineNum">      16 </span>                :<span class="lineCov">          2 :       return BSG_GENERATOR;</span></a>
+<a name="16"><span class="lineNum">      16 </span>                :<span class="lineCov">          1 :       return BSG_GENERATOR;</span></a>
 <a name="17"><span class="lineNum">      17 </span>                :            :    }</a>
 <a name="18"><span class="lineNum">      18 </span>                :            : </a>
 <a name="19"><span class="lineNum">      19 </span>                :            :    //BSG_MOTOR - Torque Assistance</a>
-<a name="20"><span class="lineNum">      20 </span>  [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span> :<span class="lineCov">          6 :    if (getDriverIntention(vehicle) == DRIVE_INTENTION_INCREASE_SPEED &amp;&amp; getEngineState(engine) == ENGINE_WORKING &amp;&amp; getBatteryState(battery) != BATTERY_DEAD) {</span></a>
-<span class="lineNum">         </span>         <span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<a name="21"><span class="lineNum">      21 </span>                :<span class="lineCov">          2 :       return BSG_MOTOR; </span></a>
+<a name="20"><span class="lineNum">      20 </span>  [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span> :<span class="lineCov">          3 :    if (getDriverIntention(vehicle) == DRIVE_INTENTION_INCREASE_SPEED &amp;&amp; getEngineState(engine) == ENGINE_WORKING &amp;&amp; getBatteryState(battery) != BATTERY_DEAD) {</span></a>
+<span class="lineNum">         </span>         <span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<a name="21"><span class="lineNum">      21 </span>                :<span class="lineCov">          1 :       return BSG_MOTOR; </span></a>
 <a name="22"><span class="lineNum">      22 </span>                :            :    }</a>
 <a name="23"><span class="lineNum">      23 </span>                :            :   </a>
-<a name="24"><span class="lineNum">      24 </span>                :<span class="lineCov">          4 :    return BSG_IDLE;</span></a>
+<a name="24"><span class="lineNum">      24 </span>                :<span class="lineCov">          2 :    return BSG_IDLE;</span></a>
 <a name="25"><span class="lineNum">      25 </span>                :            : }</a>
 </pre>
       </td>

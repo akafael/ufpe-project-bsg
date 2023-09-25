@@ -153,7 +153,7 @@ UTEST(csv, preserveVehicleData) {
   EXPECT_EQ(vehicleDataReader.vehicle.angleAccPedal,vehicleData.vehicle.angleAccPedal);
   EXPECT_EQ(vehicleDataReader.vehicle.angleBrakePedal,vehicleData.vehicle.angleBrakePedal);
   EXPECT_EQ(vehicleDataReader.vehicle.requestCarStart,vehicleData.vehicle.requestCarStart);
-  EXPECT_EQ(vehicleDataReader.battery.voltage,vehicleData.battery.voltage); // TODO Fix bug
+  EXPECT_EQ(vehicleDataReader.battery.voltage,vehicleData.battery.voltage);
   EXPECT_EQ(vehicleDataReader.battery.current,vehicleData.battery.current);
   EXPECT_EQ(vehicleDataReader.bsg.currentMode,vehicleData.bsg.currentMode);
   EXPECT_EQ(vehicleDataReader.bsg.rpm,vehicleData.bsg.rpm);
@@ -178,4 +178,97 @@ UTEST(csv, preserveCSVline) {
   writeCSVLine(vehicleData,csvLineWriter);
 
   EXPECT_STREQ(csvLine,csvLineWriter);
+}
+
+/**
+ * Ensure that data is preserved after converting
+ *  VehicleData -> csv File -> VehicleData
+ */
+UTEST(csv,preserveDataCSV)
+{
+  const VehicleData vehicleData = {
+    .vehicle = {
+        .velocity = 1,
+        .angleAccPedal = 2,
+        .angleBrakePedal = 3,
+        .requestCarStart = 4
+        },
+    .battery = {
+        .voltage = 5,
+        .current = 6
+        },
+    .bsg = {
+        .currentMode = BSG_GENERATOR,
+        .rpm = 8,
+        .voltage = 9,
+        .current = 10
+       },
+    .engine = {
+        .rpm = 11,
+        .velocity = 12,
+        .gear = 13
+        },
+  };
+
+  char tmpFile[L_tmpnam];
+  tmpnam(tmpFile);
+
+  const int csvSize = 3;
+  VehicleData csvDataWriter[csvSize];
+
+  for (int i = 0; i < csvSize; i++)
+  {
+    csvDataWriter[i] = vehicleData;
+    csvDataWriter[i].engine.gear = i + 1;
+  }
+
+  const int writerRet = writeCSV(csvDataWriter, csvSize, tmpFile);
+
+  // Ensure it return the right return code
+  ASSERT_EQ_MSG(writerRet, 0,"Fail to write file");
+
+  // Ensure is is not storing null data
+  for (int i = 0; i < csvSize; i++)
+  {
+    EXPECT_NE(csvDataWriter[i].vehicle.velocity, 0);
+    EXPECT_NE(csvDataWriter[i].vehicle.angleAccPedal,0 );
+    EXPECT_NE(csvDataWriter[i].vehicle.angleBrakePedal,0 );
+    EXPECT_NE(csvDataWriter[i].vehicle.requestCarStart,0 );
+    EXPECT_NE(csvDataWriter[i].battery.voltage,0 );
+    EXPECT_NE(csvDataWriter[i].battery.current,0 );
+    EXPECT_NE(csvDataWriter[i].bsg.currentMode,0 );
+    EXPECT_NE(csvDataWriter[i].bsg.rpm,0 );
+    EXPECT_NE(csvDataWriter[i].bsg.voltage,0 );
+    EXPECT_NE(csvDataWriter[i].bsg.current,0 );
+    EXPECT_NE(csvDataWriter[i].engine.rpm,0 );
+    EXPECT_NE(csvDataWriter[i].engine.velocity,0 );
+    EXPECT_NE(csvDataWriter[i].engine.gear,0 );
+  }
+
+  // Read data from CSV generated
+  VehicleData csvDataReader[csvSize];
+  const int readerRet = readCSV(csvDataReader, csvSize, tmpFile);
+
+  // Ensure it return the right return code
+  ASSERT_EQ_MSG(readerRet, 0,"Fail to read file");
+
+  // Check if all data fields are the same as expected
+  for (int i = 0; i < csvSize; i++)
+  {
+    EXPECT_EQ(csvDataReader[i].vehicle.velocity,vehicleData.vehicle.velocity);
+    EXPECT_EQ(csvDataReader[i].vehicle.angleAccPedal,vehicleData.vehicle.angleAccPedal);
+    EXPECT_EQ(csvDataReader[i].vehicle.angleBrakePedal,vehicleData.vehicle.angleBrakePedal);
+    EXPECT_EQ(csvDataReader[i].vehicle.requestCarStart,vehicleData.vehicle.requestCarStart);
+    EXPECT_EQ(csvDataReader[i].battery.voltage,vehicleData.battery.voltage);
+    EXPECT_EQ(csvDataReader[i].battery.current,vehicleData.battery.current);
+    EXPECT_EQ(csvDataReader[i].bsg.currentMode,vehicleData.bsg.currentMode);
+    EXPECT_EQ(csvDataReader[i].bsg.rpm,vehicleData.bsg.rpm);
+    EXPECT_EQ(csvDataReader[i].bsg.voltage,vehicleData.bsg.voltage);
+    EXPECT_EQ(csvDataReader[i].bsg.current,vehicleData.bsg.current);
+    EXPECT_EQ(csvDataReader[i].engine.rpm,vehicleData.engine.rpm);
+    EXPECT_EQ(csvDataReader[i].engine.velocity,vehicleData.engine.velocity);
+    EXPECT_EQ(csvDataReader[i].engine.gear,i+1);
+  }
+
+  ASSERT_EQ_MSG(remove(tmpFile),0,"Unable to remove temporary file");
 }
