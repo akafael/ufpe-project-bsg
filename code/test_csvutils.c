@@ -284,7 +284,7 @@ UTEST(csv,preserveDataCSV)
 
 UTEST(csvutils, writeCSVInvalidFile) {
   const char* filename = "/invalid_name";
-  const int numEntries = 2;
+  int numEntries = 2;
   const VehicleData csvData[numEntries];
  
   const int errnoValue =  writeCSV(csvData, numEntries, filename);
