@@ -26,7 +26,8 @@ void printVehicleData(VehicleData vehicleData)
             break;
     }
     printf("Vehicle Velocity:\n\t-Km/h:%d\n",vehicleData.vehicle.velocity);
-    printf("Vehicle Accpedal:\n\t-Acc:%d\n",vehicleData.vehicle.angleAccPedal);
+    printf("Vehicle Acc Pedal:\n\t-Acc:%d\n",vehicleData.vehicle.angleAccPedal);
+    printf("Vehicle Brake Pedal:\n\t-Brake:%d\n",vehicleData.vehicle.angleBrakePedal);
     printf("BSG info:\n\t-RPM:%d\n",vehicleData.bsg.rpm);
     printf("BSG info:\n\t-Voltage(V):%d\n",vehicleData.bsg.voltage);
     printf("BSG info:\n\t-Current(I):%d\n",vehicleData.bsg.current);
