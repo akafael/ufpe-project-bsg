@@ -12,6 +12,7 @@ typedef struct VehicleStruct {
   uint16_t velocity;                   ///< [km/h] Vehicle velocity
   uint16_t angleAccPedal;              ///< [%] Vehicle throttle pedal pressed percentage 
   uint16_t angleBrakePedal;            ///< [%] Vehicle brake pedal pressed percentage
+  uint16_t vehicleReport;              ///< Time to report Vehicle status [S]
   uint8_t requestCarStart;             ///< [bool] Vehicle signil from requesting engine start
 } Vehicle;
 
