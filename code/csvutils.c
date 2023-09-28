@@ -14,7 +14,7 @@ int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
         errnoValue = 2;
     }
     else{
-        fprintf(file, "velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
+        fprintf(file, "timestemp,velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
         for(int i = 0; i < numEntries; i++){
             char csvLine[512]; // Arbitrary size
             writeCSVLine(csvdata[i], csvLine);
@@ -27,7 +27,8 @@ int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
 }
 
 void writeCSVLine(const VehicleData data, char* csvLine){
-    sprintf(csvLine, "%hu,"  // vehicle.velocity
+    sprintf(csvLine, //"%c" // How implement timestemp here???
+                     "%hu,"  // vehicle.velocity
                      "%hu,"  // vehicle.angleAccPedal
                      "%hu,"  // vehicle.angleBrakePedal
                      "%hu,"  // vehicle.requestCarStart
@@ -80,7 +81,8 @@ int readCSV(VehicleData* csvdata, int numEntries, const char* filename){
 }
 
 void readCSVLine(VehicleData* data, const char* csvLine){
-    sscanf(csvLine, "%hu,"  // vehicle.velocity
+    sscanf(csvLine,  "%c,"   // Timestamp    
+                     "%hu,"  // vehicle.velocity
                      "%hu,"  // vehicle.angleAccPedal
                      "%hu,"  // vehicle.angleBrakePedal
                      "%hhu,"  // vehicle.requestCarStart
