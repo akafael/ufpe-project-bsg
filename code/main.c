@@ -1,6 +1,7 @@
 #include "bsgcontrol.h"
 #include "csvutils.h"
 #include <stdio.h>
+#include <time.h>
 
 void printVehicleData(VehicleData vehicleData)
 {

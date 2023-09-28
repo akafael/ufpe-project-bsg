@@ -2,12 +2,12 @@
 #define ENGINE_H
 
 #include <stdint.h>
-
+#include <time.h>
 typedef struct EngineStruct {
   uint16_t rpm;                ///< [rpm] Engine rotation
-  uint16_t engineReport;    ///< Time to report engine Status [S]
   uint8_t velocity;            ///< [km/h] Vehicle speed 
   uint8_t gear;                ///< Current gear number 
+  time_t  time;                ///< Timestamp from last engine status report [s]
   } Engine;
 
 typedef enum StateEngineEnum{

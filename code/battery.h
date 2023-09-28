@@ -2,7 +2,7 @@
 #define BATTERY_H
 
 #include <stdint.h>
-
+#include <time.h>
 /**
  * @brief vehicle battery sensor data information
  * 
@@ -10,7 +10,7 @@
 typedef struct BatteryStruct {
   uint8_t voltage;           ///< Battery Voltage [V]
   int8_t current;            ///< Battery Current [A]
-  uint16_t batteryReport;    ///< Time to report Battery status [S]
+  time_t  time;              ///< Timestamp from last battery status report [s]
 } Battery;
 
 /**

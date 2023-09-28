@@ -4,7 +4,7 @@
 
 #ifndef BSG_H
 #define BSG_H
-
+#include <time.h>
 #include <stdint.h>
 
 /**
@@ -16,7 +16,6 @@ typedef enum StateBSGEnum {
   BSG_STARTER = 1,   ///< BSG state for machine operating as Engine Starter 
   BSG_MOTOR = 2,     ///< BSG state for machine operating as Motor
   BSG_GENERATOR = 3  ///< BSG state for machine operating as Generator
-  
 } StateBSG;
 
 /**
@@ -28,7 +27,7 @@ typedef struct BSGStruct {
   uint16_t rpm;           ///< BSG rotation (RPM)
   uint16_t voltage;       ///< BSG voltage (V)
   uint16_t current;       ///< BSG current (A)
-  uint16_t bsgReport;    ///< Time to report BSG status [S]
+  time_t  time;           ///< Timestamp from last BSG status report [s]
 } BSG;
 
 #endif // BSG_H

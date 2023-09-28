@@ -3,7 +3,6 @@
 #include "bsg.h"
 #include "vehicle.h"
 #include "engine.h"
-
 /**
  * @brief Define the expected BSG operation mode considering the current measurement
  * from vehicle sensor data.
