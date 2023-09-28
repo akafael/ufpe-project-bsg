@@ -1,4 +1,4 @@
-%% BSG data inport script
+%% BSG data import script
 
 %% INSTRUCTIONS
 % To run the model, there are 5 steps that must be followed:
@@ -9,7 +9,7 @@
 % 2)Run this script in order to define the variables in the Workspace;
 %
 % 3)Open the Simulink model and in MODELING -> Model Settings -> Data
-% Inport/Export -> Input make sure that 'dataStructure' is 
+% Import/Export -> Input make sure that 'dataStructure' is 
 % defined as the input;
 %
 % 4)Make sure to change the dimensions of all input blocks to match the
@@ -26,11 +26,11 @@ data = readmatrix('data.csv');
 time = (0:1:10)';
 
 %defines the data structure called 'dataStructure' that will be
-%reffereneced in the model
+%refereneced in the model
 dataStructure.time = time;
 
 %the number indicated in .signals() represents the input block index to
-%wich the collumn of the .csv file is linked 
+%wich the column of the .csv file is linked 
 
 % velocity value
 dataStructure.signals(1).values = data(:, 1); 
@@ -43,7 +43,7 @@ dataStructure.signals(4).values = data(:, 3);
 %requestCarStart data
 dataStructure.signals(5).values = data(:, 4);
 
-%specifies the dimension that must be refferenced in each input block in the
+%specifies the dimension that must be referenced in each input block in the
 %model
 dataStructure.signals(1).dimensions = 1; 
 dataStructure.signals(2).dimensions = 1; 
