@@ -6,6 +6,7 @@ UTEST_MAIN()
 
 UTEST(csvutils, writeCSVline) {
   VehicleData vehicleData = {
+    .timeMillis = 100,
     .vehicle = {
         .velocity = 1,
         .angleAccPedal = 2,
@@ -30,6 +31,7 @@ UTEST(csvutils, writeCSVline) {
   };
 
   /* Coluumns order:
+    0. data.timeMillis, 
     1. data.vehicle.velocity, 
     2. data.vehicle.angleAccPedal, 
     3. data.vehicle.angleBrakePedal,
@@ -45,7 +47,7 @@ UTEST(csvutils, writeCSVline) {
     14. engine.gear
   */
   
-  char* expectedCsvLine = "1,2,3,4,5,6,0,8,9,10,11,12,13";
+  char* expectedCsvLine = "100,1,2,3,4,5,6,0,8,9,10,11,12,13";
 
   char csvLine[512];
   writeCSVLine(vehicleData, csvLine);
@@ -55,6 +57,7 @@ UTEST(csvutils, writeCSVline) {
 
 UTEST(csv, readCSVline) {
   const VehicleData expectedVehicleData = {
+    .timeMillis = 100,
     .vehicle = {
         .velocity = 1,
         .angleAccPedal = 2,
@@ -94,11 +97,12 @@ UTEST(csv, readCSVline) {
     14. engine.gear
   */
   
-  const char* csvLine = "1,2,3,4,5,6,0,8,9,10,11,12,13";
+  const char* csvLine = "100,1,2,3,4,5,6,0,8,9,10,11,12,13";
 
   VehicleData vehicleData;
   readCSVLine(&vehicleData, csvLine);
 
+  EXPECT_EQ(expectedVehicleData.timeMillis,vehicleData.timeMillis);
   EXPECT_EQ(expectedVehicleData.vehicle.velocity,vehicleData.vehicle.velocity);
   EXPECT_EQ(expectedVehicleData.vehicle.angleAccPedal,vehicleData.vehicle.angleAccPedal);
   EXPECT_EQ(expectedVehicleData.vehicle.angleBrakePedal,vehicleData.vehicle.angleBrakePedal);
@@ -120,6 +124,7 @@ UTEST(csv, readCSVline) {
  */
 UTEST(csv, preserveVehicleData) {
   const VehicleData vehicleData = {
+    .timeMillis = 100,
     .vehicle = {
         .velocity = 1,
         .angleAccPedal = 2,
@@ -149,6 +154,7 @@ UTEST(csv, preserveVehicleData) {
   VehicleData vehicleDataReader;
   readCSVLine(&vehicleDataReader, csvLineWriter);
 
+  EXPECT_EQ(vehicleDataReader.timeMillis,vehicleData.timeMillis);
   EXPECT_EQ(vehicleDataReader.vehicle.velocity,vehicleData.vehicle.velocity);
   EXPECT_EQ(vehicleDataReader.vehicle.angleAccPedal,vehicleData.vehicle.angleAccPedal);
   EXPECT_EQ(vehicleDataReader.vehicle.angleBrakePedal,vehicleData.vehicle.angleBrakePedal);
@@ -169,7 +175,7 @@ UTEST(csv, preserveVehicleData) {
  *  csv string -> VehicleData -> csv string
  */
 UTEST(csv, preserveCSVline) {
-  const char* csvLine = "1,2,3,4,5,6,0,8,9,10,11,12,13";
+  const char* csvLine = "100,1,2,3,4,5,6,0,8,9,10,11,12,13";
 
   VehicleData vehicleData;
   readCSVLine(&vehicleData, csvLine);
@@ -187,6 +193,7 @@ UTEST(csv, preserveCSVline) {
 UTEST(csv,preserveDataCSV)
 {
   const VehicleData vehicleData = {
+    .timeMillis = 100,
     .vehicle = {
         .velocity = 1,
         .angleAccPedal = 2,
@@ -230,6 +237,7 @@ UTEST(csv,preserveDataCSV)
   // Ensure is is not storing null data
   for (int i = 0; i < csvSize; i++)
   {
+    EXPECT_NE(csvDataWriter[i].timeMillis, 0);
     EXPECT_NE(csvDataWriter[i].vehicle.velocity, 0);
     EXPECT_NE(csvDataWriter[i].vehicle.angleAccPedal,0 );
     EXPECT_NE(csvDataWriter[i].vehicle.angleBrakePedal,0 );
@@ -255,6 +263,7 @@ UTEST(csv,preserveDataCSV)
   // Check if all data fields are the same as expected
   for (int i = 0; i < csvSize; i++)
   {
+    EXPECT_EQ(csvDataReader[i].timeMillis,vehicleData.timeMillis);
     EXPECT_EQ(csvDataReader[i].vehicle.velocity,vehicleData.vehicle.velocity);
     EXPECT_EQ(csvDataReader[i].vehicle.angleAccPedal,vehicleData.vehicle.angleAccPedal);
     EXPECT_EQ(csvDataReader[i].vehicle.angleBrakePedal,vehicleData.vehicle.angleBrakePedal);
