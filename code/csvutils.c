@@ -14,7 +14,7 @@ int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
         errnoValue = 2;
     }
     else{
-        fprintf(file, "timestemp,velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
+        fprintf(file, "timestamp,velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
         for(int i = 0; i < numEntries; i++){
             char csvLine[512]; // Arbitrary size
             writeCSVLine(csvdata[i], csvLine);
@@ -27,7 +27,7 @@ int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
 }
 
 void writeCSVLine(const VehicleData data, char* csvLine){
-    sprintf(csvLine, //"%c" // How implement timestemp here???
+    sprintf(csvLine, "%u,"   // timeMillis
                      "%hu,"  // vehicle.velocity
                      "%hu,"  // vehicle.angleAccPedal
                      "%hu,"  // vehicle.angleBrakePedal
@@ -40,7 +40,8 @@ void writeCSVLine(const VehicleData data, char* csvLine){
                      "%hu,"  // bsg.current
                      "%u,"   // engine.rpm
                      "%hu,"  // engine.velocity
-                     "%hu",  // engine.gear 
+                     "%hu",  // engine.gear
+        data.timeMillis, 
         data.vehicle.velocity, 
         data.vehicle.angleAccPedal, 
         data.vehicle.angleBrakePedal,
@@ -81,20 +82,21 @@ int readCSV(VehicleData* csvdata, int numEntries, const char* filename){
 }
 
 void readCSVLine(VehicleData* data, const char* csvLine){
-    sscanf(csvLine,  "%c,"   // Timestamp    
-                     "%hu,"  // vehicle.velocity
-                     "%hu,"  // vehicle.angleAccPedal
-                     "%hu,"  // vehicle.angleBrakePedal
+    sscanf(csvLine,  "%u,"    // Timestamp    
+                     "%hu,"   // vehicle.velocity
+                     "%hu,"   // vehicle.angleAccPedal
+                     "%hu,"   // vehicle.angleBrakePedal
                      "%hhu,"  // vehicle.requestCarStart
                      "%hhu,"  // battery.voltage
-                     "%hhd," // battery.current
-                     "%u,"   // bsg.currentMode
-                     "%hu,"  // bsg.rpm
-                     "%hu,"  // bsg.voltage
-                     "%hu,"  // bsg.current
+                     "%hhd,"  // battery.current
+                     "%u,"    // bsg.currentMode
+                     "%hu,"   // bsg.rpm
+                     "%hu,"   // bsg.voltage
+                     "%hu,"   // bsg.current
                      "%hu,"   // engine.rpm
                      "%hhu,"  // engine.velocity
-                     "%hhu",  // engine.gear 
+                     "%hhu",  // engine.gear
+        &(data->timeMillis),
         &(data->vehicle.velocity), 
         &(data->vehicle.angleAccPedal), 
         &(data->vehicle.angleBrakePedal),
