@@ -28,6 +28,12 @@ In summary, an automotive BSG plays a dual role as a starter and generator, cont
  3. [CODE](code): Source code and unit tests
  4. [DOCS](docs): System documentation.
  5. [REF](ref): Datashet, whitepaper and other documents for reference.
+    
+## How to run the application?
+```bash
+make run
+```
+
 ## Tests Reports
 #### Documentation
 - https://akafael.github.io/ufpe-project-bsg/doxygen/
