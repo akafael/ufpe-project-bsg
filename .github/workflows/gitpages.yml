@@ -31,6 +31,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Install Doxygen
+        run: sudo apt-get install doxygen graphviz
+      - name: Install Coverage tools
+        run: sudo apt-get install gcc lcov gcovr
+
+      - name: Run tests
+        run: make test
+      - name: Generate GCOV coverage report
+        run: make gcovr-report
+      - name: Generate LCOV coverage report
+        run: make lcov-report
+      - name: Generate documentation
+        run: make test docs
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
