@@ -1,12 +1,13 @@
 <map id="battery.h" name="battery.h">
-<area shape="rect" id="node1" title=" " alt="" coords="235,5,314,32"/>
-<area shape="rect" id="node2" href="$da/dc6/battery_8c.html" title=" " alt="" coords="62,80,141,107"/>
-<area shape="rect" id="node3" href="$d8/dc8/bsgcontrol_8h.html" title=" " alt="" coords="165,80,267,107"/>
-<area shape="rect" id="node7" href="$dc/d67/csvutils_8h.html" title=" " alt="" coords="291,80,375,107"/>
-<area shape="rect" id="node10" href="$da/ddd/test__battery_8c.html" title=" " alt="" coords="399,80,510,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="255,5,334,32"/>
+<area shape="rect" id="node2" href="$da/dc6/battery_8c.html" title=" " alt="" coords="51,80,130,107"/>
+<area shape="rect" id="node3" href="$d8/dc8/bsgcontrol_8h.html" title=" " alt="" coords="154,80,257,107"/>
+<area shape="rect" id="node5" href="$d7/d81/libbsg_8h.html" title=" " alt="" coords="243,155,317,181"/>
+<area shape="rect" id="node8" href="$dc/d67/csvutils_8h.html" title=" " alt="" coords="333,80,417,107"/>
+<area shape="rect" id="node11" href="$da/ddd/test__battery_8c.html" title=" " alt="" coords="441,80,551,107"/>
 <area shape="rect" id="node4" href="$d8/d48/bsgcontrol_8c.html" title=" " alt="" coords="5,155,107,181"/>
-<area shape="rect" id="node5" href="$d0/d29/main_8c.html" title=" " alt="" coords="243,155,309,181"/>
-<area shape="rect" id="node6" href="$d6/d2d/test__bsg_8c.html" title=" " alt="" coords="131,155,219,181"/>
-<area shape="rect" id="node8" href="$d5/da2/csvutils_8c.html" title=" " alt="" coords="333,155,416,181"/>
-<area shape="rect" id="node9" href="$d6/de5/test__csvutils_8c.html" title=" " alt="" coords="440,155,555,181"/>
+<area shape="rect" id="node6" href="$d0/d29/main_8c.html" title=" " alt="" coords="341,155,408,181"/>
+<area shape="rect" id="node7" href="$d6/d2d/test__bsg_8c.html" title=" " alt="" coords="131,155,219,181"/>
+<area shape="rect" id="node9" href="$d5/da2/csvutils_8c.html" title=" " alt="" coords="432,155,515,181"/>
+<area shape="rect" id="node10" href="$d6/de5/test__csvutils_8c.html" title=" " alt="" coords="539,155,653,181"/>
 </map>

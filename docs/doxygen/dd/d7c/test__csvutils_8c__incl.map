@@ -1,12 +1,13 @@
 <map id="test_csvutils.c" name="test_csvutils.c">
-<area shape="rect" id="node1" title=" " alt="" coords="210,5,324,32"/>
-<area shape="rect" id="node2" href="$dc/d67/csvutils_8h.html" title=" " alt="" coords="125,80,209,107"/>
-<area shape="rect" id="node9" title=" " alt="" coords="234,80,300,107"/>
-<area shape="rect" id="node10" title=" " alt="" coords="324,80,428,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="132,229,202,256"/>
-<area shape="rect" id="node4" href="$d8/d37/vehicle_8h.html" title=" " alt="" coords="312,155,393,181"/>
-<area shape="rect" id="node6" href="$d1/d55/engine_8h.html" title=" " alt="" coords="25,155,104,181"/>
-<area shape="rect" id="node7" href="$d6/d69/battery_8h.html" title=" " alt="" coords="128,155,206,181"/>
-<area shape="rect" id="node8" href="$de/d51/bsg_8h.html" title=" " alt="" coords="230,155,288,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="311,229,394,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="256,5,370,32"/>
+<area shape="rect" id="node2" href="$dc/d67/csvutils_8h.html" title=" " alt="" coords="171,80,255,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="280,80,346,107"/>
+<area shape="rect" id="node11" title=" " alt="" coords="370,80,474,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="132,229,203,256"/>
+<area shape="rect" id="node4" href="$d8/d37/vehicle_8h.html" title=" " alt="" coords="312,155,394,181"/>
+<area shape="rect" id="node6" href="$d1/d55/engine_8h.html" title=" " alt="" coords="26,155,104,181"/>
+<area shape="rect" id="node7" href="$d6/d69/battery_8h.html" title=" " alt="" coords="128,155,207,181"/>
+<area shape="rect" id="node8" href="$de/d51/bsg_8h.html" title=" " alt="" coords="231,155,288,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="418,155,482,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="312,229,394,256"/>
 </map>

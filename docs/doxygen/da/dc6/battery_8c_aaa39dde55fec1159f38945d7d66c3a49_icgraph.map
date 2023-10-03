@@ -1,6 +1,6 @@
 <map id="getBatteryState" name="getBatteryState">
 <area shape="rect" id="node1" title="Convert the vehicle&#39;s voltage and current information into StateBattery." alt="" coords="459,56,584,83"/>
-<area shape="rect" id="node2" href="$d8/d48/bsgcontrol_8c.html#ad786c4be730393f549a01a8cfeb247c4" title="Define the expected BSG operation mode considering the current measurement from vehicle sensor data." alt="" coords="287,31,411,57"/>
+<area shape="rect" id="node2" href="$d8/dc8/bsgcontrol_8h.html#ad786c4be730393f549a01a8cfeb247c4" title="Define the expected BSG operation mode considering the current measurement from vehicle sensor data." alt="" coords="287,31,411,57"/>
 <area shape="rect" id="node6" href="$da/ddd/test__battery_8c.html#a27ab0d94b7e608cf8b041b21cd0279fb" title=" " alt="" coords="317,81,381,108"/>
 <area shape="rect" id="node3" href="$d0/d29/main_8c.html#aa11251bdd93ffdea755dea90642abf34" title=" " alt="" coords="108,5,239,32"/>
 <area shape="rect" id="node5" href="$d6/d2d/test__bsg_8c.html#ad99f248c1717f018f9e0e911305451c4" title=" " alt="" coords="141,56,205,83"/>
