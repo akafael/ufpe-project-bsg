@@ -2,7 +2,6 @@
 #define VEHICLE_H
 
 #include <stdint.h>
-#include <stdbool.h>
 
 /**
  * @brief Vehicle odometer and driver input data from pedals
