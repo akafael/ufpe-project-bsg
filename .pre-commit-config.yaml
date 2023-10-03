@@ -12,6 +12,7 @@ repos:
     rev: v3.2.0
     hooks:
     -   id: end-of-file-fixer
+        files: \.(c|cc|cxx|cpp|h|hpp|hxx|csv|m)$
     -   id: check-yaml
     -   id: check-added-large-files
     -   id: check-merge-conflict
