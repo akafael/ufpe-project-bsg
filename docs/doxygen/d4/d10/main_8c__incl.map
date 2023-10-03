@@ -1,12 +1,13 @@
 <map id="main.c" name="main.c">
-<area shape="rect" id="node1" title=" " alt="" coords="221,5,287,32"/>
-<area shape="rect" id="node2" href="$d8/dc8/bsgcontrol_8h.html" title=" " alt="" coords="85,80,188,107"/>
-<area shape="rect" id="node9" href="$dc/d67/csvutils_8h.html" title=" " alt="" coords="212,80,296,107"/>
-<area shape="rect" id="node10" title=" " alt="" coords="321,80,387,107"/>
-<area shape="rect" id="node3" href="$d6/d69/battery_8h.html" title=" " alt="" coords="5,155,84,181"/>
-<area shape="rect" id="node5" href="$de/d51/bsg_8h.html" title=" " alt="" coords="108,155,165,181"/>
-<area shape="rect" id="node6" href="$d8/d37/vehicle_8h.html" title=" " alt="" coords="292,155,373,181"/>
-<area shape="rect" id="node8" href="$d1/d55/engine_8h.html" title=" " alt="" coords="189,155,268,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="193,229,264,256"/>
-<area shape="rect" id="node7" title=" " alt="" coords="291,229,374,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="263,5,329,32"/>
+<area shape="rect" id="node2" href="$d8/dc8/bsgcontrol_8h.html" title=" " alt="" coords="127,80,230,107"/>
+<area shape="rect" id="node9" href="$dc/d67/csvutils_8h.html" title=" " alt="" coords="254,80,338,107"/>
+<area shape="rect" id="node11" title=" " alt="" coords="363,80,429,107"/>
+<area shape="rect" id="node3" href="$d6/d69/battery_8h.html" title=" " alt="" coords="295,155,374,181"/>
+<area shape="rect" id="node5" href="$de/d51/bsg_8h.html" title=" " alt="" coords="111,155,169,181"/>
+<area shape="rect" id="node6" href="$d8/d37/vehicle_8h.html" title=" " alt="" coords="6,155,87,181"/>
+<area shape="rect" id="node8" href="$d1/d55/engine_8h.html" title=" " alt="" coords="193,155,271,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="197,229,267,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="5,229,88,256"/>
+<area shape="rect" id="node10" title=" " alt="" coords="449,155,513,181"/>
 </map>

@@ -1,6 +1,7 @@
 <map id="bsgcontrol.h" name="bsgcontrol.h">
-<area shape="rect" id="node1" title=" " alt="" coords="113,5,215,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="163,5,266,32"/>
 <area shape="rect" id="node2" href="$d8/d48/bsgcontrol_8c.html" title=" " alt="" coords="5,80,107,107"/>
-<area shape="rect" id="node3" href="$d0/d29/main_8c.html" title=" " alt="" coords="131,80,197,107"/>
-<area shape="rect" id="node4" href="$d6/d2d/test__bsg_8c.html" title=" " alt="" coords="221,80,309,107"/>
+<area shape="rect" id="node3" href="$d7/d81/libbsg_8h.html" title=" " alt="" coords="131,80,205,107"/>
+<area shape="rect" id="node4" href="$d0/d29/main_8c.html" title=" " alt="" coords="229,80,296,107"/>
+<area shape="rect" id="node5" href="$d6/d2d/test__bsg_8c.html" title=" " alt="" coords="320,80,408,107"/>
 </map>
