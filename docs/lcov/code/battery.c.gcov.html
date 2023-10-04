@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2023-09-22 13:42:04</td>
+            <td class="headerValue">2023-10-04 02:52:31</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -72,28 +72,28 @@
 <a name="1"><span class="lineNum">       1 </span>                :            : #include &quot;calibration.h&quot;</a>
 <a name="2"><span class="lineNum">       2 </span>                :            : #include &quot;battery.h&quot;</a>
 <a name="3"><span class="lineNum">       3 </span>                :            : </a>
-<a name="4"><span class="lineNum">       4 </span>                :<span class="lineCov">         11 : StateBattery getBatteryState(Battery battery){</span></a>
+<a name="4"><span class="lineNum">       4 </span>                :<span class="lineCov">         12 : StateBattery getBatteryState(Battery battery){</span></a>
 <a name="5"><span class="lineNum">       5 </span>                :            :     </a>
-<a name="6"><span class="lineNum">       6 </span>                :<span class="lineCov">         11 :     StateBattery stateBattery = BATTERY_OPERATIONAL;</span></a>
-<a name="7"><span class="lineNum">       7 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 10 times"> + </span>]:<span class="lineCov">         11 :     if (battery.voltage &gt;= BatteryMaxVoltage){</span></a>
+<a name="6"><span class="lineNum">       6 </span>                :<span class="lineCov">         12 :     StateBattery stateBattery = BATTERY_OPERATIONAL;</span></a>
+<a name="7"><span class="lineNum">       7 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 11 times"> + </span>]:<span class="lineCov">         12 :     if (battery.voltage &gt;= BatteryMaxVoltage){</span></a>
 <a name="8"><span class="lineNum">       8 </span>                :<span class="lineCov">          1 :         stateBattery = BATTERY_CHARGING;</span></a>
 <a name="9"><span class="lineNum">       9 </span>                :            :     }</a>
-<a name="10"><span class="lineNum">      10 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         10 :     else if ( battery.voltage &gt;= BatteryMinVoltage)</span></a>
+<a name="10"><span class="lineNum">      10 </span>        [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         11 :     else if ( battery.voltage &gt;= BatteryMinVoltage)</span></a>
 <a name="11"><span class="lineNum">      11 </span>                :            :     {</a>
-<a name="12"><span class="lineNum">      12 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          8 :         if( battery.voltage &lt; BatterySpecVoltage )</span></a>
+<a name="12"><span class="lineNum">      12 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span>]:<span class="lineCov">          9 :         if( battery.voltage &lt; BatterySpecVoltage )</span></a>
 <a name="13"><span class="lineNum">      13 </span>                :            :         {</a>
-<a name="14"><span class="lineNum">      14 </span>                :<span class="lineCov">          4 :             stateBattery = BATTERY_LOW;</span></a>
+<a name="14"><span class="lineNum">      14 </span>                :<span class="lineCov">          3 :             stateBattery = BATTERY_LOW;</span></a>
 <a name="15"><span class="lineNum">      15 </span>                :            :         }</a>
 <a name="16"><span class="lineNum">      16 </span>                :            :         else</a>
 <a name="17"><span class="lineNum">      17 </span>                :            :         {</a>
-<a name="18"><span class="lineNum">      18 </span>                :<span class="lineCov">          4 :             stateBattery = BATTERY_OPERATIONAL;</span></a>
+<a name="18"><span class="lineNum">      18 </span>                :<span class="lineCov">          6 :             stateBattery = BATTERY_OPERATIONAL;</span></a>
 <a name="19"><span class="lineNum">      19 </span>                :            :         }</a>
 <a name="20"><span class="lineNum">      20 </span>                :            :     }</a>
 <a name="21"><span class="lineNum">      21 </span>                :            :     else </a>
 <a name="22"><span class="lineNum">      22 </span>                :            :     {</a>
 <a name="23"><span class="lineNum">      23 </span>                :<span class="lineCov">          2 :         stateBattery = BATTERY_DEAD;</span></a>
 <a name="24"><span class="lineNum">      24 </span>                :            :     }</a>
-<a name="25"><span class="lineNum">      25 </span>                :<span class="lineCov">         11 :     return stateBattery;</span></a>
+<a name="25"><span class="lineNum">      25 </span>                :<span class="lineCov">         12 :     return stateBattery;</span></a>
 <a name="26"><span class="lineNum">      26 </span>                :            : }</a>
 </pre>
       </td>
