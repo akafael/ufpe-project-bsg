@@ -6,12 +6,14 @@
 #include "engine.h"
 #include "battery.h"
 #include "bsg.h"
+#include "time.h"
 
 /**
  * @brief Struct with Vehicle, Engine, Battery and BSG data
  * 
  */
 typedef struct VehicleDataStruct {
+    uint32_t timeMillis;      ///< Time (ms)
     Vehicle vehicle;          ///< Vehicle odometer and driver input
     Engine engine;            ///< Engine sensors data
     Battery battery;          ///< Battery sensors data

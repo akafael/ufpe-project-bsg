@@ -1,11 +1,12 @@
 <map id="bsg.h" name="bsg.h">
-<area shape="rect" id="node1" title=" " alt="" coords="166,5,223,32"/>
-<area shape="rect" id="node2" href="$d7/d61/bsg_8c.html" title=" " alt="" coords="63,80,119,107"/>
-<area shape="rect" id="node3" href="$d8/dc8/bsgcontrol_8h.html" title=" " alt="" coords="143,80,246,107"/>
-<area shape="rect" id="node7" href="$dc/d67/csvutils_8h.html" title=" " alt="" coords="311,80,395,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="213,5,270,32"/>
+<area shape="rect" id="node2" href="$d7/d61/bsg_8c.html" title=" " alt="" coords="65,80,121,107"/>
+<area shape="rect" id="node3" href="$d8/dc8/bsgcontrol_8h.html" title=" " alt="" coords="146,80,249,107"/>
+<area shape="rect" id="node5" href="$d7/d81/libbsg_8h.html" title=" " alt="" coords="243,155,317,181"/>
+<area shape="rect" id="node8" href="$dc/d67/csvutils_8h.html" title=" " alt="" coords="333,80,417,107"/>
 <area shape="rect" id="node4" href="$d8/d48/bsgcontrol_8c.html" title=" " alt="" coords="5,155,107,181"/>
-<area shape="rect" id="node5" href="$d0/d29/main_8c.html" title=" " alt="" coords="243,155,309,181"/>
-<area shape="rect" id="node6" href="$d6/d2d/test__bsg_8c.html" title=" " alt="" coords="131,155,219,181"/>
-<area shape="rect" id="node8" href="$d5/da2/csvutils_8c.html" title=" " alt="" coords="333,155,416,181"/>
-<area shape="rect" id="node9" href="$d6/de5/test__csvutils_8c.html" title=" " alt="" coords="440,155,555,181"/>
+<area shape="rect" id="node6" href="$d0/d29/main_8c.html" title=" " alt="" coords="341,155,408,181"/>
+<area shape="rect" id="node7" href="$d6/d2d/test__bsg_8c.html" title=" " alt="" coords="131,155,219,181"/>
+<area shape="rect" id="node9" href="$d5/da2/csvutils_8c.html" title=" " alt="" coords="432,155,515,181"/>
+<area shape="rect" id="node10" href="$d6/de5/test__csvutils_8c.html" title=" " alt="" coords="539,155,653,181"/>
 </map>

@@ -182,7 +182,7 @@ docs: $(DOCS_HTML_PAGE)
 
 # Build HTML Code documentation
 $(DOCS_HTML_PAGE): $(SRCS_DIR)/Doxyfile $(SRCS) $(HEADERS)
-	cd $(dir @<) && \
+	cd $(SRCS_DIR) && \
 	doxygen $<
 
 # Remove generated files from documentation
