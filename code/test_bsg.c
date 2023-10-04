@@ -35,6 +35,36 @@ UTEST(bsg, idle) {
   ASSERT_EQ(bsgMode, BSG_IDLE);
 }
 
+UTEST(bsg, idleSoftStart) {
+  Vehicle vehicle = {
+    .velocity = 0,
+    .angleAccPedal = 0,
+    .angleBrakePedal = 0,
+    .requestCarStart = 0
+  };
+  
+  BSG bsg = {
+    .currentMode = BSG_IDLE,
+    .rpm = EngineRPMNeutral,
+    .voltage = 5,
+    .current = 0
+  };
+  
+  Engine engine = {
+    .rpm = EngineRPMNeutral
+  };
+  
+  Battery battery = {
+    .voltage = BatterySpecVoltage,
+    .current = 1
+  };
+
+  const StateBSG bsgMode = selectBSGMode(vehicle, engine, bsg, battery);
+  ASSERT_EQ(getBatteryState(battery),BATTERY_OPERATIONAL);
+  ASSERT_EQ(getDriverIntention(vehicle), DRIVE_INTENTION_NOTHING);
+  ASSERT_EQ(bsgMode, BSG_IDLE);
+}
+
 /**
  * BSG IDLE whenever the engine is off and the vehicle stopped
  */

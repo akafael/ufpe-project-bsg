@@ -7,23 +7,16 @@
 
 int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"w");   //opens 'filename' and assigns to 'file' the pointer to that file;
-    int errnoValue = 0;
    
-    if(file == NULL){
-        perror(strerror(errno));
-        errnoValue = 2;
+    fprintf(file, "timestamp,velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
+    for(int i = 0; i < numEntries; i++){
+        char csvLine[512]; // Arbitrary size
+        writeCSVLine(csvdata[i], csvLine);
+        fprintf(file, "%s\n", csvLine);
     }
-    else{
-        fprintf(file, "timestamp,velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
-        for(int i = 0; i < numEntries; i++){
-            char csvLine[512]; // Arbitrary size
-            writeCSVLine(csvdata[i], csvLine);
-            fprintf(file, "%s\n", csvLine);
-        }
-        errnoValue = 0;
-    }
+
     fclose(file);
-    return errnoValue;
+    return 0;
 }
 
 void writeCSVLine(const VehicleData data, char* csvLine){
@@ -60,26 +53,19 @@ void writeCSVLine(const VehicleData data, char* csvLine){
 
 int readCSV(VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"r");   //opens 'filename' and assigns to 'file' the pointer to that file;
-    int errnoValue = 0;
+    
+    const int bufferSize = 512;
+    char csvLine[bufferSize];
 
-    if(file == NULL){
-        perror(strerror(errno));
-        errnoValue = 2;
+    fgets(csvLine, bufferSize, file); // Drop First Line with header
+
+    for( int i = 0; ( i < numEntries ) && fgets(csvLine, 512, file);  i++ ) {
+        readCSVLine(&csvdata[i], csvLine);
     }
-    else{
-        const int bufferSize = 512;
-        char csvLine[bufferSize];
-
-        fgets(csvLine, bufferSize, file); // Drop First Line with header
-
-        for( int i = 0; ( i < numEntries ) && fgets(csvLine, 512, file);  i++ ) {
-            readCSVLine(&csvdata[i], csvLine);
-        }
-        errnoValue = 0;
-    } 
-    fclose(file);
-    return errnoValue;
-}
+     fclose(file);
+    return 0;
+} 
+  
 
 void readCSVLine(VehicleData* data, const char* csvLine){
     sscanf(csvLine,  "%u,"    // Timestamp    
