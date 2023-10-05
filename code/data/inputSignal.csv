@@ -1,4 +1,4 @@
-timestemp,velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current,rpm,velocity,gear
+timeMillis,vehicleVelocity,angleAccPedal,angleBrakePedal,requestCarStart,batteryVoltage,batteryCurrent,bsgCurrentMode,bsgRPM,bsgVoltage,bsgCurrent,engineRPM,velocity,gear
 100,397,100,0,0,12,1,0,4000,12,1,8000,397,7
 200,100,0,0,0,15,23,0,150,2,1,12,100,5
 300,150,33,0,0,0,0,1,3000,12,1,3000,150,5
