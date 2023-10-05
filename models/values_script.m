@@ -32,10 +32,10 @@ dataStructure.time = time;
 %the number indicated in .signals() represents the input block index to
 %wich the column of the .csv file is linked 
 
-% velocity value
+% voltage value
 dataStructure.signals(1).values = data(:, 6); 
 % rpm value
-dataStructure.signals(2).values = data(:, 9); 
+dataStructure.signals(2).values = data(:, 12); 
 % angleAccPedal value
 dataStructure.signals(3).values = data(:, 3); 
 %angleBrakePedal value
