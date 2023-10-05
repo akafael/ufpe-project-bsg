@@ -20,28 +20,25 @@
 %% Data Inport
 
 %reads data from .csv file located in the same directory as this script;
-data = readmatrix('data.csv');
-
-%defines the time period in wich the simulation will take place;
-time = (0:1:10)';
+data = readtable('data.csv');
 
 %defines the data structure called 'dataStructure' that will be
 %refereneced in the model
-dataStructure.time = time;
+dataStructure.time = data.timeMillis;
 
 %the number indicated in .signals() represents the input block index to
 %wich the column of the .csv file is linked 
 
-% voltage value
-dataStructure.signals(1).values = data(:, 6); 
+% velocity value
+dataStructure.signals(1).values = data.vehicleVelocity; 
 % rpm value
-dataStructure.signals(2).values = data(:, 12); 
+dataStructure.signals(2).values = data.engineRPM; 
 % angleAccPedal value
-dataStructure.signals(3).values = data(:, 3); 
+dataStructure.signals(3).values = data.angleAccPedal; 
 %angleBrakePedal value
-dataStructure.signals(4).values = data(:, 4);
+dataStructure.signals(4).values = data.angleBrakePedal;
 %requestCarStart data
-dataStructure.signals(5).values = data(:, 5);
+dataStructure.signals(5).values = data.requestCarStart;
 
 %specifies the dimension that must be referenced in each input block in the
 %model
