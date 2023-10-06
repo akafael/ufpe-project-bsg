@@ -7,8 +7,15 @@
 
 int writeCSV(const VehicleData* csvdata, int numEntries, const char* filename){
     FILE* file = fopen(filename,"w");   //opens 'filename' and assigns to 'file' the pointer to that file;
-   
-    fprintf(file, "timestamp,velocity,angleAccPedal,angleBrakePedal,requestCarStart,voltage,current,currentMode,rpm,voltage,current\n"); //csv header
+
+    const char * fileheader = "timeMillis,"                                                    // timestamp (millis)
+                              "vehicleVelocity,angleAccPedal,angleBrakePedal,requestCarStart," // vehicle data
+                              "batteryVoltage,batteryCurrent,"                                 // battery data
+                              "bsgCurrentMode,bsgRPM,bsgVoltage,bsgCurrent,"                   // bsg data
+                              "engineRPM,velocity,gear\n";                                     // engine
+
+    fprintf(file,"%s", fileheader); //csv header
+
     for(int i = 0; i < numEntries; i++){
         char csvLine[512]; // Arbitrary size
         writeCSVLine(csvdata[i], csvLine);
