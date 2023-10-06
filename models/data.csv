@@ -1,5 +1,4 @@
-timeMillis;vehicleVelocity;angleAccPedal;angleBrakePedal;requestCarStart;batteryVoltage;batteryCurrent;bsgCurrentMode;bsgRPM;bsgVoltage;bsgCurrent;engineRPM;velocity;gear
-100;0;0;0;1;12;1;0;4000;12;1;0;397;7
+timeMillis,vehicleVelocity,angleAccPedal,angleBrakePedal,requestCarStart,batteryVoltage,batteryCurrent,bsgCurrentMode,bsgRPM,bsgVoltage,bsgCurrent,engineRPM,velocity,gear100;0;0;0;1;12;1;0;4000;12;1;0;397;7
 200;0;0;0;1;12;23;0;150;2;1;0;100;5
 300;0;10;0;0;12;0;1;3000;12;1;1000;150;5
 400;0;20;0;0;12;1;3;2000;8;1;2000;53;3
